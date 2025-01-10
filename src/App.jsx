@@ -1,34 +1,64 @@
 
 
-// Note-- doubling as landing page.
 
+// App.jsx -- Note-- doubling as landing page.
 
 
 
 import React from 'react';
-import myImage from './assets/desertcar.jpg'; 
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import RegisterPage from './pages/RegisterPage';
+import myImage from './assets/sunrisebeach.jpg';
+import './styles/landingheader.css';
+import './styles/index.scss';
+
+function LandingPage() {
+  const navigate = useNavigate();
+
+
+  const handleNavigateToRegister = () => {
+    navigate('/register');
+  };
+
+
+  const handleNavigateToLogin = () => {
+    navigate('/login'); 
+  };
+
+  return (
+    <div>
+      {/* Header */}
+      <header className="landing-header">
+        <div className="header-title">Holidaze</div>
+        <div className="header-buttons">
+          <button className="header-button" onClick={handleNavigateToRegister}>
+            Register
+          </button>
+          <button className="header-button" onClick={handleNavigateToLogin}>
+            Login
+          </button>
+        </div>
+      </header>
+
+      {/* Landing Page Content */}
+      <div className="landing-container">
+        <img src={myImage} alt="Landing" className="landing-image" />
+        <div className="central-header">
+          <h1>Where will we travel together?</h1>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function App() {
   return (
-      <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '100vh',
-          backgroundColor: '#f0f4f8'
-      }}>
-          <img 
-              src={myImage} 
-              alt="Landing" 
-              style={{
-                 width: '100%',
-                  height: 'auto',
-                  overflow: 'hidden',
-                  borderRadius: '10px'
-              }} 
-          />
-      </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
+    </Router>
   );
 }
 
