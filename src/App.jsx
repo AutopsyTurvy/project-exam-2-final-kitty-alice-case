@@ -11,6 +11,8 @@ import RegisterPage from './pages/RegisterPage';
 import myImage from './assets/sunrisebeach.jpg';
 import './styles/landingheader.css';
 import './styles/index.scss';
+import ProfilePage from './pages/ProfilePage';
+
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -55,8 +57,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/profile/:username" element={<ProfilePage />} />
       </Routes>
     </Router>
   );

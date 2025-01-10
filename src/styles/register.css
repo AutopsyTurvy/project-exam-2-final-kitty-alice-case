@@ -51,3 +51,12 @@
     background-color: #0056b3;
   }
   
+
+
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  

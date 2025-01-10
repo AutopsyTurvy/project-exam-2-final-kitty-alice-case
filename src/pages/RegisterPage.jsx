@@ -3,27 +3,28 @@
 
 
 
-// RegisterPage.jsx
+// src/api/RegisterPage.jsx
 
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/register.css';
-
-
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "../api/auth"; 
+import "../styles/register.css";
 
 function RegisterPage() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    bio: '',
-    avatar: '',
-    banner: '',
+    name: "",
+    email: "",
+    password: "",
+    bio: "",
+    avatar: "",
+    banner: "",
     venueManager: false,
   });
+
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,32 +33,17 @@ function RegisterPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const postData = {
-      ...formData,
-      avatar: { url: formData.avatar },
-      banner: { url: formData.banner },
-    };
+    setError(null); 
 
     try {
-      const response = await fetch('/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(postData),
-      });
+      const userData = await registerUser(formData);
+      alert("Registration successful!");
+      console.log(userData);
 
-      if (!response.ok) {
-        throw new Error('Registration failed');
-      }
-
-      const data = await response.json();
-      alert('Registration successful!');
-      console.log(data);
-
-
-      navigate(`/profile/${data.data.name}`);
+      navigate(`/profile/${userData.data.name}`); 
     } catch (error) {
-      alert(error.message);
+      console.error("Registration error:", error);
+      setError(error.message || "An error occurred during registration");
     }
   };
 
@@ -136,6 +122,7 @@ function RegisterPage() {
             }
           />
         </label>
+        {error && <p className="error-message">{error}</p>}
         <button type="submit">Register</button>
       </form>
     </div>
