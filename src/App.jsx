@@ -22,10 +22,10 @@ function App() {
               src={myImage} 
               alt="Landing" 
               style={{
-                  maxWidth: '80%',
+                 width: '100%',
                   height: 'auto',
-                  borderRadius: '10px',
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+                  overflow: 'hidden',
+                  borderRadius: '10px'
               }} 
           />
       </div>
