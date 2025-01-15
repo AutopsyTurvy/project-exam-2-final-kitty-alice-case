@@ -8,6 +8,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import RegisteredHeader from "../components/RegisteredHeader"; 
 
 function ProfilePage() {
   const { username } = useParams();
@@ -15,24 +16,13 @@ function ProfilePage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchProfile() {
-      try {
-        const response = await fetch(
-          `https://v2.api.noroff.dev/users/${username}`
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch profile data");
-        }
-
-        const data = await response.json();
-        setProfileData(data);
-      } catch (err) {
-        setError(err.message);
-      }
+    
+    const localProfile = JSON.parse(localStorage.getItem("Profile"));
+    if (localProfile && localProfile.name === username) {
+      setProfileData(localProfile);
+    } else {
+      setError("Profile not found in local storage");
     }
-
-    fetchProfile();
   }, [username]);
 
   if (error) {
@@ -45,24 +35,32 @@ function ProfilePage() {
 
   return (
     <div className="profile-page">
-      <h1>Welcome to your profile, {profileData.name}!</h1>
-      <p>Email: {profileData.email}</p>
-      {profileData.bio && <p>Bio: {profileData.bio}</p>}
-      {profileData.avatar && (
-        <img src={profileData.avatar} alt={`${profileData.name}'s avatar`} />
-      )}
-      {profileData.banner && (
+    
+      <RegisteredHeader username={profileData.name} />
+
+      <div className="profile-content">
+        <h1>Welcome to your profile, {profileData.name}!</h1>
+        <p>Email: {profileData.email}</p>
+        {profileData.bio && <p>Bio: {profileData.bio}</p>}
+
+        <img
+          src={profileData.avatar?.url || "/images/default-avatar.jpg"}
+          alt={profileData.avatar?.alt || `${profileData.name}'s avatar`}
+        />
+
         <div
           style={{
-            backgroundImage: `url(${profileData.banner})`,
+            backgroundImage: `url(${profileData.banner?.url || "/images/default-banner.jpg"})`,
             height: "200px",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
+          aria-label={profileData.banner?.alt || `${profileData.name}'s banner`}
         ></div>
-      )}
+      </div>
     </div>
   );
 }
 
 export default ProfilePage;
+

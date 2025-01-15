@@ -4,26 +4,35 @@
 // src/api/auth.js
 
 
-export const API_BASE = "https://v2.api.noroff.dev"; 
+
+
+
+export const API_BASE = "https://v2.api.noroff.dev";
 
 export async function registerUser({ name, email, password, bio, avatar, banner, venueManager }) {
   const payload = {
     name,
     email,
     password,
-    bio,
-    venueManager,
   };
 
+  
+  if (bio) {
+    payload.bio = bio;
+  }
+  if (venueManager) {
+    payload.venueManager = venueManager;
+  }
   if (avatar) {
-    payload.avatar = avatar; 
+    payload.avatar = { url: avatar, alt: "User avatar" };
   }
-
   if (banner) {
-    payload.banner = banner; 
+    payload.banner = { url: banner, alt: "User banner" };
   }
 
-  const response = await fetch(`${API_BASE}/auth/register`, { 
+  console.log("Payload being sent:", payload); 
+
+  const response = await fetch(`${API_BASE}/auth/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -33,9 +42,11 @@ export async function registerUser({ name, email, password, bio, avatar, banner,
 
   if (!response.ok) {
     const error = await response.json();
+    console.error("Registration failed:", error); 
     throw new Error(error.message || "Registration failed");
   }
 
   return await response.json();
 }
+
 

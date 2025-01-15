@@ -1,30 +1,35 @@
 
 
 
-// App.jsx -- Note-- doubling as landing page.
 
 
 
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import RegisterPage from './pages/RegisterPage';
-import myImage from './assets/sunrisebeach.jpg';
-import './styles/landingheader.css';
-import './styles/index.scss';
-import ProfilePage from './pages/ProfilePage';
+// App.jsx -- Note- acting as landing page. 
 
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import ProfilePage from "./pages/ProfilePage";
+import BookingsPage from "./pages/BookingsPage";
+import UnregisteredVenues from "./pages/UnregisteredVenues";
+import myImage from "./assets/sunrisebeach.jpg";
+import "./styles/landingheader.css";
+import "./styles/index.scss";
 
 function LandingPage() {
   const navigate = useNavigate();
 
-
   const handleNavigateToRegister = () => {
-    navigate('/register');
+    navigate("/register");
   };
 
-
   const handleNavigateToLogin = () => {
-    navigate('/login'); 
+    navigate("/login");
+  };
+
+  const handleNavigateToVenues = () => {
+    navigate("/venues");
   };
 
   return (
@@ -38,6 +43,9 @@ function LandingPage() {
           </button>
           <button className="header-button" onClick={handleNavigateToLogin}>
             Login
+          </button>
+          <button className="header-button" onClick={handleNavigateToVenues}>
+            View All Venues
           </button>
         </div>
       </header>
@@ -57,12 +65,16 @@ function App() {
   return (
     <Router>
       <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/profile/:username" element={<ProfilePage />} />
+        <Route path="/" element={<LandingPage />} /> {/* --Landing Page */}
+        <Route path="/login" element={<LoginPage />} /> {/* --Login Page */}
+        <Route path="/register" element={<RegisterPage />} /> {/* --Registration Page */}
+        <Route path="/profile/:username" element={<ProfilePage />} /> {/* --Profile Page */}
+        <Route path="/bookings" element={<BookingsPage />} /> {/* --Bookings Page */}
+        <Route path="/venues" element={<UnregisteredVenues />} /> {/* --Venues Page */}
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
