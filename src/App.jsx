@@ -16,6 +16,7 @@ import UnregisteredVenues from "./pages/UnregisteredVenues";
 import myImage from "./assets/sunrisebeach.jpg";
 import "./styles/landingheader.css";
 import "./styles/index.scss";
+import VenueDetails from './pages/VenueDetails'; 
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -71,6 +72,7 @@ function App() {
         <Route path="/profile/:username" element={<ProfilePage />} /> {/* --Profile Page */}
         <Route path="/bookings" element={<BookingsPage />} /> {/* --Bookings Page */}
         <Route path="/venues" element={<UnregisteredVenues />} /> {/* --Venues Page */}
+        <Route path="/venue/:id" element={<VenueDetails />} /> {/* --To see the venue details */}
       </Routes>
     </Router>
   );

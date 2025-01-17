@@ -6,34 +6,27 @@
 
 
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; 
+import '../styles/UnregisteredVenues.css';
+import '../styles/searchbar.css';
+
 const API_URL = 'https://v2.api.noroff.dev/holidaze/venues';
-
-
 
 function UnregisteredVenues() {
   const [venues, setVenues] = useState([]);
+  const [filteredVenues, setFilteredVenues] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log('Access Token:', localStorage.getItem('accessToken'));
-    console.log('API Key:', localStorage.getItem('ApiKey'));
-
     const fetchVenues = async () => {
       try {
-        const accessToken = localStorage.getItem('accessToken');
-        const headers = {
-          'Content-Type': 'application/json',
-          'x-api-key': localStorage.getItem('ApiKey'),
-        };
-
-        if (accessToken) {
-          headers.Authorization = `Bearer ${accessToken}`;
-        }
-
         const response = await fetch(API_URL, {
           method: 'GET',
-          headers,
+          headers: {
+            'Content-Type': 'application/json',
+          },
         });
 
         if (!response.ok) {
@@ -41,8 +34,8 @@ function UnregisteredVenues() {
         }
 
         const data = await response.json();
-        console.log('Fetched data:', data);
-        setVenues(data.data); 
+        setVenues(data.data);
+        setFilteredVenues(data.data);
       } catch (error) {
         console.error('Error fetching venues:', error);
         setError('Error fetching venues');
@@ -53,6 +46,14 @@ function UnregisteredVenues() {
 
     fetchVenues();
   }, []);
+
+  useEffect(() => {
+    const filtered = venues.filter((venue) =>
+      venue.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      venue.description.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredVenues(filtered);
+  }, [searchQuery, venues]);
 
   if (loading) {
     return <div>Loading venues...</div>;
@@ -65,29 +66,36 @@ function UnregisteredVenues() {
   return (
     <div className="venues-container">
       <h1>All Venues</h1>
+      <div className="search-bar-container">
+        <input
+          type="text"
+          placeholder="Search for venues by title or keywords..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="search-bar"
+        />
+      </div>
       <div className="venues-grid">
-        {Array.isArray(venues) && venues.length > 0 ? (
-          venues.map((venue) => (
-            <div key={venue.id} className="venue-card">
-              <img
-                src={venue.media[0]?.url || 'https://via.placeholder.com/150'}
-                alt={venue.media[0]?.alt || 'Venue Image'}
-              />
-              <h2>{venue.name}</h2>
-              <p>{venue.description}</p>
-              <p>
-                <strong>Price:</strong> ${venue.price}
-              </p>
-              <p>
-                <strong>Max Guests:</strong> {venue.maxGuests}
-              </p>
-              <p>
-                <strong>Rating:</strong> {venue.rating}
-              </p>
-            </div>
+        {filteredVenues.length > 0 ? (
+          filteredVenues.map((venue) => (
+            <Link key={venue.id} to={`/venue/${venue.id}`} className="venue-card-link">
+              <div className="venue-card">
+                <img
+                  src={venue.media[0]?.url || 'https://via.placeholder.com/150'}
+                  alt={venue.media[0]?.alt || 'Venue Image'}
+                />
+                <div className="venue-card-content">
+                  <h2>{venue.name}</h2>
+                  <p>{venue.description}</p>
+                  <p className="price">Price: ${venue.price}</p>
+                  <p>Max Guests: {venue.maxGuests}</p>
+                  <p>Rating: {venue.rating}</p>
+                </div>
+              </div>
+            </Link>
           ))
         ) : (
-          <p>No venues available</p>
+          <p>No venues match your search.</p>
         )}
       </div>
     </div>
