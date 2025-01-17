@@ -17,6 +17,8 @@ import myImage from "./assets/sunrisebeach.jpg";
 import "./styles/landingheader.css";
 import "./styles/index.scss";
 import VenueDetails from './pages/VenueDetails'; 
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 function LandingPage() {
   const navigate = useNavigate();
