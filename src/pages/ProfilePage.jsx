@@ -6,12 +6,14 @@
 // src/pages/ProfilePage.jsx
 
 
-
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RegisteredHeader from "../components/RegisteredHeader";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import "../styles/modal.css";
+
+
+
 
 function ProfilePage() {
   const { username } = useParams();
@@ -33,7 +35,8 @@ function ProfilePage() {
     } else {
       setError("Profile not found in local storage");
     }
-  }, [username]);
+  }, [username]); 
+  
 
   const refreshAccessToken = async () => {
     const refreshToken = localStorage.getItem("refreshToken");
@@ -64,21 +67,34 @@ function ProfilePage() {
     }
   };
 
+
+
+
+
+  
+
+
+
+  // Avatar bits and bobs:
   const handleAvatarUpdate = async () => {
     if (!avatarUrl.trim()) {
       alert("Avatar URL cannot be empty.");
       return;
     }
-
-    let accessToken = localStorage.getItem("accessToken");
+  
+  
+    const profile = JSON.parse(localStorage.getItem("Profile"));
+    const accessToken = profile?.accessToken;
+  
     if (!accessToken) {
       alert("Authentication is required. Please log in again.");
       return;
     }
-
+  
     setIsUpdatingAvatar(true);
-
+  
     try {
+    
       let response = await fetch(`https://v2.api.noroff.dev/holidaze/profiles/${profileData.name}`, {
         method: "PUT",
         headers: {
@@ -89,25 +105,26 @@ function ProfilePage() {
           avatar: { url: avatarUrl, alt: `${profileData.name}'s updated avatar` },
         }),
       });
-
+  
+      
       if (response.status === 401) {
-        accessToken = await refreshAccessToken();
+        const newAccessToken = await refreshAccessToken();
         response = await fetch(`https://v2.api.noroff.dev/holidaze/profiles/${profileData.name}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${newAccessToken}`,
           },
           body: JSON.stringify({
             avatar: { url: avatarUrl, alt: `${profileData.name}'s updated avatar` },
           }),
         });
       }
-
+  
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
+  
       const updatedProfile = await response.json();
       localStorage.setItem("Profile", JSON.stringify(updatedProfile.data));
       setProfileData(updatedProfile.data);
@@ -120,7 +137,16 @@ function ProfilePage() {
       setShowAvatarModal(false);
     }
   };
+  
 
+
+
+
+
+
+
+
+  // Banner bits and bobs:
   const handleBannerUpdate = async () => {
     if (!bannerUrl.trim()) {
       alert("Banner URL cannot be empty.");

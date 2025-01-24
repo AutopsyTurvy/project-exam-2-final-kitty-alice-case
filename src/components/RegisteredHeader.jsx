@@ -3,19 +3,15 @@
 
 // src/components/RegisteredHeader.jsx
 
-
+ 
 
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { logoutUser } from "./logout";
 
 function RegisteredHeader({ username }) {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/");
-  };
 
   const handleMyProfileClick = () => {
     if (location.pathname === `/profile/${username}`) {
@@ -31,14 +27,13 @@ function RegisteredHeader({ username }) {
       <nav>
         <button onClick={() => navigate("/")}>Home</button>
         <button onClick={handleMyProfileClick}>My Profile</button>
-        <button onClick={() => navigate("/bookings")}>Bookings</button> 
-        <button onClick={handleLogout}>Logout</button>
+        <button onClick={() => navigate("/bookings")}>Bookings</button>
+        <button onClick={() => logoutUser()}>Logout</button>
+
       </nav>
     </header>
   );
 }
 
 export default RegisteredHeader;
-
-
 
