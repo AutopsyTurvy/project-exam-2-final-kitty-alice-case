@@ -9,11 +9,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RegisteredHeader from "../components/RegisteredHeader";
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../styles/modal.css";
 
-
-
+const API_BASE = "https://v2.api.noroff.dev"; 
 
 function ProfilePage() {
   const { username } = useParams();
@@ -35,8 +34,7 @@ function ProfilePage() {
     } else {
       setError("Profile not found in local storage");
     }
-  }, [username]); 
-  
+  }, [username]);
 
   const refreshAccessToken = async () => {
     const refreshToken = localStorage.getItem("refreshToken");
@@ -45,7 +43,7 @@ function ProfilePage() {
     }
 
     try {
-      const response = await fetch("https://v2.api.noroff.dev/holidaze/auth/refresh", {
+      const response = await fetch(`${API_BASE}/auth/refresh`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,7 +56,7 @@ function ProfilePage() {
       }
 
       const data = await response.json();
-      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("Token", data.accessToken);
       console.log("Access token refreshed:", data.accessToken);
       return data.accessToken;
     } catch (error) {
@@ -71,58 +69,53 @@ function ProfilePage() {
 
 
 
-  
 
-
-
-  // Avatar bits and bobs:
+// Testing to see why the updates still aren't working.. 
   const handleAvatarUpdate = async () => {
     if (!avatarUrl.trim()) {
       alert("Avatar URL cannot be empty.");
       return;
     }
   
-  
     const profile = JSON.parse(localStorage.getItem("Profile"));
     const accessToken = profile?.accessToken;
+    const apiKey = localStorage.getItem("ApiKey");
   
-    if (!accessToken) {
-      alert("Authentication is required. Please log in again.");
+    if (!accessToken || !apiKey) {
+      alert("Authentication or API Key is missing. Please log in again.");
+      return;
+    }
+  
+  
+    try {
+      new URL(avatarUrl);
+    } catch (error) {
+      alert("The avatar URL must be a valid, publicly accessible link.");
       return;
     }
   
     setIsUpdatingAvatar(true);
   
     try {
-    
-      let response = await fetch(`https://v2.api.noroff.dev/holidaze/profiles/${profileData.name}`, {
+      const response = await fetch(`https://v2.api.noroff.dev/holidaze/profiles/${profileData.name}`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
+          "X-Noroff-API-Key": apiKey,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          avatar: { url: avatarUrl, alt: `${profileData.name}'s updated avatar` },
+          avatar: {
+            url: avatarUrl,
+            alt: `${profileData.name}'s updated avatar`,
+          },
         }),
       });
   
-      
-      if (response.status === 401) {
-        const newAccessToken = await refreshAccessToken();
-        response = await fetch(`https://v2.api.noroff.dev/holidaze/profiles/${profileData.name}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${newAccessToken}`,
-          },
-          body: JSON.stringify({
-            avatar: { url: avatarUrl, alt: `${profileData.name}'s updated avatar` },
-          }),
-        });
-      }
-  
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorData = await response.json();
+        console.error("Error response from API:", errorData);
+        throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.message}`);
       }
   
       const updatedProfile = await response.json();
@@ -146,51 +139,54 @@ function ProfilePage() {
 
 
 
-  // Banner bits and bobs:
+// Now to test the banner...
   const handleBannerUpdate = async () => {
     if (!bannerUrl.trim()) {
       alert("Banner URL cannot be empty.");
       return;
     }
-
-    let accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) {
-      alert("Authentication is required. Please log in again.");
+  
+    const profile = JSON.parse(localStorage.getItem("Profile"));
+    const accessToken = profile?.accessToken;
+    const apiKey = localStorage.getItem("ApiKey");
+  
+    if (!accessToken || !apiKey) {
+      alert("Authentication or API Key is missing. Please log in again.");
       return;
     }
-
-    setIsUpdatingBanner(true);
-
+  
+   
     try {
-      let response = await fetch(`https://v2.api.noroff.dev/holidaze/profiles/${profileData.name}`, {
+      new URL(bannerUrl); 
+    } catch (error) {
+      alert("The banner URL must be a valid, publicly accessible link.");
+      return;
+    }
+  
+    setIsUpdatingBanner(true);
+  
+    try {
+      const response = await fetch(`https://v2.api.noroff.dev/holidaze/profiles/${profileData.name}`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
+          "X-Noroff-API-Key": apiKey,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          banner: { url: bannerUrl, alt: `${profileData.name}'s updated banner` },
+          banner: {
+            url: bannerUrl,
+            alt: `${profileData.name}'s updated banner`,
+          },
         }),
       });
-
-      if (response.status === 401) {
-        accessToken = await refreshAccessToken();
-        response = await fetch(`https://v2.api.noroff.dev/holidaze/profiles/${profileData.name}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({
-            banner: { url: bannerUrl, alt: `${profileData.name}'s updated banner` },
-          }),
-        });
-      }
-
+  
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorData = await response.json();
+        console.error("Error response from API:", errorData);
+        throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.message}`);
       }
-
+  
       const updatedProfile = await response.json();
       localStorage.setItem("Profile", JSON.stringify(updatedProfile.data));
       setProfileData(updatedProfile.data);
@@ -203,6 +199,14 @@ function ProfilePage() {
       setShowBannerModal(false);
     }
   };
+  
+
+
+
+
+
+
+
 
   if (error) {
     return <p className="error-message">{error}</p>;
@@ -329,6 +333,5 @@ function ProfilePage() {
 }
 
 export default ProfilePage;
-
 
 

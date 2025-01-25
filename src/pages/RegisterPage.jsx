@@ -6,13 +6,14 @@
 // src/api/RegisterPage.jsx
 
 
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../api/auth"; 
 import "../styles/register.css";
 
 function RegisterPage() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,30 +24,28 @@ function RegisterPage() {
     venueManager: false,
   });
 
-  const [error, setError] = useState(null); 
-
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
- 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null); 
+    setError(null);
 
     try {
       const userData = await registerUser(formData); 
-
-     
-      localStorage.setItem('Profile', JSON.stringify(userData.data));
-
-      alert("Registration successful!"); 
+      localStorage.setItem(
+        "Profile",
+        JSON.stringify({ ...userData.data, accessToken: userData.accessToken })
+      );
+      alert("Registration successful!");
       navigate(`/profile/${userData.data.name}`);
     } catch (error) {
       console.error("Registration error:", error);
-      setError(error.message || "An error occurred during registration"); 
+      setError(error.message || "An error occurred during registration");
     }
   };
 
@@ -133,4 +132,5 @@ function RegisterPage() {
 }
 
 export default RegisterPage;
+
 

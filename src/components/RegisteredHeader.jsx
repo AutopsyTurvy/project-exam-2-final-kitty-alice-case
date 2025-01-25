@@ -28,8 +28,8 @@ function RegisteredHeader({ username }) {
         <button onClick={() => navigate("/")}>Home</button>
         <button onClick={handleMyProfileClick}>My Profile</button>
         <button onClick={() => navigate("/bookings")}>Bookings</button>
+        <button onClick={() => navigate("/venues")}>Venues</button> 
         <button onClick={() => logoutUser()}>Logout</button>
-
       </nav>
     </header>
   );

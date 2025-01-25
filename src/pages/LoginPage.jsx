@@ -1,18 +1,15 @@
 
 
 
-
-
 // src/pages/LoginPage.jsx
-
 
 
 
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE } from "../api/auth"; 
-import "../styles/login.css"; 
+import { loginUser } from "../api/auth"; 
+import "../styles/login.css";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -29,27 +26,10 @@ function LoginPage() {
     setError(null);
 
     try {
-      const response = await fetch(`${API_BASE}/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Login failed");
-      }
-
-      const responseData = await response.json();
-
-     
-      localStorage.setItem("Token", responseData.data.accessToken);
-      localStorage.setItem("Profile", JSON.stringify(responseData.data));
-
+      await loginUser(formData); 
       alert("Login successful!");
-      navigate(`/profile/${responseData.data.name}`); 
+      const profile = JSON.parse(localStorage.getItem("Profile"));
+      navigate(`/profile/${profile.name}`); 
     } catch (error) {
       console.error("Login error:", error);
       setError(error.message || "An error occurred during login");
@@ -90,3 +70,4 @@ function LoginPage() {
 }
 
 export default LoginPage;
+
