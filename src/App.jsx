@@ -15,12 +15,21 @@ import ProfilePage from "./pages/ProfilePage";
 import BookingsPage from "./pages/BookingsPage";
 import Venues from "./pages/Venues";
 import VenueDetails from "./pages/VenueDetails";
-import backgroundImage from "./assets/Parallax/background.png"; 
-import hillhouseImage from "./assets/Parallax/hillhouse.png"; 
-import chimneysmokeImage from "./assets/Parallax/chimneysmoke.png"; 
-import foregroundImage from "./assets/Parallax/foreground.png"; 
-import formerpurplehillsImage from "./assets/Parallax/formerpurplehills.png"; 
-import latterpurplehillsImage from "./assets/Parallax/latterpurplehills.png"; 
+
+
+// Parallax images:
+import backgroundImage from "./assets/Parallax/background.png";
+import hillhouseImage from "./assets/Parallax/hillhouse.png";
+import chimneysmokeImage from "./assets/Parallax/chimneysmoke.png";
+import foregroundImage from "./assets/Parallax/foreground.png";
+import formerpurplehillsImage from "./assets/Parallax/formerpurplehills.png";
+import latterpurplehillsImage from "./assets/Parallax/latterpurplehills.png";
+import deserthillsImage from "./assets/Parallax/deserthills.png"; 
+import sunImage from "./assets/Parallax/sun.png"; 
+import sunsethazeImage from "./assets/Parallax/sunsethaze.png"; 
+
+
+// Imported page styles:
 import "./styles/landingheader.css";
 import "./styles/index.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -52,6 +61,15 @@ function LandingPage() {
       <div className="landing-container">
         {/* Background layer */}
         <img src={backgroundImage} alt="Background" className="landing-image background-layer" />
+
+        {/* Sunset Haze layer */}
+        <img src={sunsethazeImage} alt="Sunset Haze" className="landing-image sunsethaze-layer" />
+
+        {/* Sun layer */}
+        <img src={sunImage} alt="Sun" className="landing-image sun-layer" />
+
+        {/* Desert Hills layer */}
+        <img src={deserthillsImage} alt="Desert Hills" className="landing-image deserthills-layer" />
 
         {/* Latter Purple Hills layer */}
         <img src={latterpurplehillsImage} alt="Latter Purple Hills" className="landing-image latterpurplehills-layer" />
@@ -105,6 +123,7 @@ function App() {
 }
 
 export default App;
+
 
 
 
