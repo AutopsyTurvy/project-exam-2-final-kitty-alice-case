@@ -14,7 +14,8 @@ import ProfilePage from "./pages/ProfilePage";
 import BookingsPage from "./pages/BookingsPage";
 import Venues from "./pages/Venues";
 import VenueDetails from "./pages/VenueDetails";
-import myImage from "./assets/sunrisebeach.jpg";
+import backgroundImage from "./assets/Parallax/background.png"; 
+import foregroundImage from "./assets/Parallax/foreground.png"; 
 import "./styles/landingheader.css";
 import "./styles/index.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -43,9 +44,11 @@ function LandingPage() {
 
   return (
     <div>
-      {/* The Landing Page Content: */}
       <div className="landing-container">
-        <img src={myImage} alt="Landing" className="landing-image" />
+       
+        <img src={backgroundImage} alt="Background" className="landing-image background-layer" />
+        
+        <img src={foregroundImage} alt="Foreground" className="landing-image foreground-layer" />
         <div className="central-header">
           <h1>Where will we travel together?</h1>
         </div>
@@ -82,6 +85,7 @@ function App() {
 }
 
 export default App;
+
 
 
 

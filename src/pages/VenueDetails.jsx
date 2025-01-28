@@ -39,7 +39,6 @@ function VenueDetails() {
         const data = await response.json();
         setVenue(data.data);
 
-     
         const bookings = data.data.bookings || [];
         const bookedRanges = bookings.map((booking) => ({
           from: booking.dateFrom,
@@ -65,6 +64,7 @@ function VenueDetails() {
     return <div>{error}</div>;
   }
 
+  
   const tileClassName = ({ date, view }) => {
     if (view === 'month') {
       const dateString = date.toISOString().split('T')[0];
@@ -73,7 +73,7 @@ function VenueDetails() {
         return dateString >= range.from && dateString <= range.to;
       });
 
-      return isBooked ? 'booked-date' : null;
+      return isBooked ? 'booked-range' : null;
     }
   };
 
@@ -135,6 +135,8 @@ function VenueDetails() {
 }
 
 export default VenueDetails;
+
+
 
 
 
