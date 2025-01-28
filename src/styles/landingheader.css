@@ -18,11 +18,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: rgba(0, 0, 0, 0.2); 
-    color: #fff; 
-    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    z-index: 20;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
+  }
+  
 
 .header-title {
     font-size: 24px;
@@ -53,30 +54,6 @@
 
 
 
-/* Landing Page Styles */
-.landing-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-}
-
-.landing-container img {
-    height: 100vh;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
-
-
-
-
-
-
-
-
-
 
 
 
@@ -85,12 +62,89 @@
 
 /* General container settings */
 
+.landing-image {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    transform-origin: center;
+  }
+  
+  .background-layer {
+    z-index: 1;
+    top: 0;
+    transform: translateY(0);
+  }
+  
+ 
+  .deserthills-layer {
+    z-index: 2;
+    top: -8%;
+    transform: translateY(0);
+  }
+  
+  
+  .latterpurplehills-layer {
+    z-index: 3;
+    top: -8%;
+    transform: translateY(var(--purple-hills-offset));
+  }
+  
 
+  .purplehills-layer {
+    z-index: 4;
+    top: -7%;
+    transform: translateY(calc(var(--purple-hills-offset) * 1.1));
+  }
+ 
+  .hillhouse-layer {
+    z-index: 5;
+    top: -6%;
+    transform: translateY(var(--house-offset));
+  }
+  
+
+  .chimneysmoke-layer {
+    z-index: 6;
+    top: -10%;
+    transform: translateY(var(--smoke-offset));
+  }
+  
+
+  .foreground-layer {
+    z-index: 10;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+  }
+  
+
+  .landing-container {
+    position: relative;
+    width: 100%;
+    height: 125vh; 
+    overflow: hidden;
+  }
+  
+  
+  .central-header {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    font-size: 1.5rem;
+    text-align: center;
+    z-index: 8;
+  }
   
   
 
 
 
+  
 
 
 
@@ -108,8 +162,6 @@
       opacity: 0.2; 
     }
   }
-
-  
 
   .chimneysmoke-layer {
     z-index: 3; 

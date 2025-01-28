@@ -8,13 +8,16 @@
 
 
 .user-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  z-index: 20; 
+  position: relative; 
+}
+
   
   .user-header h1 {
     margin: 0;
