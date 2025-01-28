@@ -3,8 +3,9 @@
 
 
 
-
 // App.jsx -- Note- acting as landing page. 
+
+
 
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
@@ -15,7 +16,11 @@ import BookingsPage from "./pages/BookingsPage";
 import Venues from "./pages/Venues";
 import VenueDetails from "./pages/VenueDetails";
 import backgroundImage from "./assets/Parallax/background.png"; 
+import hillhouseImage from "./assets/Parallax/hillhouse.png"; 
+import chimneysmokeImage from "./assets/Parallax/chimneysmoke.png"; 
 import foregroundImage from "./assets/Parallax/foreground.png"; 
+import formerpurplehillsImage from "./assets/Parallax/formerpurplehills.png"; 
+import latterpurplehillsImage from "./assets/Parallax/latterpurplehills.png"; 
 import "./styles/landingheader.css";
 import "./styles/index.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -45,10 +50,25 @@ function LandingPage() {
   return (
     <div>
       <div className="landing-container">
-       
+        {/* Background layer */}
         <img src={backgroundImage} alt="Background" className="landing-image background-layer" />
-        
+
+        {/* Latter Purple Hills layer */}
+        <img src={latterpurplehillsImage} alt="Latter Purple Hills" className="landing-image latterpurplehills-layer" />
+
+        {/* Former Purple Hills layer */}
+        <img src={formerpurplehillsImage} alt="Former Purple Hills" className="landing-image purplehills-layer" />
+
+        {/* Hillhouse layer */}
+        <img src={hillhouseImage} alt="Hillhouse" className="landing-image hillhouse-layer" />
+
+        {/* Chimney smoke layer */}
+        <img src={chimneysmokeImage} alt="Chimney Smoke" className="landing-image chimneysmoke-layer" />
+
+        {/* Foreground layer */}
         <img src={foregroundImage} alt="Foreground" className="landing-image foreground-layer" />
+
+        {/* Central header */}
         <div className="central-header">
           <h1>Where will we travel together?</h1>
         </div>
@@ -63,7 +83,7 @@ function App() {
 
   return (
     <Router>
-      {/* Renders the Conditional Header: */}
+      {/* Renders the Conditional Header */}
       {isLoggedIn ? (
         <RegisteredHeader username={userProfile.name} />
       ) : (
