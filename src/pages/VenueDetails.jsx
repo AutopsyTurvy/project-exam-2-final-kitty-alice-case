@@ -21,8 +21,15 @@ function VenueDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [bookedDates, setBookedDates] = useState([]);
+  const [selectedDates, setSelectedDates] = useState(null);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   useEffect(() => {
+    const user = localStorage.getItem('userProfile');
+    if (user) {
+      setIsUserLoggedIn(true);
+    }
+
     const fetchVenue = async () => {
       try {
         const response = await fetch(`${API_URL}/${id}?_bookings=true`, {
@@ -56,6 +63,21 @@ function VenueDetails() {
     fetchVenue();
   }, [id]);
 
+  const handleDateSelection = (dates) => {
+    if (Array.isArray(dates) && dates.length === 2) {
+      console.log("Valid selected dates:", dates);
+      setSelectedDates(() => dates); 
+    } else {
+      console.warn("Invalid date selection:", dates);
+    }
+  };
+
+  useEffect(() => {
+    console.log("Updated selectedDates state:", selectedDates);
+  }, [selectedDates]);
+
+  console.log("Current selectedDates state:", selectedDates);
+
   if (loading) {
     return <div>Loading venue details...</div>;
   }
@@ -64,15 +86,10 @@ function VenueDetails() {
     return <div>{error}</div>;
   }
 
-  
   const tileClassName = ({ date, view }) => {
     if (view === 'month') {
       const dateString = date.toISOString().split('T')[0];
-
-      const isBooked = bookedDates.some((range) => {
-        return dateString >= range.from && dateString <= range.to;
-      });
-
+      const isBooked = bookedDates.some((range) => dateString >= range.from && dateString <= range.to);
       return isBooked ? 'booked-range' : null;
     }
   };
@@ -81,11 +98,7 @@ function VenueDetails() {
     if (view === 'month') {
       const dateString = date.toISOString().split('T')[0];
       const today = new Date().toISOString().split('T')[0];
-
-      const isBooked = bookedDates.some((range) => {
-        return dateString >= range.from && dateString <= range.to;
-      });
-
+      const isBooked = bookedDates.some((range) => dateString >= range.from && dateString <= range.to);
       return isBooked || dateString < today;
     }
     return false;
@@ -124,19 +137,23 @@ function VenueDetails() {
       <div className="venue-calendar">
         <h2>Availability Calendar</h2>
         <p>All booked dates are shown in red and cannot be selected. Dates before today are also disabled.</p>
-        <p>Note: Only registered users can book time at one of our venues. Please register to book your holiday!.</p>
-        <Calendar 
-          tileClassName={tileClassName}
-          tileDisabled={tileDisabled}
-        />
+        {isUserLoggedIn ? (
+          <>
+            <p>Select a start and end date to book this venue.</p>
+            <Calendar 
+                tileClassName={tileClassName}
+                tileDisabled={tileDisabled}
+                selectRange={true}
+                onChange={handleDateSelection}
+                />
+            <button onClick={handleBooking} className="booking-button">Book Venue</button>
+          </>
+        ) : (
+          <p><strong>Note:</strong> Only registered users can book a venue- Please register to book your holiday.</p>
+        )}
       </div>
     </div>
   );
 }
 
 export default VenueDetails;
-
-
-
-
-

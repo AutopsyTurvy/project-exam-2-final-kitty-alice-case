@@ -6,182 +6,133 @@
 /* landingheader.css */
 
 
-
-
-
-/* Header Styles */
-.landing-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: rgba(0, 0, 0, 0.2);
-    color: #fff;
-    z-index: 20;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-  
-
-.header-title {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.header-buttons {
-    display: flex;
-    gap: 10px; 
-    padding-right: 2em;
-}
-
-.header-button {
-    background-color: #e69700; 
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.header-button:hover {
-    background-color: #0056b3; 
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 
+body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100vh;
+}
 
 
+.landing-container {
+  position: relative;
+  width: 100%;
+  height: 150vh;
+  overflow: hidden;
+  z-index: 1;
+}
 
 
-
-
-
-
-/* General container settings */
 
 .landing-image {
-    position: absolute;
-    width: 100%;
-    height: 80%;
-    object-fit: cover;
-    transform-origin: center;
-  }
-  
-  .background-layer {
-    z-index: 1;
-    top: 0;
-    transform: translateY(0);
-  }
-  
- 
-  .deserthills-layer {
-    z-index: 2;
-    top: -8%;
-    transform: translateY(0);
-  }
-  
-  
-  .latterpurplehills-layer {
-    z-index: 3;
-    top: -8%;
-    transform: translateY(var(--purple-hills-offset));
-  }
-  
+  position: absolute;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transform-origin: center;
+}
 
-  .purplehills-layer {
-    z-index: 4;
-    top: -7%;
-    transform: translateY(calc(var(--purple-hills-offset) * 1.1));
-  }
- 
-  .hillhouse-layer {
-    z-index: 5;
-    top: -6%;
-    transform: translateY(var(--house-offset));
-  }
-  
+.background-layer {
+  z-index: 1;
+  top: 55px;
+  transform: translateY(0);
+  will-change: transform;
+}
 
-  .chimneysmoke-layer {
-    z-index: 6;
-    top: -10%;
-    transform: translateY(var(--smoke-offset));
-  }
-  
+.deserthills-layer {
+  z-index: 2;
+  top: 20px;
+  transform: translateY(calc(var(--purple-hills-offset) * 0.2));
+}
 
-  .foreground-layer {
-    z-index: 10;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: auto;
-  }
-  
+.latterpurplehills-layer {
+  z-index: 3;
+  top: 40px;
+  transform: translateY(calc(var(--purple-hills-offset) * 0.3));
+}
 
-  .landing-container {
-    position: relative;
-    width: 100%;
-    height: 125vh; 
-    overflow: hidden;
-  }
-  
-  
-  .central-header {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-    font-size: 1.5rem;
-    text-align: center;
-    z-index: 8;
-  }
-  
-  
+.purplehills-layer {
+  z-index: 4;
+  top: 60px;
+  transform: translateY(calc(var(--purple-hills-offset) * 0.4));
+}
 
+.hillhouse-layer {
+  z-index: 5;
+  top: 110px;
+  transform: translateY(calc(var(--house-offset) * 0.5));
+}
 
+.chimneysmoke-layer {
+  z-index: 6;
+  top: 80px;
+  transform: translateY(calc(var(--smoke-offset) * 0.6));
+  animation: smokeFade 4s ease-in-out infinite;
+  pointer-events: none;
+}
 
-  
+.foreground-layer {
+  z-index: 7;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+}
+
+.central-header {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  font-size: 1.5rem;
+  text-align: center;
+  z-index: 5;
+}
 
 
 
 
-  /* Smoke animation effect */
 
-  @keyframes smokeFade {
-    0% {
-      opacity: 0.2; 
-    }
-    50% {
-      opacity: 0.8; 
-    }
-    100% {
-      opacity: 0.2; 
-    }
-  }
 
-  .chimneysmoke-layer {
-    z-index: 3; 
-    position: absolute;
-    bottom: 0; 
-    opacity: 0.2; 
-    animation: smokeFade 4s ease-in-out infinite; 
-    pointer-events: none; 
+/* Smoke animation */
+@keyframes smokeFade {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
 
-  }
-  
-  .chimneysmoke-layer:nth-child(1) {
-    animation-delay: 0s;
-  }
-  
-  .chimneysmoke-layer:nth-child(2) {
-    animation-delay: 2s;
-  }
-  
-  
+.chimneysmoke-layer {
+  z-index: 6;
+  position: absolute;
+  bottom: 0;
+  opacity: 0.2;
+  animation: smokeFade 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
 
 
 
