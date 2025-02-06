@@ -33,16 +33,6 @@
     overflow: hidden; 
 }
 
-.close-modal-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    color: #333;
-}
 
 .close-modal-button:hover {
     color: #f00;
@@ -100,19 +90,40 @@
 
 .clear-input-button {
     background: none;
+    border: none;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease-in-out;
+}
+
+.clear-input-button:hover {
+    color: #f00;
+    background-color: transparent; 
+}
+
+
+.input-clear-button {
+    background: none;
     border: 1px solid black;
     font-size: 16px;
     color: #666;
     cursor: pointer;
-    padding: 5px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .clear-input-button:hover {
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.input-clear-button:hover {
     color: #f00;
     background-color: #f3f3f3;
-  }
-  
+}

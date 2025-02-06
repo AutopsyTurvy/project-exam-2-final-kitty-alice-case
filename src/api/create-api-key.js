@@ -37,11 +37,17 @@ export async function createApiKey() {
     }
 
     const apiKeyData = await response.json();
+    console.log("API Key Response Data:", apiKeyData); 
+
+    if (!apiKeyData.data || !apiKeyData.data.key) {
+      console.error("API Key generation failed. No key found in response.");
+      throw new Error("API key not found in response.");
+    }
+
     const apiKey = apiKeyData.data.key;
+    console.log("API Key Generated:", apiKey);
 
     localStorage.setItem("ApiKey", apiKey);
-    console.log("API Key created and stored successfully:", apiKey);
-
     return apiKey;
   } catch (error) {
     console.error("Error creating API key:", error.message);

@@ -107,34 +107,3 @@
     color: #333;
   }
   
-
-
-
-  .venue-calendar {
-    z-index: 10;
-    position: relative;
-  }
-
-  .react-calendar {
-    width: 100%;
-    max-width: 500px;
-    margin: 10px auto;
-    background: white;
-    border-radius: 10px;
-    padding: 10px;
-  }
-  
-  .available-date {
-    background-color: #4caf50 !important; 
-    color: white !important; 
-    border-radius: 50%;
-  }
-
-
-  .booked-date {
-    background-color: #ff6b6b !important; 
-    color: white !important;
-    border-radius: 50%;
-  }
-  
-  

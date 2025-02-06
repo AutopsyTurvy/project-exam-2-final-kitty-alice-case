@@ -1,0 +1,61 @@
+
+
+
+/* src/styles/calendar.css */
+
+.react-calendar__tile:not(.react-calendar__tile--disabled):hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+
+.react-calendar {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+    line-height: 1.5em;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px auto;
+  }
+  
+  .react-calendar__tile {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .react-calendar__tile--active {
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .react-calendar__tile--disabled {
+    color: #ccc;
+  }
+  
+ 
+  
+
+
+
+
+  .booked-range {
+    background-color: red !important;
+    color: white !important;
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+
+
+
+/* On smaller screens */
+
+@media (max-width: 500px) {
+    .react-calendar {
+      max-width: 100%;
+    }
+  }

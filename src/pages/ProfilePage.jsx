@@ -1,17 +1,12 @@
 
 
-
-
-
-// src/pages/ProfilePage.jsx
-
-
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../styles/modal.css";
+import "../styles/profile.css";
 
-const API_BASE = "https://v2.api.noroff.dev"; 
+const API_BASE = "https://v2.api.noroff.dev";
 
 function ProfilePage() {
   const { username } = useParams();
@@ -19,8 +14,7 @@ function ProfilePage() {
   const [error, setError] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState("");
   const [bannerUrl, setBannerUrl] = useState("");
-  const [isUpdatingAvatar, setIsUpdatingAvatar] = useState(false);
-  const [isUpdatingBanner, setIsUpdatingBanner] = useState(false);
+  const [bookings, setBookings] = useState([]);
   const [showAvatarModal, setShowAvatarModal] = useState(false);
   const [showBannerModal, setShowBannerModal] = useState(false);
 
@@ -33,115 +27,110 @@ function ProfilePage() {
     } else {
       setError("Profile not found in local storage");
     }
+
+
+
+
+    // Fetch User Bookings
+    const fetchUserBookings = async () => {
+      try {
+        const token = localStorage.getItem("Token");
+        const apiKey = localStorage.getItem("ApiKey");
+
+        if (!token || !apiKey) {
+          console.error("Missing authentication details");
+          return;
+        }
+
+        const response = await fetch(
+          `${API_BASE}/holidaze/profiles/${username}/bookings?_venue=true`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "X-Noroff-API-Key": apiKey,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("📌 User Bookings:", data);
+
+        const filteredBookings = (data.data || []).filter(
+          (booking) => booking.venue
+        );
+
+        if (filteredBookings.length === 0) {
+          console.warn("No valid bookings found with venue data.");
+        }
+
+        setBookings(filteredBookings);
+      } catch (error) {
+        console.error("Error fetching user bookings:", error);
+        setError("Failed to load bookings.");
+      }
+    };
+
+    fetchUserBookings();
   }, [username]);
 
-  const refreshAccessToken = async () => {
-    const refreshToken = localStorage.getItem("refreshToken");
-    if (!refreshToken) {
-      throw new Error("No refresh token available. Please log in again.");
-    }
-
-    try {
-      const response = await fetch(`${API_BASE}/auth/refresh`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ refreshToken }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to refresh access token. Please log in again.");
-      }
-
-      const data = await response.json();
-      localStorage.setItem("Token", data.accessToken);
-      console.log("Access token refreshed:", data.accessToken);
-      return data.accessToken;
-    } catch (error) {
-      console.error("Error refreshing access token:", error);
-      throw error;
-    }
-  };
-
-  const handleAvatarUpdate = async () => {
+  // Update Avatar
+  const handleAvatarUpdate = () => {
     if (!avatarUrl.trim()) {
       alert("Avatar URL cannot be empty.");
       return;
     }
-  
-    const profile = JSON.parse(localStorage.getItem("Profile"));
-    const accessToken = profile?.accessToken;
-    const apiKey = localStorage.getItem("ApiKey");
-  
-    if (!accessToken || !apiKey) {
-      alert("Authentication or API Key is missing. Please log in again.");
+
+    const updatedProfile = {
+      ...profileData,
+      avatar: { url: avatarUrl, alt: `${profileData.name}'s updated avatar` },
+    };
+
+    localStorage.setItem("Profile", JSON.stringify(updatedProfile));
+    setProfileData(updatedProfile);
+    setShowAvatarModal(false);
+    alert("Avatar updated successfully!");
+  };
+
+  // Update Banner
+  const handleBannerUpdate = () => {
+    if (!bannerUrl.trim()) {
+      alert("Banner URL cannot be empty.");
       return;
     }
-  
-    try {
-      new URL(avatarUrl);
-    } catch (error) {
-      alert("The avatar URL must be a valid, publicly accessible link.");
-      return;
-    }
-  
-    setIsUpdatingAvatar(true);
-  
-    try {
-      const response = await fetch(`${API_BASE}/holidaze/profiles/${profileData.name}`, {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "X-Noroff-API-Key": apiKey,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          avatar: {
-            url: avatarUrl,
-            alt: `${profileData.name}'s updated avatar`,
-          },
-        }),
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Error response from API:", errorData);
-        throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.message}`);
-      }
-  
-      const updatedProfile = await response.json();
-      localStorage.setItem("Profile", JSON.stringify(updatedProfile.data));
-      setProfileData(updatedProfile.data);
-      alert("Avatar updated successfully!");
-    } catch (error) {
-      console.error("Error updating avatar:", error);
-      alert("Failed to update avatar. Please try again.");
-    } finally {
-      setIsUpdatingAvatar(false);
-      setShowAvatarModal(false);
-    }
+
+    const updatedProfile = {
+      ...profileData,
+      banner: { url: bannerUrl, alt: `${profileData.name}'s updated banner` },
+    };
+
+    localStorage.setItem("Profile", JSON.stringify(updatedProfile));
+    setProfileData(updatedProfile);
+    setShowBannerModal(false);
+    alert("Banner updated successfully!");
   };
 
   if (error) {
     return <p className="error-message">{error}</p>;
   }
 
-  if (!profileData) {
-    return <p>Loading your profile data...</p>;
-  }
-
   return (
     <div className="profile-page">
       <div className="profile-content">
-        <h1>Welcome to your profile, {profileData.name}!</h1>
-        <p>Email: {profileData.email}</p>
-        {profileData.bio && <p>Bio: {profileData.bio}</p>}
+        <h1>Welcome to your profile, {profileData?.name}!</h1>
+        <p>Email: {profileData?.email}</p>
+        {profileData?.bio && <p>Bio: {profileData.bio}</p>}
 
+        {/* Avatar Section */}
         <div className="profile-avatar-section" style={{ position: "relative" }}>
           <img
-            src={profileData.avatar?.url || "/images/default-avatar.jpg"}
-            alt={profileData.avatar?.alt || `${profileData.name}'s avatar`}
+            src={profileData?.avatar?.url || "/images/default-avatar.jpg"}
+            alt={profileData?.avatar?.alt || `${profileData?.name}'s avatar`}
             className="profile-avatar"
           />
           <button
@@ -153,16 +142,17 @@ function ProfilePage() {
           </button>
         </div>
 
+        {/* Banner Section */}
         <div
           className="profile-banner-section"
           style={{
-            backgroundImage: `url(${profileData.banner?.url || "/images/default-banner.jpg"})`,
+            backgroundImage: `url(${profileData?.banner?.url || "/images/default-banner.jpg"})`,
             height: "200px",
             backgroundSize: "cover",
             backgroundPosition: "center",
             position: "relative",
           }}
-          aria-label={profileData.banner?.alt || `${profileData.name}'s banner`}
+          aria-label={profileData?.banner?.alt || `${profileData?.name}'s banner`}
         >
           <button
             className="edit-banner-button"
@@ -172,12 +162,99 @@ function ProfilePage() {
             <i className="fa-solid fa-pen-to-square"></i>
           </button>
         </div>
+
+        {/* User Bookings Section */}
+        <div className="user-bookings">
+          <h2>Your Bookings</h2>
+          {bookings.length === 0 ? (
+            <p>You have no bookings yet.</p>
+          ) : (
+            <ul className="booking-list">
+              {bookings.map((booking) => (
+                <li key={booking.id} className="booking-item">
+                  <h3>{booking.venue.name}</h3>
+                  <p>
+                    <strong>Location:</strong> {booking.venue.location.city},{" "}
+                    {booking.venue.location.country}
+                  </p>
+                  <p>
+                    <strong>Check-in:</strong>{" "}
+                    {new Date(booking.dateFrom).toLocaleDateString()}
+                  </p>
+                  <p>
+                    <strong>Check-out:</strong>{" "}
+                    {new Date(booking.dateTo).toLocaleDateString()}
+                  </p>
+                  <p>
+                    <strong>Guests:</strong> {booking.guests}
+                  </p>
+                  <img
+                    src={booking.venue.media[0]?.url || "https://via.placeholder.com/150"}
+                    alt={booking.venue.media[0]?.alt || "Venue Image"}
+                    className="booking-image"
+                  />
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        {/* Avatar Update Modal */}
+        {showAvatarModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <button className="close-modal-button" onClick={() => setShowAvatarModal(false)}>
+                ❌
+              </button>
+              <h3>Update Avatar</h3>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <input
+                  type="text"
+                  placeholder="Enter new avatar URL"
+                  value={avatarUrl}
+                  onChange={(e) => setAvatarUrl(e.target.value)}
+                  className="avatar-input"
+                />
+                <button className="input-clear-button" onClick={() => setAvatarUrl("")}>
+                  Clear
+                </button>
+              </div>
+              <button onClick={handleAvatarUpdate} className="avatar-update-button">
+                Update Avatar
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Banner Update Modal */}
+        {showBannerModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <button className="close-modal-button" onClick={() => setShowBannerModal(false)}>
+                ❌
+              </button>
+              <h3>Update Banner</h3>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <input
+                  type="text"
+                  placeholder="Enter new banner URL"
+                  value={bannerUrl}
+                  onChange={(e) => setBannerUrl(e.target.value)}
+                  className="banner-input"
+                />
+                <button className="input-clear-button" onClick={() => setBannerUrl("")}>
+                  Clear
+                </button>
+              </div>
+              <button onClick={handleBannerUpdate} className="banner-update-button">
+                Update Banner
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 export default ProfilePage;
-
-
-
