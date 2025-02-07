@@ -6,6 +6,8 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../styles/modal.css";
 import "../styles/profile.css";
 
+
+
 const API_BASE = "https://v2.api.noroff.dev";
 
 function ProfilePage() {
@@ -119,49 +121,79 @@ function ProfilePage() {
     return <p className="error-message">{error}</p>;
   }
 
+
+
+
   return (
     <div className="profile-page">
       <div className="profile-content">
-        <h1>Welcome to your profile, {profileData?.name}!</h1>
-        <p>Email: {profileData?.email}</p>
-        {profileData?.bio && <p>Bio: {profileData.bio}</p>}
 
-        {/* Avatar Section */}
-        <div className="profile-avatar-section" style={{ position: "relative" }}>
-          <img
-            src={profileData?.avatar?.url || "/images/default-avatar.jpg"}
-            alt={profileData?.avatar?.alt || `${profileData?.name}'s avatar`}
-            className="profile-avatar"
-          />
-          <button
-            className="edit-avatar-button"
-            onClick={() => setShowAvatarModal(true)}
-            style={{ position: "absolute", top: "10px", right: "10px" }}
-          >
-            <i className="fa-solid fa-pen-to-square"></i>
-          </button>
-        </div>
 
-        {/* Banner Section */}
-        <div
-          className="profile-banner-section"
-          style={{
-            backgroundImage: `url(${profileData?.banner?.url || "/images/default-banner.jpg"})`,
-            height: "200px",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            position: "relative",
-          }}
-          aria-label={profileData?.banner?.alt || `${profileData?.name}'s banner`}
-        >
-          <button
-            className="edit-banner-button"
-            onClick={() => setShowBannerModal(true)}
-            style={{ position: "absolute", top: "10px", right: "10px" }}
-          >
-            <i className="fa-solid fa-pen-to-square"></i>
-          </button>
-        </div>
+
+
+
+
+
+
+
+
+
+
+
+{/* Background Image for Profile */}
+<div className="profile-info-container">
+
+  {/* Banner Section */}
+  <div
+    className="profile-banner-section"
+    style={{
+      backgroundImage: `url(${profileData?.banner?.url || "/images/default-banner.jpg"})`,
+      height: "200px",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      position: "relative",
+    }}
+    aria-label={profileData?.banner?.alt || `${profileData?.name}'s banner`}
+  >
+    <button
+      className="edit-banner-button"
+      onClick={() => setShowBannerModal(true)}
+      style={{ position: "absolute", top: "10px", right: "10px" }}
+    >
+      <i className="fa-solid fa-pen-to-square"></i>
+    </button>
+  </div>
+
+  {/* Profile Content: */}
+  <div className="profile-content-container">
+    
+    {/* Avatar Section */}
+    <div className="profile-avatar-section">
+      <img
+        src={profileData?.avatar?.url || "/images/default-avatar.jpg"}
+        alt={profileData?.avatar?.alt || `${profileData?.name}'s avatar`}
+        className="profile-avatar"
+      />
+      <button className="edit-avatar-button" onClick={() => setShowAvatarModal(true)}>
+        <i className="fa-solid fa-pen-to-square"></i>
+      </button>
+    </div>
+
+    {/* Profile Info */}
+    <div className="profile-info">
+      <h1>Welcome to your profile, {profileData?.name}!</h1>
+      <p>Email: {profileData?.email}</p>
+      {profileData?.bio && <p>Bio: {profileData.bio}</p>}
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
 
         {/* User Bookings Section */}
         <div className="user-bookings">
