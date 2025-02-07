@@ -14,24 +14,24 @@
     background-repeat: no-repeat;
     padding: 30px;
     border-radius: 10px;
-    height: 120vh;
-    margin-top: 3em; 
+    height: 118vh; 
+    margin-top: 2.5em; 
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
-  }
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+}
   
 .profile-content-container {
     display: flex;
     align-items: center;
-    justify-content: center; 
-    gap: 20px; 
+    justify-content: center;
+    gap: 20px;
     padding: 20px;
     border-radius: 10px;
-    color: black; 
-    margin-top: 3em; 
-  }
+    color: black;
+    margin-top: 2.5em; 
+}
 
 
   .profile-avatar-section {
@@ -44,8 +44,8 @@
   
   
   .profile-avatar {
-    width: 18em;
-    height: 20em;
+    width: 16em;
+    height: 18em;
     border-radius: 20px;
     object-fit: cover;
   }
@@ -69,14 +69,14 @@
   }
 
 
-.profile-banner-section {
+  .profile-banner-section {
     width: 80%;
-    height: 10em; 
+    height: 10em;
     background-size: cover;
     background-position: center;
     position: relative;
     border-radius: 10px;
-    margin: 3em auto 2em auto; 
+    margin: 2.5em auto 2em auto; 
 }
 
 
