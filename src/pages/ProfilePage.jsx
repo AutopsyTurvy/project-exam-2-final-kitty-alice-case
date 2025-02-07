@@ -1,5 +1,9 @@
 
 
+// src/pages/ProfilePage.jsx
+
+
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -61,7 +65,7 @@ function ProfilePage() {
         }
 
         const data = await response.json();
-        console.log("📌 User Bookings:", data);
+        console.log("User Bookings:", data);
 
         const filteredBookings = (data.data || []).filter(
           (booking) => booking.venue
@@ -143,26 +147,7 @@ function ProfilePage() {
 {/* Background Image for Profile */}
 <div className="profile-info-container">
 
-  {/* Banner Section */}
-  <div
-    className="profile-banner-section"
-    style={{
-      backgroundImage: `url(${profileData?.banner?.url || "/images/default-banner.jpg"})`,
-      height: "200px",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      position: "relative",
-    }}
-    aria-label={profileData?.banner?.alt || `${profileData?.name}'s banner`}
-  >
-    <button
-      className="edit-banner-button"
-      onClick={() => setShowBannerModal(true)}
-      style={{ position: "absolute", top: "10px", right: "10px" }}
-    >
-      <i className="fa-solid fa-pen-to-square"></i>
-    </button>
-  </div>
+  
 
   {/* Profile Content: */}
   <div className="profile-content-container">
@@ -186,6 +171,31 @@ function ProfilePage() {
       {profileData?.bio && <p>Bio: {profileData.bio}</p>}
     </div>
 
+
+
+  
+
+  </div>
+
+  {/* Banner Section */}
+  <div
+    className="profile-banner-section"
+    style={{
+      backgroundImage: `url(${profileData?.banner?.url || "/images/default-banner.jpg"})`,
+      height: "200px",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      position: "relative",
+    }}
+    aria-label={profileData?.banner?.alt || `${profileData?.name}'s banner`}
+  >
+    <button
+      className="edit-banner-button"
+      onClick={() => setShowBannerModal(true)}
+      style={{ position: "absolute", top: "10px", right: "10px" }}
+    >
+      <i className="fa-solid fa-pen-to-square"></i>
+    </button>
   </div>
 
 </div>
