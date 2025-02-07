@@ -26,13 +26,15 @@ function ProfilePage() {
 
   useEffect(() => {
     const localProfile = JSON.parse(localStorage.getItem("Profile"));
-    if (localProfile && localProfile.name === username) {
-      setProfileData(localProfile);
-      setAvatarUrl(localProfile.avatar?.url || "");
-      setBannerUrl(localProfile.banner?.url || "");
+      if (localProfile && localProfile.name === username) {
+         setProfileData(localProfile);
+         setAvatarUrl(localProfile.avatar?.url || "");
+         setBannerUrl(localProfile.banner?.url || "");
     } else {
       setError("Profile not found in local storage");
     }
+
+
 
 
 
@@ -47,7 +49,6 @@ function ProfilePage() {
           console.error("Missing authentication details");
           return;
         }
-
         const response = await fetch(
           `${API_BASE}/holidaze/profiles/${username}/bookings?_venue=true`,
           {
@@ -59,31 +60,27 @@ function ProfilePage() {
             },
           }
         );
-
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
         const data = await response.json();
         console.log("User Bookings:", data);
-
         const filteredBookings = (data.data || []).filter(
           (booking) => booking.venue
         );
-
         if (filteredBookings.length === 0) {
           console.warn("No valid bookings found with venue data.");
         }
-
         setBookings(filteredBookings);
       } catch (error) {
         console.error("Error fetching user bookings:", error);
         setError("Failed to load bookings.");
       }
     };
-
     fetchUserBookings();
   }, [username]);
+
+
 
   // Update Avatar
   const handleAvatarUpdate = () => {
@@ -91,12 +88,10 @@ function ProfilePage() {
       alert("Avatar URL cannot be empty.");
       return;
     }
-
     const updatedProfile = {
       ...profileData,
       avatar: { url: avatarUrl, alt: `${profileData.name}'s updated avatar` },
     };
-
     localStorage.setItem("Profile", JSON.stringify(updatedProfile));
     setProfileData(updatedProfile);
     setShowAvatarModal(false);
@@ -109,24 +104,18 @@ function ProfilePage() {
       alert("Banner URL cannot be empty.");
       return;
     }
-
     const updatedProfile = {
       ...profileData,
       banner: { url: bannerUrl, alt: `${profileData.name}'s updated banner` },
     };
-
     localStorage.setItem("Profile", JSON.stringify(updatedProfile));
     setProfileData(updatedProfile);
     setShowBannerModal(false);
     alert("Banner updated successfully!");
   };
-
   if (error) {
     return <p className="error-message">{error}</p>;
   }
-
-
-
 
   return (
     <div className="profile-page">
@@ -141,15 +130,11 @@ function ProfilePage() {
 
 
 
-
-
-
-{/* Background Image for Profile */}
+{/* Background Image for Profile- (Passport) */}
 <div className="profile-info-container">
 
-  
-
-  {/* Profile Content: */}
+<div className="inner-profile-info-container">
+  {/* Profile Bits and Pieces: */}
   <div className="profile-content-container">
     
     {/* Avatar Section */}
@@ -164,18 +149,15 @@ function ProfilePage() {
       </button>
     </div>
 
+
     {/* Profile Info */}
     <div className="profile-info">
       <h1>Welcome to your profile, {profileData?.name}!</h1>
       <p>Email: {profileData?.email}</p>
       {profileData?.bio && <p>Bio: {profileData.bio}</p>}
     </div>
-
-
-
-  
-
   </div>
+
 
   {/* Banner Section */}
   <div
@@ -197,14 +179,10 @@ function ProfilePage() {
       <i className="fa-solid fa-pen-to-square"></i>
     </button>
   </div>
+  </div>
 
 </div>
-
-
-
-
-
-
+        
         {/* User Bookings Section */}
         <div className="user-bookings">
           <h2>Your Bookings</h2>
