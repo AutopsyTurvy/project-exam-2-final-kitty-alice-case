@@ -10,7 +10,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import ProfilePage from "./pages/ProfilePage";
+import ProfilePage from "./pages/ProfilePage/";
 import BookingsPage from "./pages/BookingsPage";
 import Venues from "./pages/Venues";
 import VenueDetails from "./pages/VenueDetails";

@@ -13,6 +13,8 @@ import Calendar from 'react-calendar';
 import '../styles/venuedetails.css'; 
 import '../styles/calendar.css';
 
+
+
 const API_URL = 'https://v2.api.noroff.dev/holidaze/venues';
 
 function VenueDetails() {
@@ -22,56 +24,93 @@ function VenueDetails() {
   const [error, setError] = useState(null);
   const [selectedDates, setSelectedDates] = useState([null, null]);
   const [bookedDates, setBookedDates] = useState([]); 
+  const [userId, setUserId] = useState(null);
   const [guests, setGuests] = useState(1);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const user = localStorage.getItem('userProfile');
-    if (user) {
-      setIsUserLoggedIn(true);
-    }
-
-    const fetchVenue = async () => {
-      try {
-        const response = await fetch(`${API_URL}/${id}?_bookings=true`, {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+  const [userBookings, setUserBookings] = useState([]); 
+  
+  
+    useEffect(() => {
+      const user = JSON.parse(localStorage.getItem('Profile'));
+      if (user) {
+        setIsUserLoggedIn(true);
+        setUserId(user.id);
+      }
+  
+      const fetchVenue = async () => {
+        try {
+          const response = await fetch(`${API_URL}/${id}?_bookings=true`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+          });
+  
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+  
+          const data = await response.json();
+          setVenue(data.data);
+  
+          const bookings = data.data.bookings || [];
+  
+          const userBookingRanges = bookings
+            .filter((booking) => booking.customerId === user?.id)
+            .map((booking) => ({
+              dateFrom: new Date(booking.dateFrom).toISOString().split('T')[0],
+              dateTo: new Date(booking.dateTo).toISOString().split('T')[0],
+            }));
+  
+          const otherBookingRanges = bookings
+            .filter((booking) => booking.customerId !== user?.id)
+            .map((booking) => ({
+              dateFrom: new Date(booking.dateFrom).toISOString().split('T')[0],
+              dateTo: new Date(booking.dateTo).toISOString().split('T')[0],
+            }));
+  
+          setUserBookings(userBookingRanges);
+          setBookedDates(otherBookingRanges);
+  
+        } catch (error) {
+          console.error('Error fetching venue details:', error);
+          setError('Error fetching venue details');
+        } finally {
+          setLoading(false);
         }
-
-        const data = await response.json();
-        setVenue(data.data);
-
-        
-        const bookings = data.data.bookings || [];
-        const bookedRanges = bookings.map((booking) => ({
-          from: new Date(booking.dateFrom).toISOString().split('T')[0],
-          to: new Date(booking.dateTo).toISOString().split('T')[0],
-        }));
-        setBookedDates(bookedRanges);
-      } catch (error) {
-        console.error('Error fetching venue details:', error);
-        setError('Error fetching venue details');
-      } finally {
-        setLoading(false);
+      };
+  
+      fetchVenue();
+    }, [id]);
+  
+    
+    useEffect(() => {
+      if (userBookings.length > 0 || bookedDates.length > 0) {
+        setTimeout(() => {  
+          const tiles = document.querySelectorAll('.react-calendar__tile');
+    
+          tiles.forEach((tile) => {
+            if (tile.classList.contains('booked-range')) {
+              tile.style.backgroundColor = 'red';
+              tile.style.color = 'white';
+              tile.style.textDecoration = 'line-through';
+            } else if (tile.classList.contains('user-booking')) {
+              tile.style.backgroundColor = 'blue';
+              tile.style.color = 'white';
+            }
+          });
+        }, 0);
+      }
+    }, [userBookings, bookedDates]);
+    
+  
+    const handleDateSelection = (dates) => {
+      if (Array.isArray(dates) && dates.length === 2 && dates[0] && dates[1]) {
+        setSelectedDates(dates);
+        console.log("Selected Dates:", dates[0].toISOString(), "to", dates[1].toISOString());
+      } else {
+        console.warn("Invalid date selection:", dates);
       }
     };
-
-    fetchVenue();
-  }, [id]);
-
-  const handleDateSelection = (dates) => {
-    if (Array.isArray(dates) && dates.length === 2 && dates[0] && dates[1]) {
-      setSelectedDates(dates);
-      console.log("Selected Dates:", dates[0].toISOString(), "to", dates[1].toISOString());
-    } else {
-      console.warn("Invalid date selection:", dates);
-    }
-  };
-
+  
 
 
 
@@ -205,13 +244,31 @@ const bookingData = {
   if (error) return <div>{error}</div>;
 
  
+
+
+
+
+
+
+
   const tileClassName = ({ date, view }) => {
     if (view === 'month') {
       const dateString = date.toISOString().split('T')[0];
-      return bookedDates.some((range) => dateString >= range.from && dateString <= range.to)
-        ? 'booked-range'
-        : null;
+  
+    
+      const isUserBooking = userBookings.some(
+        (range) => dateString >= range.dateFrom && dateString <= range.dateTo
+      );
+  
+      
+      const isOtherBooking = bookedDates.some(
+        (range) => dateString >= range.dateFrom && dateString <= range.dateTo
+      );
+  
+      if (isUserBooking) return 'react-calendar__tile user-booking';
+      if (isOtherBooking) return 'react-calendar__tile booked-range';
     }
+    return '';
   };
 
 
@@ -267,6 +324,11 @@ const bookingData = {
           onChange={handleDateSelection}
           value={selectedDates}
         />
+
+<p>
+    <strong>Note:</strong> 
+    All bookings are shown in <span style={{ color: 'blue', fontWeight: 'bold' }}>blue, </span>please choose dates in white only.
+</p>
         
         <button onClick={handleBooking} className="booking-button">Book Venue</button>
 

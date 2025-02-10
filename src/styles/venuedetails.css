@@ -7,7 +7,7 @@
 
 
 
-/* Container styling */
+/* Container styling: */
 .venue-details-container {
     padding: 20px;
     max-width: 1200px;
@@ -17,18 +17,15 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
-  /* Main Image styles */
+  /* Main Image styles: */
   .venue-hero {
     width: 100%;
     height: 400px;
     object-fit: cover;
     border-radius: 8px 8px 0 0;
   }
-  
-  
 
-
-
+  /* Venue Details: */
   .venue-title {
     font-size: 2rem;
     margin-top: 20px;
@@ -43,11 +40,6 @@
     color: #555;
   }
   
-
-
-
-
-
   .venue-details-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -60,11 +52,6 @@
     color: #666;
     font-weight: bold;
   }
-  
- 
-
-
-
 
   .venue-features {
     margin-top: 20px;
@@ -90,11 +77,6 @@
     color: #555;
     margin: 5px 0;
   }
-  
-  
-
-
-
 
   .venue-location {
     margin-top: 20px;

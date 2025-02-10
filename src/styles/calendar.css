@@ -37,20 +37,43 @@
   }
   
  
-  
-
-
-
-
-  .booked-range {
-    background-color: red !important;
-    color: white !important;
-    text-decoration: line-through;
-    opacity: 0.8;
+ 
+.react-calendar__tile.user-booking {
+  background-color: blue !important; 
+  color: white !important;
+  font-weight: bold;
+  border-radius: 4px;
 }
 
 
+.react-calendar__tile.booked-range {
+  background-color: red !important;
+  color: white !important;
+  text-decoration: line-through !important;
+  opacity: 0.8 !important;
+  border-radius: 4px;
+}
 
+
+.react-calendar__tile.booked-range span {
+  text-decoration: line-through !important;
+  color: white !important;
+}
+
+
+div.react-calendar__tile.booked-range {
+  background-color: red !important;
+}
+
+div.react-calendar__tile.user-booking {
+  background-color: blue !important;
+}
+
+.react-calendar__tile--disabled {
+  color: grey !important;
+  background: none !important;
+  opacity: 0.5;
+}
 
 /* On smaller screens */
 

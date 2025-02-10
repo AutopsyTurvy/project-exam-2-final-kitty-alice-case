@@ -3,14 +3,10 @@
 
 
 
-// src/api/RegisterPage.jsx
-
-
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { registerUser } from "../api/auth"; 
 import "../styles/register.css";
+import { registerUser, loginUser } from "../api/auth"; 
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -21,14 +17,18 @@ function RegisterPage() {
     bio: "",
     avatar: "",
     banner: "",
-    venueManager: false,
+    venueManager: false, 
   });
 
   const [error, setError] = useState(null);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, checked } = e.target;
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value, 
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -36,16 +36,18 @@ function RegisterPage() {
     setError(null);
 
     try {
-      const userData = await registerUser(formData); 
-      localStorage.setItem(
-        "Profile",
-        JSON.stringify({ ...userData.data, accessToken: userData.accessToken })
-      );
-      alert("Registration successful!");
-      navigate(`/profile/${userData.data.name}`);
+        const userData = await registerUser(formData); 
+        console.log("Registration successful:", userData);
+
+      
+        const loginData = { email: formData.email, password: formData.password };
+        await loginUser(loginData);
+
+        alert("Registration successful!");
+        navigate(`/profile/${userData.data.name}`);
     } catch (error) {
-      console.error("Registration error:", error);
-      setError(error.message || "An error occurred during registration");
+        console.error("Registration error:", error);
+        setError(error.message || "An error occurred during registration");
     }
   };
 
@@ -113,17 +115,18 @@ function RegisterPage() {
             onChange={handleChange}
           />
         </label>
-        <label>
-          Venue Manager:
+
+      
+        <label className="checkbox-container">
           <input
             type="checkbox"
             name="venueManager"
             checked={formData.venueManager}
-            onChange={(e) =>
-              setFormData({ ...formData, venueManager: e.target.checked })
-            }
+            onChange={handleChange}
           />
+          Register as a Venue Manager
         </label>
+
         {error && <p className="error-message">{error}</p>}
         <button type="submit">Register</button>
       </form>
@@ -132,5 +135,3 @@ function RegisterPage() {
 }
 
 export default RegisterPage;
-
-

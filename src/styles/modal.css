@@ -21,10 +21,13 @@
 }
 
 .modal-content {
-    background-color: #fff;
-    padding: 20px;
-    width: 90%;
-    max-width: 500px;
+    background: url("../assets/Images/ProfileIllustrations/postit.png") no-repeat center center;
+    background-size: contain; 
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    min-width: 550px;
+    padding: 50px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -41,7 +44,8 @@
 .avatar-input,
 .banner-input {
     width: calc(100% - 20px); 
-    max-width: 100%;
+    max-width: 70%;
+    display: block;
     padding: 10px;
     margin: 15px auto; 
     border: 1px solid #ccc;
@@ -83,11 +87,6 @@
     z-index: -1;
 }
 
-
-
-
-
-
 .clear-input-button {
     background: none;
     border: none;
@@ -109,7 +108,6 @@
     color: #f00;
     background-color: transparent; 
 }
-
 
 .input-clear-button {
     background: none;
