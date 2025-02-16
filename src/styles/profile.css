@@ -151,6 +151,73 @@
 }
 
 
+
+
+/* Venue Manager Stamp: */
+
+
+.venue-manager-stamp {
+    position: absolute;  
+    bottom: 5px;  
+    right: 5px;  
+    width: 100px;  
+    height: auto;
+    background: rgba(255, 255, 255, 0.8); 
+    padding: 5px; 
+    border-radius: 50%;  
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); 
+}
+
+.venue-manager-badge {
+    margin-top: 10px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.venue-manager-stamp {
+    width: 100px; 
+    height: auto;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2)); 
+}
+
+
+
+
+
+.venue-manager-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.create-venue-btn,
+.your-venues-btn {
+    background-color: #FEC25B;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+}
+
+.create-venue-btn:hover {
+    background-color: #EA584C;
+}
+
+.your-venues-btn {
+    background-color: #FEC25B;
+}
+
+.your-venues-btn:hover {
+    background-color: #EA584C;
+}
+
+
+
+
   
 /* User bookings: */
 

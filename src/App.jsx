@@ -14,6 +14,11 @@ import ProfilePage from "./pages/ProfilePage/";
 import BookingsPage from "./pages/BookingsPage";
 import Venues from "./pages/Venues";
 import VenueDetails from "./pages/VenueDetails";
+import YourVenues from "./pages/YourVenues";
+import CreateVenuesPage from "./pages/CreateVenuePage";
+
+
+
 
 // Parallax images:
 import backgroundImage from "./assets/Parallax/background.png";
@@ -35,7 +40,6 @@ import UnregisteredHeader from "./components/UnregisteredHeader";
 
 // Imports the conditional header functions:
 import { isUserLoggedIn, getUserProfile } from "./api/IsRegistered";
-
 
 
 
@@ -99,6 +103,8 @@ function App() {
         <Route path="/bookings" element={<BookingsPage />} />
         <Route path="/venues" element={<Venues />} />
         <Route path="/venue/:id" element={<VenueDetails />} />
+        <Route path="/create-venue" element={<CreateVenuesPage />} />
+        <Route path="/your-venues" element={<YourVenues />} />
       </Routes>
     </Router>
   );

@@ -13,6 +13,7 @@ import VenueManagerToggle from "../components/VenueManagerToggle";
 import "../styles/modal.css";
 import "../styles/profile.css";
 
+
 const API_BASE = "https://v2.api.noroff.dev";
 
 function ProfilePage() {
@@ -89,29 +90,68 @@ function ProfilePage() {
         <div className="profile-info-container">
           <div className="inner-profile-info-container">
             <div className="profile-content-container">
+
+
               {/* Avatar Section */}
+              
               <div className="profile-avatar-section">
+                
                 <img
-                  src={profileData?.avatar?.url || "/images/default-avatar.jpg"}
-                  alt={profileData?.avatar?.alt || `${profileData?.name}'s avatar`}
-                  className="profile-avatar"
+                src={profileData?.avatar?.url || "/images/default-avatar.jpg"}
+                alt={profileData?.avatar?.alt || `${profileData?.name}'s avatar`}
+                className="profile-avatar"
                 />
-                <button className="edit-avatar-button" onClick={() => setShowAvatarModal(true)}>
-                  <i className="fa-solid fa-pen-to-square"></i>
-                </button>
-              </div>
 
-              {/* Profile Info */}
-              <div className="profile-info">
-                <h1>Welcome to your profile, {profileData?.name}!</h1>
-                <p>--- Your Info ---</p>
-                <p>Email: {profileData?.email}</p>
-                {profileData?.bio && <p>Bio: {profileData.bio}</p>}
+    
+    
+    {profileData?.venueManager && (
+        <img 
+            src="/src/assets/Images/ProfileIllustrations/venuemanagerstamp.png" 
+            alt="Venue Manager Stamp"
+            className="venue-manager-stamp"
+        />
+    )}
 
-                {/* Venue Manager Toggle */}
-                <VenueManagerToggle profileData={profileData} setProfileData={setProfileData} />
+   
+    <button className="edit-avatar-button" onClick={() => setShowAvatarModal(true)}>
+        <i className="fa-solid fa-pen-to-square"></i>
+    </button>
+</div>
+
+
+           {/* Profile Info */}
+<div className="profile-info">
+    <h1>Welcome to your profile, {profileData?.name}!</h1>
+    <p>--- Your Info ---</p>
+    <p>Email: {profileData?.email}</p>
+    {profileData?.bio && <p>Bio: {profileData.bio}</p>}
+
+    {/* Venue Manager Toggle */}
+    <VenueManagerToggle profileData={profileData} setProfileData={setProfileData} />
+
+    {profileData?.venueManager && (
+    <div className="venue-manager-actions">
+        <button 
+            className="create-venue-btn" 
+            onClick={() => navigate("/create-venue")}
+        >
+            ➕ Create Venue
+        </button>
+        
+        <button 
+    className="your-venues-btn" 
+    onClick={() => navigate("/your-venues")} 
+>
+    🏠 Your Venues
+</button>
+    </div>
+)}
+
               </div>
             </div>
+
+
+
 
             {/* Banner Section */}
             <div

@@ -14,38 +14,44 @@ function VenueManagerToggle({ profileData, setProfileData }) {
 
     const handleVenueManagerUpdate = async () => {
         const token = localStorage.getItem("Token");
+        const apiKey = localStorage.getItem("ApiKey");
 
-        if (!token) {
+        if (!token || !apiKey) {
             alert("You must be logged in to update your profile.");
             return;
         }
 
         try {
-            const response = await fetch(`${API_BASE}/auth/profiles/${profileData?.name}`, {
+            
+            const response = await fetch(`${API_BASE}/holidaze/profiles/${profileData?.name}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
+                    "X-Noroff-API-Key": apiKey
                 },
                 body: JSON.stringify({ venueManager: true }),
             });
 
-            if (!response.ok) throw new Error("Failed to update profile");
+            if (!response.ok) throw new Error(`Failed to update profile: ${response.statusText}`);
 
             alert("You are now a Venue Manager!");
 
-          
-            const updatedProfileResponse = await fetch(`${API_BASE}/auth/profiles/${profileData?.name}`, {
+        
+            const updatedProfile = { ...profileData, venueManager: true };
+            setProfileData(updatedProfile);
+            localStorage.setItem("Profile", JSON.stringify(updatedProfile));
+
+         
+            const updatedProfileResponse = await fetch(`${API_BASE}/holidaze/profiles/${profileData?.name}`, {
                 method: "GET",
-                headers: { Authorization: `Bearer ${token}` },
+                headers: { Authorization: `Bearer ${token}`, "X-Noroff-API-Key": apiKey },
             });
 
             if (!updatedProfileResponse.ok) throw new Error("Failed to reload profile");
 
             const updatedProfileData = await updatedProfileResponse.json();
             setProfileData(updatedProfileData.data);
-
-            
             localStorage.setItem("Profile", JSON.stringify(updatedProfileData.data));
 
         } catch (error) {
