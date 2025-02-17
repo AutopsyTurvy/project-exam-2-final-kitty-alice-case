@@ -21,13 +21,13 @@ import CreateVenuesPage from "./pages/CreateVenuePage";
 
 
 // Parallax images:
-import backgroundImage from "./assets/Parallax/background.png";
+import backgroundImage from "./assets/Parallax/background2.png";
 import hillhouseImage from "./assets/Parallax/hillhouse.png";
 import chimneysmokeImage from "./assets/Parallax/chimneysmoke.png";
-import foregroundImage from "./assets/Parallax/foreground.png";
-import formerpurplehillsImage from "./assets/Parallax/formerpurplehills.png";
-import latterpurplehillsImage from "./assets/Parallax/latterpurplehills.png";
-import deserthillsImage from "./assets/Parallax/deserthills.png";
+import foregroundImage from "./assets/Parallax/foregroundblue.png";
+import formerpurplehillsImage from "./assets/Parallax/yellowforehills.png";
+import latterpurplehillsImage from "./assets/Parallax/bluehills.png";
+import deserthillsImage from "./assets/Parallax/deserthillsred.png";
 
 // Imported page styles:
 import "./styles/landingheader.css";
