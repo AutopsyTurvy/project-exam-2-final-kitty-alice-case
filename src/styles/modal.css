@@ -7,16 +7,19 @@
 
 /* src/script/modal.css */
 
+
+
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
+    
     z-index: 1000;
 }
 
@@ -29,17 +32,43 @@
     min-width: 550px;
     padding: 50px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
     text-align: center;
     box-sizing: border-box; 
     overflow: hidden; 
+   
 }
 
+
+
+
+
+
+.close-modal-button {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+    z-index: 1100;
+}
 
 .close-modal-button:hover {
     color: #f00;
+    background: none;
+    border: 2px solid #f00;
 }
+
+
+
+
+
+
+
 
 .avatar-input,
 .banner-input {
@@ -56,7 +85,7 @@
 
 .avatar-update-button,
 .banner-update-button {
-    background-color: #007bff;
+    background-color: #FEC25B;
     color: white;
     padding: 10px 15px;
     font-size: 16px;
@@ -68,14 +97,16 @@
 
 .avatar-update-button:hover,
 .banner-update-button:hover {
-    background-color: #0056b3;
+    background-color: #FA9E00;
 }
 
 .avatar-update-button:disabled,
 .banner-update-button:disabled {
-    background-color: #ccc;
+    background-color: #FEC25B;
     cursor: not-allowed;
 }
+
+
 
 .modal-overlay {
     position: fixed;
@@ -83,7 +114,6 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
     z-index: -1;
 }
 

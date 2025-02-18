@@ -52,7 +52,8 @@
 
 
 .venue-card button {
-  background: none;
+  background-color: #FEC25B;
+  color: black;
   border: none;
   cursor: pointer;
   font-size: 16px;
@@ -61,7 +62,7 @@
 }
 
 .venue-card button:hover {
-  color: #007bff;
+  color: #FEC25B;
 }
 
 
@@ -110,13 +111,6 @@
 
 
 
-
-
-
-
-
-
-
 .delete-venue-btn {
   background-color: #dc3545;
   color: white;
@@ -140,52 +134,20 @@
 
 
 
+
+
+
+
+
+
+
   
 
 
 
- .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
 
-.modal-content {
-    background: url("../assets/Images/ProfileIllustrations/postit.png") no-repeat center center;
-    background-size: contain; 
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 400px;
-    min-width: 550px;
-    padding: 50px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-    text-align: center;
-    box-sizing: border-box; 
-    overflow: hidden; 
-}
 
-.close-modal-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 18px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
 
-.close-modal-button:hover {
-    color: #f00;
-}
 
 
 .venue-input {
@@ -194,7 +156,7 @@
     display: block;
     padding: 10px;
     margin: 15px auto;
-    border: 1px solid #ccc;
+    border: 2px solid #FEC25B;
     border-radius: 5px;
     font-size: 16px;
     box-sizing: border-box;
@@ -203,31 +165,35 @@
 
 .venue-update-button,
 .venue-cancel-button {
-    background-color: #007bff;
-    color: white;
+    background-color: #FEC25B;
+    color: black;
     padding: 10px 15px;
     font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    font-weight: bold;
 }
 
 .venue-update-button:hover {
-    background-color: #0056b3;
+    background-color: #FA9E00;
+    
 }
 
 .venue-cancel-button {
-    background-color: #ccc;
+    background-color: #EA584C;
     margin-left: 10px;
 }
 
+
+
+
 .venue-cancel-button:hover {
-    background-color: #999;
+    background-color: #D32F2F;
 }
 
-
 .venue-update-button:disabled {
-    background-color: #ccc;
+    background-color: #FEC25B;
     cursor: not-allowed;
 }

@@ -5,12 +5,13 @@
 
 
 
-// src/pages/YourVenues.jsx
+
 
 import React, { useState, useEffect } from "react";
 import EditVenueModal from "../components/EditVenueModal";
 import Loader from "../components/Loader"; 
 import "../styles/yourvenues.css"; 
+import "../styles/modal.css"; 
 
 const API_BASE = "https://v2.api.noroff.dev";
 
