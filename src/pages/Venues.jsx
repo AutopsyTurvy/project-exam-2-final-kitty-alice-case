@@ -9,6 +9,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/Venues.css";
 import "../styles/searchbar.css";
+import "../styles/loader.css"; 
+import loaderImg from "../assets/Images/GeneralBackgroundImages/loader.png"; 
 
 const API_BASE = "https://v2.api.noroff.dev";
 
@@ -73,8 +75,6 @@ function Venues() {
     fetchVenues();
   }, [isYourVenuesPage]);
 
-
-  
   useEffect(() => {
     const filtered = venues.filter(
       (venue) =>
@@ -84,8 +84,23 @@ function Venues() {
     setFilteredVenues(filtered);
   }, [searchQuery, venues]);
 
-  if (loading) return <div>Loading venues...</div>;
-  if (error) return <div>{error}</div>;
+
+
+
+  // Loader for the page :)
+  if (loading) {
+    return (
+      <div className="loader-container">
+      
+      <div className="smoke"></div>
+      <img src={loaderImg} alt="Loading..." className="loader" />
+    </div>
+    );
+  }
+
+  if (error) {
+    return <div className="error-message">{error}</div>;
+  }
 
   return (
     <div className="venues-container-image">
@@ -131,4 +146,3 @@ function Venues() {
 }
 
 export default Venues;
-

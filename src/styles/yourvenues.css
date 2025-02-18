@@ -4,43 +4,134 @@
 
 
 
-.create-venue-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+
+.venues-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+
+.venue-card {
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.venue-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.venue-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+
+.venue-card h2 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+
+.venue-card p {
+  font-size: 16px;
+  color: #555;
+  margin: 5px 0;
+}
+
+
+.venue-card button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
+  transition: color 0.3s;
+}
+
+.venue-card button:hover {
+  color: #007bff;
+}
+
+
+@media (max-width: 768px) {
+  .venues-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
-  
-  .create-venue-form label {
-    display: block;
-    margin: 10px 0 5px;
-  }
-  
-  .create-venue-form input, 
-  .create-venue-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .error-message {
-    color: red;
-  }
-  
-  .success-message {
-    color: green;
-  }
-  
-  button {
-    background: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-  }
-  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.venue-image-container {
+  position: relative;
+  text-align: center;
+}
+
+
+.edit-image-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #FEC25B;
+  color: black;
+  padding: 6px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.edit-image-btn:hover {
+  background-color: #e0a800;
+}
+
+
+
+
+
+
+
+
+
+
+
+.delete-venue-btn {
+  background-color: #dc3545;
+  color: white;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+.delete-venue-btn:hover {
+  background-color: #c82333;
+}
 
 
 
