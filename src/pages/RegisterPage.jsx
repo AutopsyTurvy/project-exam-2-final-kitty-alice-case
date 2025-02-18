@@ -1,12 +1,12 @@
 
 
 
-
+// src/pages/RegisterPage
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/register.css";
 import { registerUser, loginUser } from "../api/auth"; 
+import "../styles/register.css";
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -24,7 +24,6 @@ function RegisterPage() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-
     setFormData((prevData) => ({
       ...prevData,
       [name]: type === "checkbox" ? checked : value, 
@@ -36,17 +35,24 @@ function RegisterPage() {
     setError(null);
 
     try {
-        const userData = await registerUser(formData); 
-        console.log("Registration successful:", userData);
+       
+        const userData = await registerUser(formData);
+        console.log("✅ Registration successful:", userData);
 
-      
+        
         const loginData = { email: formData.email, password: formData.password };
         await loginUser(loginData);
 
-        alert("Registration successful!");
+        alert("🎉 Registration successful!");
+        
+      
         navigate(`/profile/${userData.data.name}`);
+
+        
+        setTimeout(() => window.location.reload(), 500);
+        
     } catch (error) {
-        console.error("Registration error:", error);
+        console.error("🚨 Registration error:", error);
         setError(error.message || "An error occurred during registration");
     }
   };
@@ -116,7 +122,6 @@ function RegisterPage() {
           />
         </label>
 
-      
         <label className="checkbox-container">
           <input
             type="checkbox"
@@ -135,3 +140,4 @@ function RegisterPage() {
 }
 
 export default RegisterPage;
+

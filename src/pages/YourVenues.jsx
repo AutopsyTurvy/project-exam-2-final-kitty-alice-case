@@ -5,8 +5,11 @@
 
 
 
+// src/pages/YourVenues.jsx
+
 import React, { useState, useEffect } from "react";
 import EditVenueModal from "../components/EditVenueModal";
+import Loader from "../components/Loader"; 
 import "../styles/yourvenues.css"; 
 
 const API_BASE = "https://v2.api.noroff.dev";
@@ -58,7 +61,6 @@ function YourVenues() {
     fetchVenues();
   }, []);
 
-
   const deleteVenue = async (venueId) => {
     const token = localStorage.getItem("Token");
     const apiKey = localStorage.getItem("ApiKey");
@@ -86,10 +88,8 @@ function YourVenues() {
         throw new Error(`Failed to delete venue: ${response.statusText}`);
       }
 
-
       setVenues(venues.filter((venue) => venue.id !== venueId));
 
-     
       storedProfile._count.venues -= 1;
       localStorage.setItem("Profile", JSON.stringify(storedProfile));
 
@@ -103,11 +103,18 @@ function YourVenues() {
   return (
     <div className="your-venues-container">
       <h1>Your Venues</h1>
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      {venues.length === 0 ? (
+
+     
+      {loading && <Loader />}
+
+
+      {error && <p className="error-message">{error}</p>}
+
+      {!loading && venues.length === 0 && !error && (
         <p>You haven't created any venues yet.</p>
-      ) : (
+      )}
+
+      {!loading && venues.length > 0 && (
         <div className="venues-grid">
           {venues.map((venue) => (
             <div key={venue.id} className="venue-card">
@@ -139,7 +146,6 @@ function YourVenues() {
                 <button onClick={() => { setEditingVenue(venue); setEditingField("price"); }}>✏️</button>
               </p>
 
-              
               <button className="delete-venue-btn" onClick={() => deleteVenue(venue.id)}>
                 ❌ Delete Venue
               </button>

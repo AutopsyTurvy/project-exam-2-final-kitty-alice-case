@@ -7,6 +7,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Loader from "../components/Loader";
 import "../styles/Venues.css";
 import "../styles/searchbar.css";
 import "../styles/loader.css"; 
@@ -89,14 +90,9 @@ function Venues() {
 
   // Loader for the page :)
   if (loading) {
-    return (
-      <div className="loader-container">
-      
-      <div className="smoke"></div>
-      <img src={loaderImg} alt="Loading..." className="loader" />
-    </div>
-    );
+    return <Loader />;
   }
+  
 
   if (error) {
     return <div className="error-message">{error}</div>;

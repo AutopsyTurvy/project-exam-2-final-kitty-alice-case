@@ -10,7 +10,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import ProfileModals from "../components/ProfileModals";
 import Deleteabooking from "../components/Deleteabooking";
 import VenueManagerToggle from "../components/VenueManagerToggle";
-import loaderImg from "../assets/Images/GeneralBackgroundImages/loader.png";
+import Loader from "../components/Loader"; 
 import "../styles/modal.css";
 import "../styles/profile.css";
 import "../styles/loader.css";
@@ -88,18 +88,10 @@ function ProfilePage() {
     fetchUserBookings();
   }, [username]);
 
-
-
-
-
-  
   return (
     <div className="profile-page">
       {loading ? (
-        <div className="loader-container">
-          <div className="smoke"></div>
-          <img src={loaderImg} alt="Loading..." className="loader" />
-        </div>
+        <Loader />  
       ) : (
         <div className="profile-content">
           <div className="profile-info-container">
@@ -227,5 +219,5 @@ function ProfilePage() {
   );
 }
 
-
 export default ProfilePage;
+

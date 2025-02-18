@@ -6,19 +6,20 @@
 // App.jsx -- Note- acting as landing page. 
 
 
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+
+
+
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Loader from "./components/Loader"; 
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import ProfilePage from "./pages/ProfilePage/";
+import ProfilePage from "./pages/ProfilePage";
 import BookingsPage from "./pages/BookingsPage";
 import Venues from "./pages/Venues";
 import VenueDetails from "./pages/VenueDetails";
 import YourVenues from "./pages/YourVenues";
 import CreateVenuesPage from "./pages/CreateVenuePage";
-
-
-
 
 // Parallax images:
 import backgroundImage from "./assets/Parallax/background2.png";
@@ -29,20 +30,17 @@ import formerpurplehillsImage from "./assets/Parallax/yellowforehills.png";
 import latterpurplehillsImage from "./assets/Parallax/bluehills.png";
 import deserthillsImage from "./assets/Parallax/deserthillsred.png";
 
-// Imported page styles:
+// Imported styles:
 import "./styles/landingheader.css";
 import "./styles/index.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-// Imports both of the headers:
+// Headers:
 import RegisteredHeader from "./components/RegisteredHeader";
 import UnregisteredHeader from "./components/UnregisteredHeader";
 
-// Imports the conditional header functions:
+// Conditional check:
 import { isUserLoggedIn, getUserProfile } from "./api/IsRegistered";
-
-
-
 
 function LandingPage() {
   useEffect(() => {
@@ -55,46 +53,42 @@ function LandingPage() {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div>
-      <div className="landing-container">
-        <img src={backgroundImage} alt="Background" className="landing-image background-layer" />
-        <img src={deserthillsImage} alt="Desert Hills" className="landing-image deserthills-layer" />
-        <img src={latterpurplehillsImage} alt="Latter Purple Hills" className="landing-image latterpurplehills-layer" />
-        <img src={formerpurplehillsImage} alt="Former Purple Hills" className="landing-image purplehills-layer" />
-        <img src={hillhouseImage} alt="Hillhouse" className="landing-image hillhouse-layer" />
-        <img src={chimneysmokeImage} alt="Chimney Smoke" className="landing-image chimneysmoke-layer" />
-        <img src={foregroundImage} alt="Foreground" className="landing-image foreground-layer" />
-        <div className="central-header">
-          <h1>Where will we travel together?</h1>
-        </div>
+    <div className="landing-container">
+      <img src={backgroundImage} alt="Background" className="landing-image background-layer" />
+      <img src={deserthillsImage} alt="Desert Hills" className="landing-image deserthills-layer" />
+      <img src={latterpurplehillsImage} alt="Latter Purple Hills" className="landing-image latterpurplehills-layer" />
+      <img src={formerpurplehillsImage} alt="Former Purple Hills" className="landing-image purplehills-layer" />
+      <img src={hillhouseImage} alt="Hillhouse" className="landing-image hillhouse-layer" />
+      <img src={chimneysmokeImage} alt="Chimney Smoke" className="landing-image chimneysmoke-layer" />
+      <img src={foregroundImage} alt="Foreground" className="landing-image foreground-layer" />
+      <div className="central-header">
+        <h1>Where will we travel together?</h1>
       </div>
     </div>
   );
 }
 
-
-
-
-
 function App() {
+  const [loading, setLoading] = useState(true);
   const isLoggedIn = isUserLoggedIn();
   const userProfile = isLoggedIn ? getUserProfile() : null;
 
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 2000); 
+  }, []);
+
+  if (loading) return <Loader />; 
+
   return (
     <Router>
-      {/* Renders the Conditional Header */}
-      {isLoggedIn ? (
-        <RegisteredHeader username={userProfile.name} />
-      ) : (
-        <UnregisteredHeader />
-      )}
+      {/* Conditional Headers: */}
+      {isLoggedIn ? <RegisteredHeader username={userProfile.name} /> : <UnregisteredHeader />}
 
-      {/* All of our Main Routes */}
+      {/* Main Routes */}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -111,7 +105,6 @@ function App() {
 }
 
 export default App;
-
 
 
 
