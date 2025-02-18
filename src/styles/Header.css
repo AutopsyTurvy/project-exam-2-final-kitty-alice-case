@@ -36,6 +36,7 @@
 }
 
 .user-header button {
+  font-weight: bold;
   background-color: #FEC25B;
   color: #333;
   border: none;

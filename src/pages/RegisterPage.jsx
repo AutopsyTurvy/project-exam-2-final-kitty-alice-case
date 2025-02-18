@@ -1,19 +1,15 @@
 
 
 
-
-
-
 // src/pages/RegisterPage.jsx
-
-
-
 
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUser, loginUser } from "../api/auth";
 import "../styles/register.css";
+
+
 
 function RegisterPage() {
   const navigate = useNavigate();

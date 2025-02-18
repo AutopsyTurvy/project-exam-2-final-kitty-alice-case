@@ -1,17 +1,15 @@
 
 
 
+// src/components/VenueManagerToggle
 
-// src/components/VenueManagerToggle.jsx
 
 
-import React, { useState } from "react";
+import React from "react";
 
 const API_BASE = "https://v2.api.noroff.dev";
 
 function VenueManagerToggle({ profileData, setProfileData }) {
-    const [isRequestingManager, setIsRequestingManager] = useState(false);
-
     const handleVenueManagerUpdate = async () => {
         const token = localStorage.getItem("Token");
         const apiKey = localStorage.getItem("ApiKey");
@@ -22,13 +20,13 @@ function VenueManagerToggle({ profileData, setProfileData }) {
         }
 
         try {
-            
+           
             const response = await fetch(`${API_BASE}/holidaze/profiles/${profileData?.name}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
-                    "X-Noroff-API-Key": apiKey
+                    "X-Noroff-API-Key": apiKey,
                 },
                 body: JSON.stringify({ venueManager: true }),
             });
@@ -37,20 +35,20 @@ function VenueManagerToggle({ profileData, setProfileData }) {
 
             alert("You are now a Venue Manager!");
 
-        
-            const updatedProfile = { ...profileData, venueManager: true };
-            setProfileData(updatedProfile);
-            localStorage.setItem("Profile", JSON.stringify(updatedProfile));
-
-         
+           
             const updatedProfileResponse = await fetch(`${API_BASE}/holidaze/profiles/${profileData?.name}`, {
-                method: "GET",
-                headers: { Authorization: `Bearer ${token}`, "X-Noroff-API-Key": apiKey },
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "X-Noroff-API-Key": apiKey,
+                    "Content-Type": "application/json",
+                },
             });
 
             if (!updatedProfileResponse.ok) throw new Error("Failed to reload profile");
 
             const updatedProfileData = await updatedProfileResponse.json();
+
+            
             setProfileData(updatedProfileData.data);
             localStorage.setItem("Profile", JSON.stringify(updatedProfileData.data));
 
@@ -62,19 +60,12 @@ function VenueManagerToggle({ profileData, setProfileData }) {
 
     return (
         !profileData?.venueManager && (
-            <div className="venue-manager-checkbox">
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={isRequestingManager}
-                        onChange={(e) => setIsRequestingManager(e.target.checked)}
-                    />
-                    I want to become a Venue Manager
-                </label>
-                <button onClick={handleVenueManagerUpdate}>Update</button>
-            </div>
+            <button className="venue-manager-button" onClick={handleVenueManagerUpdate}>
+                Become a Venue Manager
+            </button>
         )
     );
 }
 
 export default VenueManagerToggle;
+
