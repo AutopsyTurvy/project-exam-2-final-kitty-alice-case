@@ -75,20 +75,30 @@ function VenueDetails() {
   }, [id]);
 
   
+
+
+
+
+
+
+
+
+
+
   const handleBooking = async () => {
     if (!isUserLoggedIn) {
-      alert("You must be logged in to book a venue.");
-      return;
+        alert("You must be logged in to book a venue.");
+        return;
     }
 
     if (!selectedDates || selectedDates.length !== 2 || !selectedDates[0] || !selectedDates[1]) {
-      alert("Please select valid dates before booking.");
-      return;
+        alert("Please select valid dates before booking.");
+        return;
     }
 
-    if (guests < 1 || guests > venue.maxGuests) {
-      alert(`Please select a number of guests between 1 and ${venue.maxGuests}.`);
-      return;
+    if (guests < 1 || guests > venue.maxGuests) {  
+        alert(`Please select a number of guests between 1 and ${venue.maxGuests}.`);
+        return;
     }
 
     const userProfile = JSON.parse(localStorage.getItem("Profile"));
@@ -96,100 +106,117 @@ function VenueDetails() {
     let apiKey = localStorage.getItem("ApiKey")?.replace(/^"+|"+$/g, '').trim();
 
     if (!userProfile || !token) {
-      alert("Authentication error: Missing user data or token.");
-      return;
+        alert("Authentication error: Missing user data or token.");
+        return;
     }
 
     if (!apiKey) {
-      try {
-        apiKey = await createApiKey();
-        localStorage.setItem("ApiKey", apiKey);
-      } catch (error) {
-        alert("Failed to generate API Key. Please log out and log in again.");
-        return;
-      }
+        try {
+            apiKey = await createApiKey();
+            localStorage.setItem("ApiKey", apiKey);
+        } catch (error) {
+            alert("Failed to generate API Key. Please log out and log in again.");
+            return;
+        }
     }
 
     const adjustedEndDate = new Date(selectedDates[1]);
     adjustedEndDate.setDate(adjustedEndDate.getDate() - 1);
 
     const bookingData = {
-      dateFrom: selectedDates[0].toISOString(),
-      dateTo: adjustedEndDate.toISOString(),
-      guests,
-      venueId: id,
+        dateFrom: selectedDates[0].toISOString(),
+        dateTo: adjustedEndDate.toISOString(),
+        guests,
+        venueId: id,
     };
 
     try {
-      const response = await fetch("https://v2.api.noroff.dev/holidaze/bookings", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-          "X-Noroff-API-Key": apiKey,
-        },
-        body: JSON.stringify(bookingData),
-      });
+        const response = await fetch("https://v2.api.noroff.dev/holidaze/bookings", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
+                "X-Noroff-API-Key": apiKey,
+            },
+            body: JSON.stringify(bookingData),
+        });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-      alert("🎉 Booking successful!");
+        alert("🎉 Booking successful! Refreshing page...");
+        
+        
+        window.location.reload();
 
-      setBookedDates([...bookedDates, { from: bookingData.dateFrom, to: bookingData.dateTo }]);
     } catch (error) {
-      alert("Failed to make a booking. Please try again.");
+        alert("Failed to make a booking. Please try again.");
     }
-  };
+};
+
+
+
+
+
+
+
+
+
+
 
   if (loading) return <Loader />;
   if (error) return <div>{error}</div>;
 
+
+
   return (
-    <div className="venue-details-container">
-      <img
-        className="venue-hero"
-        src={venue.media[0]?.url || "https://via.placeholder.com/150"}
-        alt={venue.media[0]?.alt || "Venue Image"}
-      />
-      <h1 className="venue-title">{venue.name}</h1>
-      <p className="venue-description">{venue.description}</p>
+    <div className="venue-details-page">
+        <div className="venue-details-container">
+            <img
+                className="venue-hero"
+                src={venue.media[0]?.url || "https://via.placeholder.com/150"}
+                alt={venue.media[0]?.alt || "Venue Image"}
+            />
+            <h1 className="venue-title">{venue.name}</h1>
+            <p className="venue-description">{venue.description}</p>
 
-      <div className="venue-details-grid">
-        <p className="venue-detail">Price: ${venue.price}</p>
-        <p className="venue-detail">Max Guests: {venue.maxGuests}</p>
-        <p className="venue-detail">Rating: {venue.rating}</p>
-      </div>
+            <div className="venue-details-grid">
+                <p className="venue-detail">Price: ${venue.price}</p>
+                <p className="venue-detail">Max Guests: {venue.maxGuests}</p>
+                <p className="venue-detail">Rating: {venue.rating}</p>
+            </div>
 
-      <div className="venue-features">
-        <h3>Features</h3>
-        <ul>
-          <li>WiFi: {venue.meta?.wifi ? "Yes" : "No"}</li>
-          <li>Parking: {venue.meta?.parking ? "Yes" : "No"}</li>
-          <li>Breakfast: {venue.meta?.breakfast ? "Yes" : "No"}</li>
-          <li>Pets Allowed: {venue.meta?.pets ? "Yes" : "No"}</li>
-        </ul>
-      </div>
+            <div className="venue-features">
+                <h3>Features</h3>
+                <ul>
+                    <li>WiFi: {venue.meta?.wifi ? "Yes" : "No"}</li>
+                    <li>Parking: {venue.meta?.parking ? "Yes" : "No"}</li>
+                    <li>Breakfast: {venue.meta?.breakfast ? "Yes" : "No"}</li>
+                    <li>Pets Allowed: {venue.meta?.pets ? "Yes" : "No"}</li>
+                </ul>
+            </div>
 
-      <div className="venue-location">
-        <strong>Location:</strong> {venue.location?.address}, {venue.location?.city},{" "}
-        {venue.location?.country}
-      </div>
+            <div className="venue-location">
+                <strong>Location:</strong> {venue.location?.address}, {venue.location?.city},{" "}
+                {venue.location?.country}
+            </div>
 
-      <CalendarComponent
-        selectedDates={selectedDates}
-        setSelectedDates={setSelectedDates}
-        bookedDates={bookedDates}
-        userBookings={userBookings}
-        handleBooking={handleBooking} 
-        guests={guests} 
-        setGuests={setGuests} 
-        maxGuests={venue.maxGuests} 
-        isUserLoggedIn={isUserLoggedIn}
-      />
+            <CalendarComponent
+                selectedDates={selectedDates}
+                setSelectedDates={setSelectedDates}
+                bookedDates={bookedDates}
+                userBookings={userBookings}
+                handleBooking={handleBooking} 
+                guests={guests} 
+                setGuests={setGuests} 
+                maxGuests={venue.maxGuests} 
+                isUserLoggedIn={isUserLoggedIn}
+            />
+        </div>
     </div>
-  );
+);
+
 }
 
 export default VenueDetails;

@@ -11,7 +11,7 @@ import Loader from "../components/Loader";
 import "../styles/Venues.css";
 import "../styles/searchbar.css";
 import "../styles/loader.css"; 
-import loaderImg from "../assets/Images/GeneralBackgroundImages/loader.png"; 
+
 
 const API_BASE = "https://v2.api.noroff.dev";
 

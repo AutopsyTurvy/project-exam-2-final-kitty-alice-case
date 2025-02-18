@@ -8,21 +8,21 @@
 
 
 
-.venues-container-image{
+.venues-container-image {
   padding-top: 3em;
-  background: url("../assets/Images/GeneralBackgroundImages/corkboard4.png") no-repeat center center;
-  background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 30px;
-    border-radius: 10px;
-    height: 140vh; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; 
-
+  background: url("../assets/Images/GeneralBackgroundImages/mapandpen.png") no-repeat center top;
+  background-size: contain;  
+  background-position: center top;  
+  width: 100vw;
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: hidden;
 }
+
+
 
 .venues-container {
     padding: 8em;
@@ -44,56 +44,72 @@
     transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
     position: relative;
     overflow: hidden;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-  
 .venue-card:hover {
-  transform: scale(1.03);
+    transform: scale(1.03);
+    background: url("../assets/Images/ProfileIllustrations/penloop2.png") no-repeat 50% 50% / contain, 
+                rgba(255, 255, 255, 0.9);
 }
-  
-  .venue-card img {
+
+
+.venue-card img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
-  }
-  
-  .venue-card-content {
+    border-radius: 8px;
+}
+
+
+.venue-card-content {
     padding: 16px;
-  }
-  
-  .venue-card h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .venue-card p {
-    margin: 8px 0;
-    color: #666;
-  }
-  
-  .venue-card .price {
+}
+
+
+.venue-card h2 {
     font-size: 1.2rem;
-    color: #000;
+    color: #333;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+
+.venue-card p {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0.3rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+
+.venue-card .price {
+    font-size: 1.1rem;
+    color: black;
     font-weight: bold;
-  }
-  
+}
 
 
-
-
-
-
-
-
-  .venue-card-link {
+.venue-card-link {
     text-decoration: none;
     color: inherit;
-  }
-  
-  .venue-card-link:hover {
+}
+
+.venue-card-link:hover {
     text-decoration: none;
-  }
+}
+
   
 
 

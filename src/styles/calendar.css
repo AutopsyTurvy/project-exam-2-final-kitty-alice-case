@@ -82,3 +82,27 @@ div.react-calendar__tile.user-booking {
       max-width: 100%;
     }
   }
+
+  .booking-button {
+    margin-top: 15px; 
+    margin-left: 20px; 
+    background-color: #FEC25B;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.booking-button:hover {
+    background-color: #FA9E00;
+}
+
+@media (max-width: 768px) {
+    .booking-button {
+        margin-left: 0; 
+        width: 100%; 
+    }
+}
