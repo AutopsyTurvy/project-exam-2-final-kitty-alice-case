@@ -1,5 +1,9 @@
 
 
+
+
+
+
 // src/pages/profilepage/profilepage.jsx
 
 
@@ -17,6 +21,8 @@ import "../styles/loader.css";
 import ProfilePlaceholder from "../assets/images/generalbackgroundimages/profileplaceholder.png";
 import BannerPlaceholder from "../assets/images/generalbackgroundimages/bannerplaceholder.png";
 import VenuePlaceholder from "../assets/images/generalbackgroundimages/venueplaceholder.png";
+import VenueManagerStamp from "../assets/images/generalbackgroundimages/venuemanagerstamp.png";
+
 
 
 const API_BASE = "https://v2.api.noroff.dev";
@@ -118,9 +124,10 @@ function ProfilePage() {
 
                   {profileData?.venueManager && (
                     <img 
-                      src="/venuemanagerstamp.png" alt="Venue Manager Stamp"
-                      className="venue-manager-stamp"
-                    />
+                    src={VenueManagerStamp} 
+                    alt="Venue Manager Stamp"
+                    className="venue-manager-stamp"
+                  />
                   )}
 
                   <button className="edit-avatar-button" onClick={() => setShowAvatarModal(true)}>
@@ -170,6 +177,10 @@ function ProfilePage() {
               </button>
             </div>
           </div>
+
+
+
+
 
           <div className="user-bookings-container">
             <div className="user-bookings">

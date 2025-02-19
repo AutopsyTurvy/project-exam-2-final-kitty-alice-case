@@ -89,7 +89,7 @@ function App() {
         {isLoggedIn ? <RegisteredHeader username={userProfile?.name} /> : <UnregisteredHeader />}
         
         <Routes>
-          <Route path="/" element={<LandingPage />} /> {/* ✅ Fixed capitalization */}
+          <Route path="/" element={<LandingPage />} /> 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/profile/:username" element={<ProfilePage />} />
