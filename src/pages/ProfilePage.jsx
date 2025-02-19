@@ -21,7 +21,7 @@ import "../styles/loader.css";
 import ProfilePlaceholder from "../assets/images/generalbackgroundimages/profileplaceholder.png";
 import BannerPlaceholder from "../assets/images/generalbackgroundimages/bannerplaceholder.png";
 import VenuePlaceholder from "../assets/images/generalbackgroundimages/venueplaceholder.png";
-import VenueManagerStamp from "../assets/images/generalbackgroundimages/venuemanagerstamp.png";
+import VenueManagerStamp from "../public/venuemanagerstamp.png";
 
 
 
