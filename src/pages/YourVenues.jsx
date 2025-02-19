@@ -101,13 +101,21 @@ function YourVenues() {
     }
   };
 
+
+
+
+
+
+
+
+
+
+
   return (
     <div className="your-venues-container">
       <h1>Your Venues</h1>
 
-     
       {loading && <Loader />}
-
 
       {error && <p className="error-message">{error}</p>}
 
@@ -116,43 +124,47 @@ function YourVenues() {
       )}
 
       {!loading && venues.length > 0 && (
-        <div className="venues-grid">
-          {venues.map((venue) => (
-            <div key={venue.id} className="venue-card">
-              
-              <div className="venue-image-container">
-                <img
-                  src={venue.media[0]?.url || "https://via.placeholder.com/150"}
-                  alt={venue.media[0]?.alt || "Venue Image"}
-                />
+        <>
+          <h2 className="venues-manage-title">Venues you manage:</h2> 
+
+          <div className="venues-grid">
+            {venues.map((venue) => (
+              <div key={venue.id} className="venue-card">
                 
-                <button 
-                  className="edit-image-btn"
-                  onClick={() => { setEditingVenue(venue); setEditingField("media"); }}
-                >
-                Edit Image
+                <div className="venue-image-container">
+                  <img
+                    src={venue.media[0]?.url || "src/assets/Images/GeneralBackgroundImages/venueplaceholder.png"}
+                    alt={venue.media[0]?.alt || "Venue Image"}
+                  />
+                  
+                  <button 
+                    className="edit-image-btn"
+                    onClick={() => { setEditingVenue(venue); setEditingField("media"); }}
+                  >
+                  Edit Image
+                  </button>
+                </div>
+
+                <h2>
+                  {venue.name} 
+                  <button onClick={() => { setEditingVenue(venue); setEditingField("name"); }}>✏️</button>
+                </h2>
+                <p>
+                  {venue.description} 
+                  <button onClick={() => { setEditingVenue(venue); setEditingField("description"); }}>✏️</button>
+                </p>
+                <p>
+                  Price: ${venue.price} 
+                  <button onClick={() => { setEditingVenue(venue); setEditingField("price"); }}>✏️</button>
+                </p>
+
+                <button className="delete-venue-btn" onClick={() => deleteVenue(venue.id)}>
+                  ❌ Delete Venue
                 </button>
               </div>
-
-              <h2>
-                {venue.name} 
-                <button onClick={() => { setEditingVenue(venue); setEditingField("name"); }}>✏️</button>
-              </h2>
-              <p>
-                {venue.description} 
-                <button onClick={() => { setEditingVenue(venue); setEditingField("description"); }}>✏️</button>
-              </p>
-              <p>
-                Price: ${venue.price} 
-                <button onClick={() => { setEditingVenue(venue); setEditingField("price"); }}>✏️</button>
-              </p>
-
-              <button className="delete-venue-btn" onClick={() => deleteVenue(venue.id)}>
-                ❌ Delete Venue
-              </button>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </>
       )}
 
       {editingVenue && (
@@ -167,6 +179,7 @@ function YourVenues() {
       )}
     </div>
   );
+
 }
 
 export default YourVenues;

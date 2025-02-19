@@ -103,7 +103,8 @@ function Venues() {
   return (
     <div className="venues-container-image">
       <div className="venues-container">
-        <h1>{isYourVenuesPage ? "Your Venues" : "All Venues"}</h1>
+      <h1 className="all-venues-header">All Venues</h1>
+
 
         <div className="search-bar-container">
           <input

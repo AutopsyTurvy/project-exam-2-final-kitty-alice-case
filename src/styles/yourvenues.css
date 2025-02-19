@@ -3,7 +3,32 @@
 /* src/styles/yourvenues.css */
 
 
+.venues-container h1 {
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+}
 
+
+
+
+
+.venues-manage-title {
+  font-size: 1.8rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  text-align: center;
+}
 
 .venues-grid {
   display: grid;

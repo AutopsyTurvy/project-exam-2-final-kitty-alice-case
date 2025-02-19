@@ -5,6 +5,24 @@
 
 /* src/styles/UnregisteredVenues.css */ 
 
+.all-venues-header {
+    font-size: 2.5rem;
+    color: red; 
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.85);  
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    max-width: 80%; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 
 
