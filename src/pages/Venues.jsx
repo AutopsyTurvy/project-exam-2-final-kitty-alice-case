@@ -2,7 +2,9 @@
 
 
 
+
 // src/pages/Venues.jsx
+
 
 
 import React, { useEffect, useState } from "react";
@@ -12,7 +14,6 @@ import "../styles/Venues.css";
 import "../styles/searchbar.css";
 import "../styles/loader.css"; 
 
-
 const API_BASE = "https://v2.api.noroff.dev";
 
 function Venues() {
@@ -21,6 +22,7 @@ function Venues() {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [visibleVenues, setVisibleVenues] = useState(8); 
 
   const location = useLocation();
   const isYourVenuesPage = location.pathname === "/your-venues";
@@ -46,7 +48,6 @@ function Venues() {
       }
 
       try {
-        console.log(`🔹 Fetching venues from: ${endpoint}`);
         const response = await fetch(endpoint, {
           headers: {
             Authorization: token ? `Bearer ${token}` : "",
@@ -56,17 +57,13 @@ function Venues() {
         });
 
         if (!response.ok) {
-          const errorMessage = await response.text();
-          console.error("API Error:", errorMessage);
-          throw new Error(`Failed to fetch venues: ${errorMessage}`);
+          throw new Error(`Failed to fetch venues: ${await response.text()}`);
         }
 
         const data = await response.json();
-        console.log("Fetched venues:", data.data);
         setVenues(data.data);
         setFilteredVenues(data.data);
       } catch (error) {
-        console.error("Fetch Error:", error.message);
         setError("Error fetching venues.");
       } finally {
         setLoading(false);
@@ -85,14 +82,19 @@ function Venues() {
     setFilteredVenues(filtered);
   }, [searchQuery, venues]);
 
+  
+  const loadMoreVenues = () => {
+    setVisibleVenues((prev) => Math.min(prev + 8, filteredVenues.length));
+  };
 
+ 
+  const showLessVenues = () => {
+    setVisibleVenues(8);
+  };
 
-
-  // Loader for the page :)
   if (loading) {
     return <Loader />;
   }
-  
 
   if (error) {
     return <div className="error-message">{error}</div>;
@@ -115,7 +117,7 @@ function Venues() {
 
         <div className="venues-grid">
           {filteredVenues.length > 0 ? (
-            filteredVenues.map((venue) => (
+            filteredVenues.slice(0, visibleVenues).map((venue) => (
               <Link key={venue.id} to={`/venue/${venue.id}`} className="venue-card-link">
                 <div className="venue-card">
                   <img
@@ -136,9 +138,23 @@ function Venues() {
             <p>No venues match your search.</p>
           )}
         </div>
+
+       
+        {filteredVenues.length > visibleVenues && (
+          <button className="see-more-button" onClick={loadMoreVenues}>
+            See More
+          </button>
+        )}
+        
+        {visibleVenues > 8 && (
+          <button className="see-less-button" onClick={showLessVenues}>
+            See Less
+          </button>
+        )}
       </div>
     </div>
   );
 }
 
 export default Venues;
+
