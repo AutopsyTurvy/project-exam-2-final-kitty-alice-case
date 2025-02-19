@@ -95,9 +95,8 @@ const CalendarComponent = ({
       />
 
       <p>
-        <strong>Note:</strong> All bookings are shown in{" "}
-        <span style={{ color: "blue", fontWeight: "bold" }}>blue, </span>please choose dates in
-        white only.
+        <strong>Note:</strong> All booked dates are shown in{" "}
+        <span style={{ color: "red", textDecoration: "line-through", fontWeight: "bold" }}>red, with a line through them</span>- please choose dates that are not in red.
       </p>
 
       {isUserLoggedIn ? (
