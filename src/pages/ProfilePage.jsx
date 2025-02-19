@@ -14,6 +14,8 @@ import Loader from "../components/Loader";
 import "../styles/modal.css";
 import "../styles/profile.css";
 import "../styles/loader.css";
+import ProfilePlaceholder from "../assets/Images/GeneralBackgroundImages/profileplaceholder.png";
+import BannerPlaceholder from "../assets/Images/GeneralBackgroundImages/bannerplaceholder.png";
 
 const API_BASE = "https://v2.api.noroff.dev";
 
@@ -29,26 +31,35 @@ function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+
+
+
+
+
+
   useEffect(() => {
     const localProfile = JSON.parse(localStorage.getItem("Profile"));
+  
     if (localProfile && localProfile.name === username) {
       setProfileData(localProfile);
       setAvatarUrl(localProfile.avatar?.url || "");
       setBannerUrl(localProfile.banner?.url || "");
+      setLoading(false);
     } else {
       setError("Profile not found in local storage");
+      setLoading(false); 
     }
-
+  
     const fetchUserBookings = async () => {
       try {
         const token = localStorage.getItem("Token");
         const apiKey = localStorage.getItem("ApiKey");
-
+  
         if (!token || !apiKey) {
           console.error("Missing authentication details");
           return;
         }
-
+  
         const response = await fetch(
           `${API_BASE}/holidaze/profiles/${username}/bookings?_venue=true`,
           {
@@ -60,33 +71,32 @@ function ProfilePage() {
             },
           }
         );
-
+  
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
+  
         const data = await response.json();
         console.log("User Bookings:", data);
-
-        const filteredBookings = (data.data || []).filter(
-          (booking) => booking.venue
-        );
-
-        if (filteredBookings.length === 0) {
-          console.warn("No valid bookings found with venue data.");
-        }
-
-        setBookings(filteredBookings);
+  
+        setBookings(data.data || []);
       } catch (error) {
         console.error("Error fetching user bookings:", error);
         setError("Failed to load bookings.");
-      } finally {
-        setLoading(false);
       }
     };
-
+  
     fetchUserBookings();
   }, [username]);
+  
+
+
+
+
+
+
+
+
 
   return (
     <div className="profile-page">
@@ -98,8 +108,8 @@ function ProfilePage() {
             <div className="inner-profile-info-container">
               <div className="profile-content-container">
                 <div className="profile-avatar-section">
-                  <img
-                    src={profileData?.avatar?.url || "/images/default-avatar.jpg"}
+                <img
+                    src={profileData?.avatar?.url || ProfilePlaceholder}
                     alt={profileData?.avatar?.alt || `${profileData?.name}'s avatar`}
                     className="profile-avatar"
                   />
@@ -142,7 +152,7 @@ function ProfilePage() {
             <div
               className="profile-banner-section"
               style={{
-                backgroundImage: `url(${profileData?.banner?.url || "/images/default-banner.jpg"})`,
+                backgroundImage: `url(${profileData?.banner?.url || BannerPlaceholder})`,
                 height: "200px",
                 backgroundSize: "cover",
                 backgroundPosition: "center",

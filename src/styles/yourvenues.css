@@ -1,34 +1,35 @@
 
 
+
 /* src/styles/yourvenues.css */
 
 
-.venues-container h1 {
-    font-size: 2.5rem;
-    color: #333;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 0.8rem 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    display: inline-block;
+
+.your-venues-container {
+  background-image: url("../assets/Images/GeneralBackgroundImages/corkboard3.png");
+  background-size: contain; 
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 150vh; 
+  padding: 20px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-
 
 
 
 .venues-manage-title {
-  font-size: 1.8rem;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  margin-top: 6rem; 
+  margin-bottom: 1rem;
+  padding: 40px 20px;
   color: #333;
   text-align: center;
+  display: block;
+  width: 100%; 
 }
+
 
 .venues-grid {
   display: grid;
@@ -37,7 +38,13 @@
   padding: 20px;
   max-width: 1200px;
   margin: auto;
+
+  background: rgba(255, 255, 255, 0.4); 
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
 
 
 .venue-card {
@@ -101,40 +108,90 @@
 
 
 
-
-
-
-
-
-
-
 .venue-image-container {
   position: relative;
   text-align: center;
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .edit-image-btn {
   position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #FEC25B;
-  color: black;
-  padding: 6px 10px;
-  font-size: 14px;
+  top: 5px;
+  right: 5px;
+  background: #FEC25B;
+  color: #333;
   border: none;
-  border-radius: 5px;
+  border-radius: 50%;
+  padding: 5px;
   cursor: pointer;
-  transition: background 0.3s ease-in-out;
 }
 
 .edit-image-btn:hover {
+  
   background-color: #e0a800;
+  color: #333;
 }
 
 
 
+
+.edit-btn {
+  background: #FEC25B;
+  color: #333;
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  font-size: 14px;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.edit-btn:hover {
+  background-color: #333;
+  background: #FA9E00;
+  color: #333;
+}
+
+.edit-btn i {
+  font-size: 12px;
+}
+
+
+
+.venue-info-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+/* Delete Button */
 
 .delete-venue-btn {
   background-color: #dc3545;
@@ -145,7 +202,6 @@
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
-  transition: background 0.3s ease-in-out;
 }
 
 .delete-venue-btn:hover {
@@ -160,19 +216,7 @@
 
 
 
-
-
-
-
-
-
-  
-
-
-
-
-
-
+/* Modals on this page: */
 
 
 .venue-input {
@@ -210,8 +254,6 @@
     background-color: #EA584C;
     margin-left: 10px;
 }
-
-
 
 
 .venue-cancel-button:hover {

@@ -13,6 +13,7 @@ import Loader from "../components/Loader";
 import "../styles/Venues.css";
 import "../styles/searchbar.css";
 import "../styles/loader.css"; 
+import VenuePlaceholder from "../assets/Images/GeneralBackgroundImages/venueplaceholder.png";
 
 const API_BASE = "https://v2.api.noroff.dev";
 
@@ -103,6 +104,8 @@ function Venues() {
   return (
     <div className="venues-container-image">
       <div className="venues-container">
+
+
       <h1 className="all-venues-header">All Venues</h1>
 
 
@@ -117,28 +120,29 @@ function Venues() {
         </div>
 
         <div className="venues-grid">
-          {filteredVenues.length > 0 ? (
-            filteredVenues.slice(0, visibleVenues).map((venue) => (
-              <Link key={venue.id} to={`/venue/${venue.id}`} className="venue-card-link">
-                <div className="venue-card">
-                  <img
-                    src={venue.media[0]?.url || "https://via.placeholder.com/150"}
-                    alt={venue.media[0]?.alt || "Venue Image"}
-                  />
-                  <div className="venue-card-content">
-                    <h2>{venue.name}</h2>
-                    <p>{venue.description}</p>
-                    <p className="price">Price: ${venue.price}</p>
-                    <p>Max Guests: {venue.maxGuests}</p>
-                    <p>Rating: {venue.rating}</p>
-                  </div>
-                </div>
-              </Link>
-            ))
-          ) : (
-            <p>No venues match your search.</p>
-          )}
+  {filteredVenues.length > 0 ? (
+    filteredVenues.slice(0, visibleVenues).map((venue) => (
+      <Link key={venue.id} to={`/venue/${venue.id}`} className="venue-card-link">
+        <div className="venue-card">
+          <img 
+            src={venue.media[0]?.url || VenuePlaceholder} 
+            alt={venue.media[0]?.alt || "Venue Image"} 
+          />
+          <div className="venue-card-content">
+            <h2>{venue.name}</h2>
+            <p>{venue.description}</p>
+            <p className="price">Price: ${venue.price}</p>
+            <p>Max Guests: {venue.maxGuests}</p>
+            <p>Rating: {venue.rating}</p>
+          </div>
         </div>
+      </Link>
+    ))
+  ) : (
+    <p className="no-venues-message">No venues match your search.</p>
+  )}
+</div>
+
 
        
         {filteredVenues.length > visibleVenues && (

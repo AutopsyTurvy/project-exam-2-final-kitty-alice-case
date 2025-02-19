@@ -7,15 +7,22 @@
 
 
 
+
+
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import EditVenueModal from "../components/EditVenueModal";
 import Loader from "../components/Loader"; 
 import "../styles/yourvenues.css"; 
+import "../styles/nocreatedvenues.css"; 
 import "../styles/modal.css"; 
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import VenuePlaceholder from "../assets/Images/GeneralBackgroundImages/venueplaceholder.png";
 
 const API_BASE = "https://v2.api.noroff.dev";
 
 function YourVenues() {
+  const navigate = useNavigate();
   const [venues, setVenues] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -72,7 +79,9 @@ function YourVenues() {
       return;
     }
 
-    const confirmDelete = window.confirm("Are you sure you want to delete this venue?");
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this venue? This action is permanent!"
+    );
     if (!confirmDelete) return;
 
     try {
@@ -106,59 +115,98 @@ function YourVenues() {
 
 
 
-
-
-
-
-
+  
   return (
     <div className="your-venues-container">
-      <h1>Your Venues</h1>
+      
 
       {loading && <Loader />}
-
       {error && <p className="error-message">{error}</p>}
 
+
+
+
+
       {!loading && venues.length === 0 && !error && (
-        <p>You haven't created any venues yet.</p>
+        <div className="no-venues-container">
+          <p>You haven't created any venues yet.</p>
+          <button className="create-venue-btn" onClick={() => navigate("/create-venue")}>
+            ➕ Create a Venue
+          </button>
+        </div>
       )}
+
 
       {!loading && venues.length > 0 && (
         <>
-          <h2 className="venues-manage-title">Venues you manage:</h2> 
+          
 
+          <h1 className="venues-manage-title">Venues you manage:</h1>
           <div className="venues-grid">
             {venues.map((venue) => (
               <div key={venue.id} className="venue-card">
+
                 
                 <div className="venue-image-container">
                   <img
-                    src={venue.media[0]?.url || "src/assets/Images/GeneralBackgroundImages/venueplaceholder.png"}
+                    src={venue.media[0]?.url || VenuePlaceholder}
                     alt={venue.media[0]?.alt || "Venue Image"}
                   />
-                  
-                  <button 
+
+                  <button
                     className="edit-image-btn"
-                    onClick={() => { setEditingVenue(venue); setEditingField("media"); }}
+                    onClick={() => {
+                      setEditingVenue(venue);
+                      setEditingField("media");
+                    }}
                   >
-                  Edit Image
+                    <i className="fa-solid fa-pen-to-square"></i>
                   </button>
                 </div>
 
-                <h2>
-                  {venue.name} 
-                  <button onClick={() => { setEditingVenue(venue); setEditingField("name"); }}>✏️</button>
-                </h2>
-                <p>
-                  {venue.description} 
-                  <button onClick={() => { setEditingVenue(venue); setEditingField("description"); }}>✏️</button>
-                </p>
-                <p>
-                  Price: ${venue.price} 
-                  <button onClick={() => { setEditingVenue(venue); setEditingField("price"); }}>✏️</button>
-                </p>
+                <div className="venue-info-container">
+                  <h2>{venue.name}</h2>
+                  <button
+                    className="edit-btn"
+                    onClick={() => {
+                      setEditingVenue(venue);
+                      setEditingField("name");
+                    }}
+                  >
+                    <i className="fa-solid fa-pen-to-square"></i>
+                  </button>
+                </div>
 
-                <button className="delete-venue-btn" onClick={() => deleteVenue(venue.id)}>
+                <div className="venue-info-container">
+                  <p>{venue.description}</p>
+                  <button
+                    className="edit-btn"
+                    onClick={() => {
+                      setEditingVenue(venue);
+                      setEditingField("description");
+                    }}
+                  >
+                    <i className="fa-solid fa-pen-to-square"></i>
+                  </button>
+                </div>
+
+                <div className="venue-info-container">
+                  <p>Price: ${venue.price}</p>
+                  <button
+                    className="edit-btn"
+                    onClick={() => {
+                      setEditingVenue(venue);
+                      setEditingField("price");
+                    }}
+                  >
+                    <i className="fa-solid fa-pen-to-square"></i>
+                  </button>
+                </div>
+
+                <button
+                  className="delete-venue-btn"
+                  onClick={() => deleteVenue(venue.id)}
+                >
                   ❌ Delete Venue
                 </button>
               </div>
@@ -173,13 +221,14 @@ function YourVenues() {
           field={editingField}
           closeModal={() => setEditingVenue(null)}
           updateVenues={(updatedVenue) => {
-            setVenues(venues.map(v => v.id === updatedVenue.id ? updatedVenue : v));
+            setVenues(
+              venues.map((v) => (v.id === updatedVenue.id ? updatedVenue : v))
+            );
           }}
         />
       )}
     </div>
   );
-
 }
 
 export default YourVenues;

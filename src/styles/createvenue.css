@@ -1,128 +1,158 @@
 
 
 
-
 /* src/styles/createvenue.css */
 
 
 
-.create-venue-container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
 
-  .create-venue-container h1 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
+.create-venue-container {
+  max-width: 1000px;  
+  margin: 50px auto;
+  padding: 50px;  
+  background-color: #f9fbe3;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+.create-venue-page {
+  background: url("../assets/Images/GeneralBackgroundImages/diaryopenslanted.png") no-repeat center center;
+  background-size: contain;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5em 0;
+}
+
+.create-venue-container h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.create-venue-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+  padding: 30px; 
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  max-width: 750px;  
+  margin: auto; 
+}
+
+
+.create-venue-form label {
+  font-size: 1.1rem; 
+  font-weight: 600;
+  color: #444;
+  text-align: left;
+  display: block;
+}
+
+.create-venue-form input,
+.create-venue-form textarea,
+.create-venue-form select {
+  width: 95%;  
+  max-width: 700px;  
+  padding: 14px; 
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.create-venue-form textarea {
+  height: 120px;  
+  resize: vertical;
+}
+
+
+.create-venue-form input:focus,
+.create-venue-form textarea:focus {
+  border-color: #FEC25B;
+  outline: none;
+}
+
+
+.amenities-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px 0;
+}
+
+.amenities-section label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px; 
+}
+
+
+.create-venue-form button {
+  background-color: #FEC25B;
+  color: #333;
+  font-size: 18px;  
+  font-weight: bold;
+  padding: 14px;
+  width: 50%;  
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin: 20px auto 0;
+}
+
+.create-venue-form button:hover {
+  background-color: #FA9E00;
+}
+
+.create-venue-form button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.success-message {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .create-venue-container {
+    width: 95%;
+    padding: 20px;
   }
-  
-  
+
   .create-venue-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
- 
-  .create-venue-form label {
-    font-size: 16px;
-    font-weight: 600;
-    color: #555;
-    text-align: left;
-    display: block;
-  }
-  
- 
-  .create-venue-form input,
-  .create-venue-form textarea,
-  .create-venue-form select {
+    max-width: 100%;
     width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border-color 0.3s ease-in-out;
+    padding: 20px;
   }
-  
+
+  .create-venue-form input,
   .create-venue-form textarea {
-    height: 80px;
-    resize: vertical;
+    width: 100%; 
   }
-  
-  
-  .create-venue-form input:focus,
-  .create-venue-form textarea:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
- 
-  .amenities-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 10px 0;
-  }
-  
-  .amenities-section label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-  }
-  
- 
+
   .create-venue-form button {
-    background-color: #007bff;
-    color: white;
+    width: 100%;  
     font-size: 16px;
-    font-weight: bold;
     padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
   }
-  
-  .create-venue-form button:hover {
-    background-color: #0056b3;
-  }
-  
-  .create-venue-form button:disabled {
-    background-color: #999;
-    cursor: not-allowed;
-  }
-  
-  
-  .error-message {
-    color: red;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
-  .success-message {
-    color: green;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
-  
-  @media (max-width: 768px) {
-    .create-venue-container {
-      width: 90%;
-      padding: 15px;
-    }
-  
-    .create-venue-form button {
-      font-size: 14px;
-      padding: 10px;
-    }
-  }
-  
+}

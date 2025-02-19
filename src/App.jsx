@@ -73,22 +73,20 @@ function LandingPage() {
 }
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [initialLoading, setInitialLoading] = useState(true); 
   const isLoggedIn = isUserLoggedIn();
   const userProfile = isLoggedIn ? getUserProfile() : null;
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 2000); 
+    setTimeout(() => setInitialLoading(false), 2000); 
   }, []);
 
-  if (loading) return <Loader />; 
+  if (initialLoading) return <Loader />; 
 
   return (
     <Router>
-      {/* Conditional Headers: */}
       {isLoggedIn ? <RegisteredHeader username={userProfile.name} /> : <UnregisteredHeader />}
 
-      {/* Main Routes */}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -103,6 +101,7 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;
 

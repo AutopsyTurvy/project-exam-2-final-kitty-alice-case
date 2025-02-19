@@ -33,7 +33,7 @@ function VenueManagerToggle({ profileData, setProfileData }) {
 
             if (!response.ok) throw new Error(`Failed to update profile: ${response.statusText}`);
 
-            alert("You are now a Venue Manager!");
+            alert("You are now a Venue Manager! You can create venues for other people to enjoy and stay at!");
 
            
             const updatedProfileResponse = await fetch(`${API_BASE}/holidaze/profiles/${profileData?.name}`, {

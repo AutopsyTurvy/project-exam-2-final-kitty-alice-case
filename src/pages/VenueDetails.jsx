@@ -9,6 +9,7 @@ import Loader from "../components/Loader";
 import CalendarComponent from "../components/calendar"; 
 import "../styles/venuedetails.css";
 import "../styles/calendar.css";
+import VenuePlaceholder from "../assets/Images/GeneralBackgroundImages/venueplaceholder.png";
 
 const API_URL = "https://v2.api.noroff.dev/holidaze/venues";
 
@@ -173,11 +174,11 @@ function VenueDetails() {
   return (
     <div className="venue-details-page">
         <div className="venue-details-container">
-            <img
-                className="venue-hero"
-                src={venue.media[0]?.url || "https://via.placeholder.com/150"}
-                alt={venue.media[0]?.alt || "Venue Image"}
-            />
+          <img 
+            className="venue-hero"
+              src={venue.media[0]?.url || VenuePlaceholder} 
+              alt={venue.media[0]?.alt || "Venue Image"} 
+              />
             <h1 className="venue-title">{venue.name}</h1>
             <p className="venue-description">{venue.description}</p>
 
@@ -202,7 +203,9 @@ function VenueDetails() {
                 {venue.location?.country}
             </div>
 
-            <CalendarComponent
+            {isUserLoggedIn ? (
+              
+              <CalendarComponent
                 selectedDates={selectedDates}
                 setSelectedDates={setSelectedDates}
                 bookedDates={bookedDates}
@@ -212,7 +215,15 @@ function VenueDetails() {
                 setGuests={setGuests} 
                 maxGuests={venue.maxGuests} 
                 isUserLoggedIn={isUserLoggedIn}
-            />
+                />
+              ) : (
+            <p className="register-message">
+              <strong>Note:</strong> Only registered users can book a venue. Please{" "}
+                <a href="/register" className="register-link">register here</a> to book your holiday.
+            </p>
+           )}
+
+
         </div>
     </div>
 );
