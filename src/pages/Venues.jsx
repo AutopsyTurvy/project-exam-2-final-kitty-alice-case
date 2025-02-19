@@ -7,6 +7,7 @@
 
 
 
+
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Loader from "../components/Loader";
@@ -24,6 +25,7 @@ function Venues() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [visibleVenues, setVisibleVenues] = useState(8); 
+  const [sortOption, setSortOption] = useState("default");
 
   const location = useLocation();
   const isYourVenuesPage = location.pathname === "/your-venues";
@@ -75,20 +77,39 @@ function Venues() {
   }, [isYourVenuesPage]);
 
   useEffect(() => {
-    const filtered = venues.filter(
+    let sortedVenues = [...venues];
+
+
+    sortedVenues = sortedVenues.filter(
       (venue) =>
         venue.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         venue.description.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    setFilteredVenues(filtered);
-  }, [searchQuery, venues]);
 
-  
+   
+    if (sortOption === "cheapest") {
+      sortedVenues.sort((a, b) => a.price - b.price);
+    } else if (sortOption === "highestRated") {
+      sortedVenues.sort((a, b) => b.rating - a.rating);
+    } else if (sortOption === "mostGuests") {
+      sortedVenues.sort((a, b) => b.maxGuests - a.maxGuests);
+    } else if (sortOption === "newest") {
+      sortedVenues.sort((a, b) => new Date(b.created) - new Date(a.created));
+    } else if (sortOption === "oldest") {
+      sortedVenues.sort((a, b) => new Date(a.created) - new Date(b.created));
+    } else if (sortOption === "az") {
+      sortedVenues.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortOption === "za") {
+      sortedVenues.sort((a, b) => b.name.localeCompare(a.name));
+    }
+
+    setFilteredVenues(sortedVenues);
+  }, [searchQuery, venues, sortOption]);
+
   const loadMoreVenues = () => {
     setVisibleVenues((prev) => Math.min(prev + 8, filteredVenues.length));
   };
 
- 
   const showLessVenues = () => {
     setVisibleVenues(8);
   };
@@ -104,10 +125,7 @@ function Venues() {
   return (
     <div className="venues-container-image">
       <div className="venues-container">
-
-
-      <h1 className="all-venues-header">All Venues</h1>
-
+        <h1 className="all-venues-header">All Venues</h1>
 
         <div className="search-bar-container">
           <input
@@ -117,34 +135,47 @@ function Venues() {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="search-bar"
           />
+
+          <select
+            className="sort-dropdown"
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
+            <option value="default">Sort By</option>
+            <option value="cheapest">Cheapest First</option>
+            <option value="highestRated">Highest Rated</option>
+            <option value="mostGuests">Most Guests</option>
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="az">A-Z</option>
+            <option value="za">Z-A</option>
+          </select>
         </div>
 
         <div className="venues-grid">
-  {filteredVenues.length > 0 ? (
-    filteredVenues.slice(0, visibleVenues).map((venue) => (
-      <Link key={venue.id} to={`/venue/${venue.id}`} className="venue-card-link">
-        <div className="venue-card">
-          <img 
-            src={venue.media[0]?.url || VenuePlaceholder} 
-            alt={venue.media[0]?.alt || "Venue Image"} 
-          />
-          <div className="venue-card-content">
-            <h2>{venue.name}</h2>
-            <p>{venue.description}</p>
-            <p className="price">Price: ${venue.price}</p>
-            <p>Max Guests: {venue.maxGuests}</p>
-            <p>Rating: {venue.rating}</p>
-          </div>
+          {filteredVenues.length > 0 ? (
+            filteredVenues.slice(0, visibleVenues).map((venue) => (
+              <Link key={venue.id} to={`/venue/${venue.id}`} className="venue-card-link">
+                <div className="venue-card">
+                  <img 
+                    src={venue.media[0]?.url || VenuePlaceholder} 
+                    alt={venue.media[0]?.alt || "Venue Image"} 
+                  />
+                  <div className="venue-card-content">
+                    <h2>{venue.name}</h2>
+                    <p>{venue.description}</p>
+                    <p className="price">Price: ${venue.price}</p>
+                    <p>Max Guests: {venue.maxGuests}</p>
+                    <p>Rating: {venue.rating}</p>
+                  </div>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <p className="no-venues-message">No venues match your search.</p>
+          )}
         </div>
-      </Link>
-    ))
-  ) : (
-    <p className="no-venues-message">No venues match your search.</p>
-  )}
-</div>
 
-
-       
         {filteredVenues.length > visibleVenues && (
           <button className="see-more-button" onClick={loadMoreVenues}>
             See More
@@ -162,4 +193,3 @@ function Venues() {
 }
 
 export default Venues;
-

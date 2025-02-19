@@ -25,3 +25,24 @@
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.8);
   }
   
+
+
+
+  /* sort button */
+
+  .sort-dropdown {
+    margin-left: 10px;
+    padding: 2em;
+    font-size: 1rem;
+    border: 3px solid #ddd;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #FEC25B;
+  }
+  
+  .sort-dropdown:focus {
+    outline: none;
+    border-color: #FEC25B;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.8);
+  }

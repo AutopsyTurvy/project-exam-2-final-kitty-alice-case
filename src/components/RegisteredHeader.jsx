@@ -24,7 +24,7 @@ function RegisteredHeader({ username }) {
 
   return (
     <header className="user-header">
-      <h1>Welcome to Holidaze</h1>
+      <h1>Welcome to Holidaze!</h1>
       <h2>Welcome, {username}!</h2>
       <nav>
         <button onClick={() => navigate("/")}>Home</button>

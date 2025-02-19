@@ -10,6 +10,7 @@
 import React, { useEffect } from "react";
 import Calendar from "react-calendar";
 import "../styles/calendar.css";
+import backgroundImage from "../assets/Images/GeneralBackgroundImages/calendarbackground.png";
 
 const CalendarComponent = ({
   selectedDates,
@@ -81,8 +82,10 @@ const CalendarComponent = ({
   };
 
   return (
-    <div className="venue-calendar">
+    <div className="venue-calendar" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover" }}>
+
       <h2>Availability Calendar</h2>
+      
       <Calendar
         tileClassName={tileClassName}
         tileDisabled={tileDisabled}

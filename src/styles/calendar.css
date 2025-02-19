@@ -9,7 +9,7 @@
 .venue-calendar {
   background: url("../assets/Images/GeneralBackgroundImages/calendarbackground.png") no-repeat center center;
   background-size: contain;
-  padding: 20px;
+  padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -30,7 +30,7 @@
 .react-calendar {
   background: rgba(255, 255, 255, 0.85);  
   border-radius: 8px;
-  padding: 15px;
+  padding: 2em;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
   
@@ -100,7 +100,8 @@ div.react-calendar__tile.user-booking {
     margin-top: 15px; 
     margin-left: 20px; 
     background-color: #FEC25B;
-    color: white;
+    color: #333;
+    font-weight: bold;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -111,6 +112,7 @@ div.react-calendar__tile.user-booking {
 
 .booking-button:hover {
     background-color: #FA9E00;
+    
 }
 
 @media (max-width: 768px) {

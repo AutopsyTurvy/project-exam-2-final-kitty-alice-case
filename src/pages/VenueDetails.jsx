@@ -206,6 +206,7 @@ function VenueDetails() {
             {isUserLoggedIn ? (
               
               <CalendarComponent
+              
                 selectedDates={selectedDates}
                 setSelectedDates={setSelectedDates}
                 bookedDates={bookedDates}

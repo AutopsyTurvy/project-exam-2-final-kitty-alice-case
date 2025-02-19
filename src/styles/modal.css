@@ -86,7 +86,8 @@
 .avatar-update-button,
 .banner-update-button {
     background-color: #FEC25B;
-    color: white;
+    color: #333;
+    font-weight: bold;
     padding: 10px 15px;
     font-size: 16px;
     border: none;
