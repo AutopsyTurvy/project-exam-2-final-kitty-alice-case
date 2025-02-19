@@ -103,7 +103,7 @@
 .register-page button {
   padding: 10px;
   background-color: #FEC25B;
-  color: black;
+  color: #333;
   border: none;
   border-radius: 4px;
   cursor: pointer;

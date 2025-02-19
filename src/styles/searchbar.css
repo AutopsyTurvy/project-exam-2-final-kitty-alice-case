@@ -38,7 +38,7 @@
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
-    background-color: #FEC25B;
+    background-color: white;
   }
   
   .sort-dropdown:focus {

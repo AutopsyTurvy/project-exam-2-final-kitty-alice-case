@@ -39,7 +39,7 @@
     gap: 40px;
     padding: 20px;
     border-radius: 10px;
-    color: black;
+    color: #333;
     margin-top: 4em; 
    
 }
@@ -164,13 +164,13 @@
 
     font-weight: bold;
    background-color: #FEC25B; 
-   color: black;
+   color: #333;
 }
 
 .venue-manager-button:hover {
 
     background-color: #FA9E00; 
-    color: black;
+    color: #333;
  }
 
 /* Venue Manager Stamp: */
@@ -214,7 +214,7 @@
 .create-venue-btn,
 .your-venues-btn {
     background-color: #FEC25B;
-    color: black;
+    color: #333;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
@@ -358,7 +358,7 @@
 
   .view-venue-btn {
     background-color: #FEC25B;
-    color: black;
+    color: #333;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 5px;
@@ -376,8 +376,8 @@
 
 .delete-booking-btn {
     background-color: #EA584C;
-    color: black;
-    border: none;
+    color: #333;
+    border: #333;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     cursor: pointer;
