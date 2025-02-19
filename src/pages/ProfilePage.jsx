@@ -116,8 +116,7 @@ function ProfilePage() {
 
                   {profileData?.venueManager && (
                     <img 
-                      src="/src/assets/Images/ProfileIllustrations/venuemanagerstamp.png" 
-                      alt="Venue Manager Stamp"
+                      src="/assets/Images/venuemanagerstamp.png" alt="Venue Manager Stamp"
                       className="venue-manager-stamp"
                     />
                   )}
