@@ -1,21 +1,23 @@
 
 
-// src/pages/ProfilePage/ProfilePage.jsx
+// src/pages/profilepage/profilepage.jsx
 
 
 
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import ProfileModals from "../components/ProfileModals";
-import Deleteabooking from "../components/Deleteabooking";
-import VenueManagerToggle from "../components/VenueManagerToggle";
-import Loader from "../components/Loader"; 
+import ProfileModals from "../components/profilemodals";
+import Deleteabooking from "../components/deleteabooking";
+import VenueManagerToggle from "../components/venuemanagertoggle";
+import Loader from "../components/loader"; 
 import "../styles/modal.css";
 import "../styles/profile.css";
 import "../styles/loader.css";
-import ProfilePlaceholder from "../assets/Images/GeneralBackgroundImages/profileplaceholder.png";
-import BannerPlaceholder from "../assets/Images/GeneralBackgroundImages/bannerplaceholder.png";
+import ProfilePlaceholder from "../assets/images/generalbackgroundimages/profileplaceholder.png";
+import BannerPlaceholder from "../assets/images/generalbackgroundimages/bannerplaceholder.png";
+import VenuePlaceholder from "../assets/images/generalbackgroundimages/venueplaceholder.png";
+
 
 const API_BASE = "https://v2.api.noroff.dev";
 
@@ -194,10 +196,12 @@ function ProfilePage() {
                       <p>
                         <strong>Guests:</strong> {booking.guests}
                       </p>
+
+
                       <img
-                        src={booking.venue.media[0]?.url || "https://via.placeholder.com/150"}
-                        alt={booking.venue.media[0]?.alt || "Venue Image"}
-                        className="booking-image"
+                      src={booking.venue.media[0]?.url || VenuePlaceholder}
+                      alt={booking.venue.media[0]?.alt || "Venue Image"}
+                      className="booking-image"
                       />
 
                       <button className="view-venue-btn" onClick={() => navigate(`/venue/${booking.venue.id}`)}>

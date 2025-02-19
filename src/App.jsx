@@ -11,36 +11,36 @@
 
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Loader from "./components/Loader"; 
-import RegisterPage from "./pages/RegisterPage";
-import LoginPage from "./pages/LoginPage";
-import ProfilePage from "./pages/ProfilePage";
-import BookingsPage from "./pages/BookingsPage";
-import Venues from "./pages/Venues";
-import VenueDetails from "./pages/VenueDetails";
-import YourVenues from "./pages/YourVenues";
-import CreateVenuesPage from "./pages/CreateVenuePage";
+import Loader from "./components/loader"; 
+import RegisterPage from "./pages/registerpage";
+import LoginPage from "./pages/loginpage";
+import ProfilePage from "./pages/profilepage";
+import BookingsPage from "./pages/bookingspage";
+import Venues from "./pages/venues";
+import VenueDetails from "./pages/venuedetails";
+import YourVenues from "./pages/yourvenues";
+import CreateVenuesPage from "./pages/createvenuepage";
 
 // Parallax images:
-import backgroundImage from "./assets/Parallax/background2.png";
-import hillhouseImage from "./assets/Parallax/hillhouse.png";
-import chimneysmokeImage from "./assets/Parallax/chimneysmoke.png";
-import foregroundImage from "./assets/Parallax/foregroundblue.png";
-import formerpurplehillsImage from "./assets/Parallax/yellowforehills.png";
-import latterpurplehillsImage from "./assets/Parallax/bluehills.png";
-import deserthillsImage from "./assets/Parallax/deserthillsred.png";
+import backgroundImage from "./assets/parallax/background2.png"; 
+import hillhouseImage from "./assets/parallax/hillhouse.png";
+import chimneysmokeImage from "./assets/parallax/chimneysmoke.png";
+import foregroundImage from "./assets/parallax/foregroundblue.png";
+import formerpurplehillsImage from "./assets/parallax/yellowforehills.png";
+import latterpurplehillsImage from "./assets/parallax/bluehills.png";
+import deserthillsImage from "./assets/parallax/deserthillsred.png";
 
-// Imported styles:
+// Styles:
 import "./styles/landingheader.css";
 import "./styles/index.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 // Headers:
-import RegisteredHeader from "./components/RegisteredHeader";
-import UnregisteredHeader from "./components/UnregisteredHeader";
+import RegisteredHeader from "./components/registeredheader";
+import UnregisteredHeader from "./components/unregisteredheader";
 
-// Conditional check:
-import { isUserLoggedIn, getUserProfile } from "./api/IsRegistered";
+// Conditional checks:
+import { isUserLoggedIn, getUserProfile } from "./api/isregistered";
 
 function LandingPage() {
   useEffect(() => {
@@ -74,37 +74,37 @@ function LandingPage() {
 
 function App() {
   const [initialLoading, setInitialLoading] = useState(true); 
-  const isLoggedIn = isUserLoggedIn();
+  const isLoggedIn = isUserLoggedIn() || false;
   const userProfile = isLoggedIn ? getUserProfile() : null;
 
   useEffect(() => {
     setTimeout(() => setInitialLoading(false), 2000); 
   }, []);
 
-  if (initialLoading) return <Loader />; 
+  if (initialLoading) return <Loader />;
 
   return (
     <Router>
-      {isLoggedIn ? <RegisteredHeader username={userProfile.name} /> : <UnregisteredHeader />}
-
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/profile/:username" element={<ProfilePage />} />
-        <Route path="/bookings" element={<BookingsPage />} />
-        <Route path="/venues" element={<Venues />} />
-        <Route path="/venue/:id" element={<VenueDetails />} />
-        <Route path="/create-venue" element={<CreateVenuesPage />} />
-        <Route path="/your-venues" element={<YourVenues />} />
-      </Routes>
+      <>
+        {isLoggedIn ? <RegisteredHeader username={userProfile?.name} /> : <UnregisteredHeader />}
+        
+        <Routes>
+          <Route path="/" element={<LandingPage />} /> {/* ✅ Fixed capitalization */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/profile/:username" element={<ProfilePage />} />
+          <Route path="/bookings" element={<BookingsPage />} />
+          <Route path="/venues" element={<Venues />} />
+          <Route path="/venue/:id" element={<VenueDetails />} />
+          <Route path="/create-venue" element={<CreateVenuesPage />} />
+          <Route path="/your-venues" element={<YourVenues />} />
+        </Routes>
+      </>
     </Router>
   );
 }
 
-
 export default App;
-
 
 
 
