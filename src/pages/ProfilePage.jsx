@@ -21,7 +21,7 @@ import "../styles/loader.css";
 import ProfilePlaceholder from "../assets/images/generalbackgroundimages/profileplaceholder.png";
 import BannerPlaceholder from "../assets/images/generalbackgroundimages/bannerplaceholder.png";
 import VenuePlaceholder from "../assets/images/generalbackgroundimages/venueplaceholder.png";
-import VenueManagerStamp from "/public/venuemanagerstamp.png";
+
 
 
 
@@ -129,10 +129,10 @@ function ProfilePage() {
 
                   {profileData?.venueManager && (
                    <img 
-                   src="/public/venuemanagerstamp.png" 
+                   src="/venuemanagerstamp.png" 
                    alt="Venue Manager Stamp"
                    className="venue-manager-stamp"
-                 />
+               />
                   )}
 
                   <button className="edit-avatar-button" onClick={() => setShowAvatarModal(true)}>
