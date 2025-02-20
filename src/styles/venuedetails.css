@@ -9,7 +9,7 @@
 
 
 .venue-details-page {
-  background: url("../assets/Images/GeneralBackgroundImages/notebookclosed.png") no-repeat center center;
+  background: url("../assets/images/generalbackgroundimages/notebookclosed.png") no-repeat center center;
   background-size: contain;  
   min-height: 100vh;  
   display: flex;

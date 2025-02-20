@@ -57,7 +57,7 @@
 
 .venues-container-image {
   padding-top: 3em;
-  background: url("../assets/Images/GeneralBackgroundImages/mapandpen.png") no-repeat center top;
+  background: url("../assets/images/generalbackgroundimages/mapandpen.png") no-repeat center top;
   background-size: contain;  
   background-position: center top;  
   width: 100vw;
@@ -105,7 +105,7 @@
 
 .venue-card:hover {
     transform: scale(1.03);
-    background: url("../assets/Images/ProfileIllustrations/penloop2.png") no-repeat 50% 50% / contain, 
+    background: url("../assets/images/profileillustrations/penloop2.png") no-repeat 50% 50% / contain, 
                 rgba(255, 255, 255, 0.9);
 }
 

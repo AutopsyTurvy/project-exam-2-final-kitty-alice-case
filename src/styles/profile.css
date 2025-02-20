@@ -6,7 +6,7 @@
 
 
 .profile-info-container {
-    background-image: url("../assets/Images/ProfileIllustrations/passportbackdrop2.png");
+    background-image: url("../assets/images/profileillustrations/passportbackdrop2.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -250,7 +250,7 @@
 
     min-height: 100vh;
     height: auto; 
-    background-image: url("../assets/Images/ProfileIllustrations/backdropcalendar2.png");
+    background-image: url("../assets/images/orofileillustrations/backdropcalendar2.png");
     background-size: contain;
     background-position: center top;
     background-repeat: no-repeat;
@@ -306,7 +306,7 @@
 
 .booking-item:hover {
     transform: scale(1.03);
-    background: url("../assets/Images/ProfileIllustrations/penloop2.png") no-repeat 50% 50% / contain, 
+    background: url("../assets/images/profileillustrations/penloop2.png") no-repeat 50% 50% / contain, 
                 rgba(255, 255, 255, 0.9);
 }
 

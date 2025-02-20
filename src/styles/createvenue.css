@@ -18,7 +18,7 @@
 
 
 .create-venue-page {
-  background: url("../assets/Images/GeneralBackgroundImages/diaryopenslanted.png") no-repeat center center;
+  background: url("../assets/images/generalbackgroundimages/diaryopenslanted.png") no-repeat center center;
   background-size: contain;
   min-height: 100vh;
   display: flex;
