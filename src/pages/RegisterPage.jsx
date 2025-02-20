@@ -1,7 +1,11 @@
 
 
 
-// src/pages/RegisterPage.jsx
+
+
+
+
+// src/pages/registerpage.jsx
 
 
 import React, { useState } from "react";
