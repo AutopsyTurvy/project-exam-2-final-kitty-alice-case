@@ -9,9 +9,9 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { isUserLoggedIn, getUserProfile } from '../api/IsRegistered';
-import RegisteredHeader from '../components/RegisteredHeader';
-import UnregisteredHeader from '../components/UnregisteredHeader'; 
+import { isUserLoggedIn, getUserProfile } from '../api/isregistered';
+import RegisteredHeader from '../components/registeredheader';
+import UnregisteredHeader from '../components/unregisteredheader'; 
 
 function LandingPage() {
   const navigate = useNavigate();

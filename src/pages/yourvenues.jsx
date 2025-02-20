@@ -12,7 +12,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import EditVenueModal from "../components/EditVenueModal";
-import Loader from "../components/Loader"; 
+import Loader from "../components/loader"; 
 import "../styles/yourvenues.css"; 
 import "../styles/nocreatedvenues.css"; 
 import "../styles/modal.css"; 

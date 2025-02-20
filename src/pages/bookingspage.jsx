@@ -13,7 +13,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchAllBookings } from "../api/bookings";
 import { format } from "date-fns"; 
-import "../styles/BookingsPage.css"; 
+import "../styles/bookingspage.css"; 
 
 function BookingsPage() {
   const [bookings, setBookings] = useState([]);
