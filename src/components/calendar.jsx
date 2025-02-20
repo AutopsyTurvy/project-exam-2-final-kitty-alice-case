@@ -10,7 +10,7 @@
 import React, { useEffect } from "react";
 import Calendar from "react-calendar";
 import "../styles/calendar.css";
-import backgroundImage from "../assets/Images/GeneralBackgroundImages/calendarbackground.png";
+import backgroundImage from "../assets/images/generalbackgroundimages/calendarbackground.png";
 
 const CalendarComponent = ({
   selectedDates,

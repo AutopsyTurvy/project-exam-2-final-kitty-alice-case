@@ -11,8 +11,8 @@
 
 
 import React from "react";
-import smokeLoader from "../assets/loader/loaderSmoke.png";
-import houseLoader from "../assets/loader/loaderHouse.png";
+import smokeLoader from "../assets/loader/loadersmoke.png";
+import houseLoader from "../assets/loader/loaderhouse.png";
 import "../styles/loader.css"; 
 
 const Loader = () => {

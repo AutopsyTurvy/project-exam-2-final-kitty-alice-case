@@ -8,7 +8,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { logoutUser } from "./logout";
-import "../styles/Header.css";
+import "../styles/header.css";
 
 function RegisteredHeader({ username }) {
   const navigate = useNavigate();
