@@ -17,6 +17,8 @@
   [headers.values]
   Case-Sensitive = "false"
 
-
-
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
 
