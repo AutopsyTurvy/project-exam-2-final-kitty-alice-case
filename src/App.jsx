@@ -21,6 +21,8 @@ import VenueDetails from "./pages/venuedetails";
 import YourVenues from "./pages/yourvenues";
 import CreateVenuesPage from "./pages/createvenuepage";
 
+
+
 // Parallax images:
 import backgroundImage from "./assets/parallax/background2.png"; 
 import hillhouseImage from "./assets/parallax/hillhouse.png";

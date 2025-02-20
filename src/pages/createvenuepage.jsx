@@ -3,7 +3,7 @@
 
 
 
-// src/pages/CreateVenuePage.jsx
+// src/pages/createvenuepage.jsx
 
 
 
@@ -12,7 +12,7 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Loader from "../components/Loader"; 
+import Loader from "../components/loader"; 
 import "../styles/createvenue.css";
 
 const API_BASE = "https://v2.api.noroff.dev";
