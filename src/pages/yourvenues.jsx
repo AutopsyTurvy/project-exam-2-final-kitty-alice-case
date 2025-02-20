@@ -11,13 +11,13 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import EditVenueModal from "../components/EditVenueModal";
+import EditVenueModal from "../components/editvenuemodal";
 import Loader from "../components/loader"; 
 import "../styles/yourvenues.css"; 
 import "../styles/nocreatedvenues.css"; 
 import "../styles/modal.css"; 
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import VenuePlaceholder from "../assets/Images/GeneralBackgroundImages/venueplaceholder.png";
+import VenuePlaceholder from "../assets/images/generalbackgroundimages/venueplaceholder.png";
 
 const API_BASE = "https://v2.api.noroff.dev";
 

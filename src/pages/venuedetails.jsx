@@ -9,7 +9,7 @@ import Loader from "../components/loader";
 import CalendarComponent from "../components/calendar"; 
 import "../styles/venuedetails.css";
 import "../styles/calendar.css";
-import VenuePlaceholder from "../assets/Images/GeneralBackgroundImages/venueplaceholder.png";
+import VenuePlaceholder from "../assets/images/generalbackgroundimages/venueplaceholder.png";
 
 const API_URL = "https://v2.api.noroff.dev/holidaze/venues";
 

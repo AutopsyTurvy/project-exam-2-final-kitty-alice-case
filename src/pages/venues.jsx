@@ -11,10 +11,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Loader from "../components/loader";
-import "../styles/Venues.css";
+import "../styles/venues.css";
 import "../styles/searchbar.css";
 import "../styles/loader.css"; 
-import VenuePlaceholder from "../assets/Images/GeneralBackgroundImages/venueplaceholder.png";
+import VenuePlaceholder from "../assets/images/generalbackgroundimages/venueplaceholder.png";
 
 const API_BASE = "https://v2.api.noroff.dev";
 
