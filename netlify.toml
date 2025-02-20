@@ -1,0 +1,22 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  LC_ALL = "C"
+  CI = "false"
+  NETLIFY_USE_YARN = "true"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+  Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+  Case-Sensitive = "false"
+
+
+
+
