@@ -176,59 +176,56 @@ function VenueDetails() {
         <div className="venue-details-container">
           <img 
             className="venue-hero"
-              src={venue.media[0]?.url || VenuePlaceholder} 
-              alt={venue.media[0]?.alt || "Venue Image"} 
-              />
-            <h1 className="venue-title">{venue.name}</h1>
-            <p className="venue-description">{venue.description}</p>
+            src={venue.media[0]?.url || VenuePlaceholder} 
+            alt={venue.media[0]?.alt || "Venue Image"} 
+          />
+          <h1 className="venue-title">{venue.name}</h1>
+          <p className="venue-description">{venue.description}</p>
 
-            <div className="venue-details-grid">
-                <p className="venue-detail">Price: ${venue.price}</p>
-                <p className="venue-detail">Max Guests: {venue.maxGuests}</p>
-                <p className="venue-detail">Rating: {venue.rating}</p>
-            </div>
+          <div className="venue-details-grid">
+              <p className="venue-detail">Price: ${venue.price}</p>
+              <p className="venue-detail">Max Guests: {venue.maxGuests}</p>
+              <p className="venue-detail">Rating: {venue.rating}</p>
+          </div>
 
-            <div className="venue-features">
-                <h3>Features</h3>
-                <ul>
-                    <li>WiFi: {venue.meta?.wifi ? "Yes" : "No"}</li>
-                    <li>Parking: {venue.meta?.parking ? "Yes" : "No"}</li>
-                    <li>Breakfast: {venue.meta?.breakfast ? "Yes" : "No"}</li>
-                    <li>Pets Allowed: {venue.meta?.pets ? "Yes" : "No"}</li>
-                </ul>
-            </div>
+          <div className="venue-features">
+              <h3>Features</h3>
+              <ul>
+                  <li>WiFi: {venue.meta?.wifi ? "Yes" : "No"}</li>
+                  <li>Parking: {venue.meta?.parking ? "Yes" : "No"}</li>
+                  <li>Breakfast: {venue.meta?.breakfast ? "Yes" : "No"}</li>
+                  <li>Pets Allowed: {venue.meta?.pets ? "Yes" : "No"}</li>
+              </ul>
+          </div>
 
-            <div className="venue-location">
-                <strong>Location:</strong> {venue.location?.address}, {venue.location?.city},{" "}
-                {venue.location?.country}
-            </div>
+          <div className="venue-location">
+              <strong>Location:</strong> {venue.location?.address}, {venue.location?.city},{" "}
+              {venue.location?.country}
+          </div>
 
-            {isUserLoggedIn ? (
-              
-              <CalendarComponent
-              
-                selectedDates={selectedDates}
-                setSelectedDates={setSelectedDates}
-                bookedDates={bookedDates}
-                userBookings={userBookings}
-                handleBooking={handleBooking} 
-                guests={guests} 
-                setGuests={setGuests} 
-                maxGuests={venue.maxGuests} 
-                isUserLoggedIn={isUserLoggedIn}
-                />
-              ) : (
+     
+          <CalendarComponent
+            selectedDates={selectedDates}
+            setSelectedDates={setSelectedDates}
+            bookedDates={bookedDates}
+            userBookings={userBookings}
+            guests={guests} 
+            setGuests={setGuests} 
+            maxGuests={venue.maxGuests} 
+            isUserLoggedIn={isUserLoggedIn} 
+            handleBooking={handleBooking}
+          />
+
+        
+          {!isUserLoggedIn && (
             <p className="register-message">
-              <strong>Note:</strong> Only registered users can book a venue. Please{" "}
-                <a href="/register" className="register-link">register here</a> to book your holiday.
+               Only registered users can book a venue. Please{" "}
+              <a href="/register" className="register-link">register here</a> to book your holiday.
             </p>
-           )}
-
-
+          )}
         </div>
     </div>
 );
-
 }
 
 export default VenueDetails;

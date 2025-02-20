@@ -20,6 +20,7 @@ import Venues from "./pages/venues";
 import VenueDetails from "./pages/venuedetails";
 import YourVenues from "./pages/yourvenues";
 import CreateVenuesPage from "./pages/createvenuepage";
+import ManageYourVenues from "./pages/manageyourvenues"; 
 
 
 
@@ -100,6 +101,7 @@ function App() {
           <Route path="/venue/:id" element={<VenueDetails />} />
           <Route path="/create-venue" element={<CreateVenuesPage />} />
           <Route path="/your-venues" element={<YourVenues />} />
+          <Route path="/manage-your-venues/:venueId" element={<ManageYourVenues />} />
         </Routes>
       </>
     </Router>

@@ -11,6 +11,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import EditVenueModal from "../components/editvenuemodal";
 import Loader from "../components/loader"; 
 import "../styles/yourvenues.css"; 
@@ -23,6 +24,7 @@ const API_BASE = "https://v2.api.noroff.dev";
 
 function YourVenues() {
   const navigate = useNavigate();
+  const { venueId } = useParams(); 
   const [venues, setVenues] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,13 +36,13 @@ function YourVenues() {
       const token = localStorage.getItem("Token");
       const apiKey = localStorage.getItem("ApiKey");
       const storedProfile = JSON.parse(localStorage.getItem("Profile"));
-
+  
       if (!token || !apiKey || !storedProfile) {
         setError("You must be logged in to view your venues.");
         setLoading(false);
         return;
       }
-
+  
       try {
         const response = await fetch(
           `${API_BASE}/holidaze/profiles/${storedProfile.name}/venues?_owner=true`,
@@ -52,22 +54,27 @@ function YourVenues() {
             },
           }
         );
-
+  
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
+  
         const data = await response.json();
         setVenues(data.data);
+  
+      
+        console.log("Venues data: ", data.data);
+  
       } catch (error) {
         setError("Error fetching venues.");
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchVenues();
   }, []);
+  
 
   const deleteVenue = async (venueId) => {
     const token = localStorage.getItem("Token");
@@ -203,8 +210,17 @@ function YourVenues() {
                   </button>
                 </div>
 
+
+
                 <button
-                  className="delete-venue-btn"
+                  className="see-bookings-btn"
+                  onClick={() => navigate(`/manage-your-venues/${venue.id}`)}
+                  >
+                    📅 Manage Your Venue
+                    </button>
+
+                <button
+                  className="delete-your-venue-btn"
                   onClick={() => deleteVenue(venue.id)}
                 >
                   ❌ Delete Venue

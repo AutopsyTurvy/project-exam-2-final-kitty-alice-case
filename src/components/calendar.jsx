@@ -95,7 +95,7 @@ const CalendarComponent = ({
       />
 
       <p>
-        <strong>Note:</strong> All booked dates are shown in{" "}
+         All booked dates are shown in{" "}
         <span style={{ color: "red", textDecoration: "line-through", fontWeight: "bold" }}>red, with a line through them</span>- please choose dates that are not in red.
       </p>
 
@@ -113,6 +113,8 @@ const CalendarComponent = ({
               </option>
             ))}
           </select>
+
+
 
           <button onClick={handleBooking} className="booking-button">
             Book Venue

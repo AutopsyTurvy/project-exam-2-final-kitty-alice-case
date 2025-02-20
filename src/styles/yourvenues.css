@@ -17,8 +17,6 @@
   align-items: center;
 }
 
-
-
 .venues-manage-title {
   font-size: 2rem;
   margin-top: 6rem; 
@@ -29,7 +27,6 @@
   display: block;
   width: 100%; 
 }
-
 
 .venues-grid {
   display: grid;
@@ -45,8 +42,6 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-
-
 .venue-card {
   background: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -61,7 +56,6 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-
 .venue-card img {
   width: 100%;
   height: 180px;
@@ -69,32 +63,23 @@
   border-radius: 8px;
 }
 
-
 .venue-card h2 {
   font-size: 20px;
   margin: 10px 0;
 }
 
-
 .venue-card p {
   font-size: 16px;
   color: #555;
-  margin: 5px 0;
+  margin: 8px 0;
 }
 
-
 .venue-card button {
-  background-color: #FEC25B;
-  color: #333;
   border: none;
   cursor: pointer;
   font-size: 16px;
   margin-left: 5px;
   transition: color 0.3s;
-}
-
-.venue-card button:hover {
-  color: #FEC25B;
 }
 
 
@@ -103,8 +88,6 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
-
-
 
 
 
@@ -191,21 +174,45 @@
 }
 
 
-/* Delete Button */
+/* See venues Button */
 
-.delete-venue-btn {
-  background-color: #dc3545;
-  color: white;
+
+.see-bookings-btn {
+  background: #FEC25B;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
   padding: 8px 12px;
   font-size: 14px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
+  font-weight: bold;
 }
 
-.delete-venue-btn:hover {
-  background-color: #c82333;
+.see-bookings-btn:hover {
+  background: #FA9E00;
+  color: #333;
+}
+
+/* Delete Button */
+
+.delete-your-venue-btn {
+  background-color: #EA584C;
+  color: #333;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.delete-your-venue-btn:hover {
+  background-color: #D32F2F;
 }
 
 
