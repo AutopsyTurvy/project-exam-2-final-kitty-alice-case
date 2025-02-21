@@ -129,45 +129,45 @@ function Venues() {
 
 
   return (
-    <div className="venues-container-image">
-      <div className="venues-container">
+    <div className="all-venues-container-image">
+      <div className="all-venues-container">
         <h1 className="all-venues-header">All Venues</h1>
         <p className="all-venues-intro">Let's go on holiday!</p>
 
-        <div className="search-bar-container">
-          <input
-            type="text"
-            placeholder="Search for venues by title or keywords..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="search-bar"
-          />
+        <div className="search-and-sort">
+  <input
+    type="text"
+    placeholder="Search for venues by title or keywords..."
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    className="search-bar"
+  />
 
-          <select
-            className="sort-dropdown"
-            value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
-          >
-            <option value="default">Sort By</option>
-            <option value="cheapest">Cheapest First</option>
-            <option value="highestRated">Highest Rated</option>
-            <option value="mostGuests">Most Guests</option>
-            <option value="newest">Newest First</option>
-            <option value="oldest">Oldest First</option>
-            <option value="az">A-Z</option>
-            <option value="za">Z-A</option>
-          </select>
-        </div>
+  <select
+    className="sort-dropdown"
+    value={sortOption}
+    onChange={(e) => setSortOption(e.target.value)}
+  >
+    <option value="default">Sort By</option>
+    <option value="cheapest">Cheapest First</option>
+    <option value="highestRated">Highest Rated</option>
+    <option value="mostGuests">Most Guests</option>
+    <option value="newest">Newest First</option>
+    <option value="oldest">Oldest First</option>
+    <option value="az">A-Z</option>
+    <option value="za">Z-A</option>
+  </select>
+</div>
 
-        <div className="venues-grid">
+        <div className="all-venues-grid">
           {filteredVenues.length > 0 ? (
             filteredVenues.slice(0, visibleVenues).map((venue) => (
-              <div key={venue.id} className="venue-card">
+              <div key={venue.id} className="all-venue-card">
                 <img 
                   src={venue.media[0]?.url || VenuePlaceholder} 
                   alt={venue.media[0]?.alt || "Venue Image"} 
                 />
-                <div className="venue-card-content">
+                <div className="all-venue-card-content">
                   <h2>{venue.name}</h2>
                   <p>{venue.description}</p>
                   <p className="price">Price: ${venue.price}</p>
@@ -176,8 +176,8 @@ function Venues() {
                   
                  
                   <Link to={`/venue/${venue.id}`}>
-                    <Button variant="button" className="see-more-btn">
-                      See More
+                    <Button variant="button" className="see-more-button">
+                      View Details
                     </Button>
                   </Link>
                 </div>
@@ -187,6 +187,15 @@ function Venues() {
             <p className="no-venues-message">No venues match your search.</p>
           )}
         </div>
+
+
+
+
+
+
+
+
+
 
         {filteredVenues.length > visibleVenues && (
           <Button variant="button" className="see-more-button" onClick={loadMoreVenues}>

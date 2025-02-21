@@ -4,7 +4,6 @@
 /* src/styles/yourvenues.css */
 
 
-
 .your-venues-container {
   background-image: url("../assets/images/generalbackgroundimages/corkboard3.png");
   background-size: contain; 
@@ -17,7 +16,7 @@
   align-items: center;
 }
 
-.venues-manage-title {
+.your-venues-manage-title {
   font-size: 2rem;
   margin-top: 6rem; 
   margin-bottom: 1rem;
@@ -28,86 +27,121 @@
   width: 100%; 
 }
 
-.venues-grid {
+.your-venues-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  max-width: 1200px;
-  margin: auto;
-
-  background: rgba(255, 255, 255, 0.4); 
-  padding: 20px;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 80%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.venue-card {
-  background: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+.your-venue-card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
   border-radius: 10px;
-  padding: 15px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
 }
 
-.venue-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+.your-venue-card:hover {
+  transform: scale(1.03) !important;
+  background-image: url("../assets/images/profileillustrations/penloop2.png") !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; 
 }
 
-.venue-card img {
+
+.your-venue-card img {
   width: 100%;
-  height: 180px;
+  height: 150px;
   object-fit: cover;
   border-radius: 8px;
 }
 
-.venue-card h2 {
-  font-size: 20px;
+.your-venue-card h2 {
+  font-size: clamp(1rem, 2vw, 1.2rem); 
+  color: #333;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
+}
+
+.your-venue-card p {
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  color: #555;
+  margin: 0.3rem 0;
+}
+
+
+.your-venue-card h2,
+.your-venue-card p {
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  text-align: center; 
+  color: #333; 
+  width: 100%; 
+  margin: 0 auto; 
+  padding: 6px;
+}
+
+
+.your-venue-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  flex-wrap: wrap; 
   margin: 10px 0;
 }
 
-.venue-card p {
-  font-size: 16px;
-  color: #555;
-  margin: 8px 0;
-}
-
-.venue-card button {
+.your-venue-card button {
   border: none;
   cursor: pointer;
   font-size: 16px;
-  margin-left: 5px;
-  transition: color 0.3s;
+  margin: 5px auto;
+  transition: color 0.3s, transform 0.2s ease-in-out;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
+.your-venue-card:hover button {
+  pointer-events: auto;
+}
 
 @media (max-width: 768px) {
-  .venues-grid {
+  .your-venues-grid {
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 
-
-
-.venue-image-container {
+.your-venue-image-container {
   position: relative;
   text-align: center;
 }
 
-
-
-
-/* remaining button styles-- move inline eventually when possible */
-.edit-image-btn {
+.your-edit-image-btn {
   position: absolute;
   top: 5px;
   right: 5px;
 }
 
-
-.edit-btn {
+.your-edit-btn {
   padding: 6px;
   width: 28px;
   height: 28px;
@@ -120,37 +154,63 @@
   transform: translateY(-50%);
 }
 
-
-.edit-btn i {
+.your-edit-btn i {
   font-size: 12px;
 }
 
-
-
-.venue-info-container {
+.your-venue-info-container {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
   width: 100%;
 }
 
-
-
-
-.delete-your-venue-btn {
-  
+.see-bookings-button, .delete-your-venue-button {
   padding: 8px 12px;
   font-size: 14px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 10px;
   font-weight: bold;
+  width: 80%;
+
 }
 
 
 
+
+
+
+
+
+
+
+
+@media (max-width: 1024px) {
+  .your-venues-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .your-venues-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .your-venues-container {
+    background-image: url("../assets/images/generalbackgroundimages/corkboard3.png");
+    background-size: cover; 
+    
+  }
+
+  .your-venue-card {
+    padding: 1.2rem;
+  }
+}
 
 
 
@@ -159,7 +219,6 @@
 
 
 /* Modals on this page: */
-
 
 .venue-input {
     width: calc(100% - 20px);
@@ -173,10 +232,10 @@
     box-sizing: border-box;
 }
 
-
 .venue-update-button,
 .venue-cancel-button {
     background-color: #FEC25B;
+    
     color: #333;
     padding: 10px 15px;
     font-size: 16px;

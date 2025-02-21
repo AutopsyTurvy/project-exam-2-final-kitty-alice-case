@@ -6,39 +6,27 @@
 /* src/styles/unregisteredvenues.css */ 
 
 
-
-.venues-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    min-height: 400px; 
-    width: 100%;
-    max-width: 1200px;
-    justify-content: center;
+.all-venues-container-image {
+    padding-top: 4em;
+    background: url("../assets/images/generalbackgroundimages/mapandpen.png") no-repeat center top;
+    background-size: contain;  
+    background-position: center top;  
+    width: 100vw;
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .no-venues-message {
-    grid-column: 1 / -1; 
-    text-align: center;
-    font-size: 1.2rem;
-    color: #555;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
+    justify-content: flex-start;
+    overflow-x: hidden;
+}
 
-
-
-
+.all-venues-container {
+    align-items: center;
+    justify-content: center;
+}
 
 .all-venues-header {
+    margin-top: 2em;
     font-size: 2.5rem;
     color: #333; 
     text-align: center;
@@ -54,6 +42,100 @@
 
 
 .all-venues-intro {
+    text-align: center;
+    background-color: #eff3f8;
+    max-width: 15%;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+
+
+/* Search Bar and sort button styles */
+
+
+.search-and-sort {
+    display: flex;
+    justify-content: center; 
+    align-items: center;  
+    gap: 15px;  
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto; 
+    flex-wrap: wrap;  
+}
+
+.search-bar {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    min-width: 200px; 
+}
+
+.sort-dropdown {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    min-width: 150px;
+}
+
+
+@media (max-width: 600px) {
+    .search-and-sort {
+        flex-direction: column;  
+        gap: 10px;
+    }
+
+    .search-bar,
+    .sort-dropdown {
+        width: 90%; 
+        max-width: 400px;
+    }
+}
+
+
+
+
+/* Venue Cards */
+.all-venues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 80%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+  }
+
+  .no-venues-message {
+    grid-column: 1 / -1; 
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+
+.all-venue-card {
+    background: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  }
+
+.all-venues-intro {
     color: #333; 
     text-align: center;
     font-weight: bold;
@@ -63,96 +145,62 @@
     
 }
 
-.venues-container-image {
-  padding-top: 3em;
-  background: url("../assets/images/generalbackgroundimages/mapandpen.png") no-repeat center top;
-  background-size: contain;  
-  background-position: center top;  
-  width: 100vw;
-  min-height: 100vh; 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  overflow-x: hidden;
-}
 
 
 
-.venues-container {
-    padding: 8em;
-    margin-top: 2em;
-    
-  }
-  
-  .venues-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    min-height: 300px; 
-    max-width: 1200px;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .venue-card {
-    background: rgba(255, 255, 255, 0.9); 
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.venue-card:hover {
+.all-venue-card:hover {
     transform: scale(1.03);
-    background: url("../assets/images/profileillustrations/penloop2.png") no-repeat 50% 50% / contain, 
-                rgba(255, 255, 255, 0.9);
-}
+    background-image: url("../assets/images/profileillustrations/penloop2.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
 
 
-.venue-card img {
+  .all-venue-card img {
     width: 100%;
-    height: 180px;
+    height: 150px;
     object-fit: cover;
     border-radius: 8px;
-}
+  }
 
 
-.venue-card-content {
+.all-venue-card-content {
     padding: 16px;
 }
 
 
-.venue-card h2 {
-    font-size: 1.2rem;
+.all-venue-card h2 {
+    font-size: clamp(1rem, 2vw, 1.2rem);
     color: #333;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 90%;
-    margin: 0 auto;
-}
+    max-width: 100%;
+    display: block;
+  }
 
 
-.venue-card p {
-    font-size: 0.9rem;
+  .all-venue-card p {
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
     color: #555;
     margin: 0.3rem 0;
+  }
+
+
+  .all-venue-card h2,
+  .all-venue-card p {
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 90%;
+    text-align: center;
+    color: #333;
+    width: 100%;
     margin: 0 auto;
-}
+    padding: 6px;
+  }
+
 
 
 .venue-card .price {
@@ -171,8 +219,23 @@
     text-decoration: none;
 }
 
+.venue-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
 
   
+
+
+
+
+/* See more, see less buttons */
+
 .see-more-button,
 .see-less-button {
     display: block;
@@ -184,5 +247,28 @@
 
 
 
+/* Responsive stuff */
 
 
+.venue-card:hover button {
+    pointer-events: auto;
+  }
+  
+ 
+  @media (max-width: 1024px) {
+    .venues-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .venues-grid {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+    }
+  
+    .venue-card {
+      padding: 1.2rem;
+    }
+  }
+  

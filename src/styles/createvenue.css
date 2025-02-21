@@ -115,26 +115,31 @@
 }
 
 
+
+
+/* Lets be a bit more responsive, eh? */
+
+
+
+
 @media (max-width: 768px) {
+
+  .create-venue-page {
+  
+    background-size: cover;
+   
+  }
+
   .create-venue-container {
-    width: 95%;
-    padding: 20px;
+    max-width: 90%;  
+    margin: 50px auto;
+    
   }
-
-  .create-venue-form {
-    max-width: 100%;
-    width: 100%;
-    padding: 20px;
-  }
-
-  .create-venue-form input,
-  .create-venue-form textarea {
-    width: 100%; 
-  }
-
-  .create-venue-form button {
-    width: 100%;  
-    font-size: 16px;
-    padding: 12px;
-  }
+ 
 }
+
+
+
+
+
+

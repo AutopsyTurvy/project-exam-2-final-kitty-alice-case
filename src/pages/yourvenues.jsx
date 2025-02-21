@@ -113,11 +113,26 @@ function YourVenues() {
     }
   };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className="your-venues-container">
       {loading && <Loader />}
       {error && <p className="error-message">{error}</p>}
-
+  
       {!loading && venues.length === 0 && !error && (
         <div className="no-venues-container">
           <p>You haven't created any venues yet.</p>
@@ -126,23 +141,23 @@ function YourVenues() {
           </Button>
         </div>
       )}
-
+  
       {!loading && venues.length > 0 && (
         <>
-          <h1 className="venues-manage-title">Venues you manage:</h1>
-          <div className="venues-grid">
+          <h1 className="your-venues-manage-title">Venues you manage:</h1>
+          <div className="your-venues-grid">
             {venues.map((venue) => (
-              <div key={venue.id} className="venue-card">
-
-                <div className="venue-image-container">
+              <div key={venue.id} className="your-venue-card">
+  
+                <div className="your-venue-image-container">
                   <img
                     src={venue.media[0]?.url || VenuePlaceholder}
                     alt={venue.media[0]?.alt || "Venue Image"}
                   />
-
+  
                   <Button
                     variant="secondary"
-                    className="edit-image-btn"
+                    className="your-edit-image-btn"
                     onClick={() => {
                       setEditingVenue(venue);
                       setEditingField("media");
@@ -151,12 +166,12 @@ function YourVenues() {
                     <i className="fa-solid fa-pen-to-square"></i>
                   </Button>
                 </div>
-
-                <div className="venue-info-container">
+  
+                <div className="your-venue-info-container">
                   <h2>{venue.name}</h2>
                   <Button
                     variant="secondary"
-                    className="edit-btn"
+                    className="your-edit-btn"
                     onClick={() => {
                       setEditingVenue(venue);
                       setEditingField("name");
@@ -165,12 +180,12 @@ function YourVenues() {
                     <i className="fa-solid fa-pen-to-square"></i>
                   </Button>
                 </div>
-
-                <div className="venue-info-container">
+  
+                <div className="your-venue-info-container">
                   <p>{venue.description}</p>
                   <Button
                     variant="secondary"
-                    className="edit-btn"
+                    className="your-edit-btn"
                     onClick={() => {
                       setEditingVenue(venue);
                       setEditingField("description");
@@ -179,12 +194,12 @@ function YourVenues() {
                     <i className="fa-solid fa-pen-to-square"></i>
                   </Button>
                 </div>
-
-                <div className="venue-info-container">
+  
+                <div className="your-venue-info-container">
                   <p>Price: ${venue.price}</p>
                   <Button
                     variant="secondary"
-                    className="edit-btn"
+                    className="your-edit-btn"
                     onClick={() => {
                       setEditingVenue(venue);
                       setEditingField("price");
@@ -193,28 +208,32 @@ function YourVenues() {
                     <i className="fa-solid fa-pen-to-square"></i>
                   </Button>
                 </div>
+  
 
+
+              <div className="your-venue-button-container">
                 <Button
                   variant="button"
-                  className="see-bookings-btn"
+                  className="see-bookings-button"
                   onClick={() => navigate(`/manage-your-venues/${venue.id}`)}
                 >
                   📅 See Venue Bookings
                 </Button>
-
+  
                 <Button
                   variant="danger"
-                  className="delete-your-venue-btn"
+                  className="delete-your-venue-button"
                   onClick={() => deleteVenue(venue.id)}
                 >
                   ❌ Delete Venue
                 </Button>
+                </div>
               </div>
             ))}
           </div>
         </>
       )}
-
+  
       {editingVenue && (
         <EditVenueModal
           venue={editingVenue}
@@ -229,6 +248,7 @@ function YourVenues() {
       )}
     </div>
   );
+  
 }
 
 export default YourVenues;

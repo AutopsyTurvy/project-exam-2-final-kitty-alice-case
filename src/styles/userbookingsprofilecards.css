@@ -129,18 +129,11 @@
 
   /* Buttons */
 
-  .view-venue-btn {
-    padding: 0.5rem 1rem;
+
+
+.delete-booking-button, .view-venue-button {
     margin-bottom: 0.5rem; 
-    margin-right: 2px;
-}
-
-
-.delete-booking-btn {
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-    margin-left: 2px;
+    width: 80%;
 }
 
 

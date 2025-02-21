@@ -44,7 +44,7 @@ function DeleteABooking({ bookingId, setBookings }) {
     };
 
     return (
-        <Button variant="danger" className="delete-booking-btn" onClick={handleDeleteBooking}>
+        <Button variant="danger" className="delete-booking-button" onClick={handleDeleteBooking}>
             ❌ Cancel Booking
         </Button>
     );

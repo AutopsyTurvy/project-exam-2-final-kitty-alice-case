@@ -208,51 +208,52 @@ function ProfilePage() {
 
 
           <div className="user-bookings-container">
-            <div className="user-bookings">
-              <h2 className="user-bookings-your-bookings-title">
-                {profileData?.name}, here are all of your bookings:
-              </h2>
+  <div className="user-bookings">
+    <h2 className="user-bookings-your-bookings-title">
+      {profileData?.name}, here are all of your bookings:
+    </h2>
 
-              {bookings.length === 0 ? (
-                <p>You have no bookings yet.</p>
-              ) : (
-                <ul className="booking-list">
-                  {bookings.map((booking) => (
-                    <li key={booking.id} id={`booking-${booking.id}`} className="booking-item">
-                      <h3>{booking.venue.name}</h3>
-                      <p>
-                        <strong>Location:</strong> {booking.venue.location.city}, {booking.venue.location.country}
-                      </p>
-                      <p>
-                        <strong>Check-in:</strong> {new Date(booking.dateFrom).toLocaleDateString()}
-                        </p>
-                        <p>
-                          <strong>Check-out:</strong> {new Date(new Date(booking.dateTo).setDate(new Date(booking.dateTo).getDate() + 1)).toLocaleDateString()}
-                          </p>
+    {bookings.length === 0 ? (
+      <p>You have no bookings yet.</p>
+    ) : (
+      <ul className="booking-list">
+        {bookings.map((booking) => (
+          <li key={booking.id} id={`booking-${booking.id}`} className="booking-item">
 
-                      <p>
-                        <strong>Guests:</strong> {booking.guests}
-                      </p>
+            <img
+              src={booking.venue.media[0]?.url || VenuePlaceholder}
+              alt={booking.venue.media[0]?.alt || "Venue Image"}
+              className="booking-image"
+            />
+            <h3>{booking.venue.name}</h3>
+            <p>
+              <strong>Location:</strong> {booking.venue.location.city}, {booking.venue.location.country}
+            </p>
 
+            <p><strong>Check-in:</strong> {new Date(booking.dateFrom).toLocaleDateString()}</p>
+            <p><strong>Check-out:</strong> {new Date(new Date(booking.dateTo).setDate(new Date(booking.dateTo).getDate() + 1)).toLocaleDateString()}</p>
 
-                      <img
-                      src={booking.venue.media[0]?.url || VenuePlaceholder}
-                      alt={booking.venue.media[0]?.alt || "Venue Image"}
-                      className="booking-image"
-                      />
+            <p><strong>Guests:</strong> {booking.guests}</p>
 
-                    <Button variant="button" className="view-venue-btn" onClick={() => navigate(`/venue/${booking.venue.id}`)}>
-                      🏡 View Venue
-                    </Button>
+            <div className="booking-buttons">
+              <Button
+                variant="button"
+                className="view-venue-button"
+                onClick={() => navigate(`/venue/${booking.venue.id}`)}
+              >
+                🏡 View Venue
+              </Button>
 
-
-                      <Deleteabooking bookingId={booking.id} setBookings={setBookings} />
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <Deleteabooking bookingId={booking.id} setBookings={setBookings} />
             </div>
-          </div>
+
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</div>
+
 
 
 
