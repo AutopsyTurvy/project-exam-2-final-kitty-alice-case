@@ -6,7 +6,7 @@
 
 
 .profile-info-container {
-    background-image: url("../assets/images/profileillustrations/passportbackdrop2.png");
+    background-image: url("../assets/images/profileillustrations/passportbackdrop3.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -130,17 +130,6 @@
     background: #FA9E00;
 }
 
-@media (max-width: 600px) {
-    .profile-content-container {
-        flex-direction: column;
-        text-align: center;
-        margin-top: 5em; 
-    }
-
-    .profile-avatar-section {
-        margin-bottom: 15px;
-    }
-}
 
 
 
@@ -250,7 +239,7 @@
 
     min-height: 100vh;
     height: auto; 
-    background-image: url("../assets/images/orofileillustrations/backdropcalendar2.png");
+    background-image: url("../assets/images/profileillustrations/backdropcalendar2.png");
     background-size: contain;
     background-position: center top;
     background-repeat: no-repeat;
@@ -276,9 +265,12 @@
 }
 
 .user-bookings-your-bookings-title {
-    padding-bottom: 2em;
-    padding-top: 3em;
     font-size: 2em;
+    background: rgba(255, 255, 255, 0.8);
+        padding: 14px 24px;
+        border-radius: 8px;
+        width: 75%;
+        margin: 0 auto;
 }
 
 .booking-list {

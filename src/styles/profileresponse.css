@@ -1,0 +1,160 @@
+
+
+
+
+
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+.profile-page {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+
+.profile-content {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+
+@media (max-width: 1200px) {
+    .profile-info-container {
+        padding: 25px;
+        height: 130vh; 
+        margin-top: 2.5em; 
+    }
+
+    .profile-avatar {
+        width: clamp(12em, 14vw, 16em); 
+        height: clamp(14em, 16vw, 18em);
+    }
+
+    .profile-info h1 {
+        font-size: clamp(1.3rem, 2vw, 2.2rem);
+    }
+
+    .profile-info p {
+        font-size: clamp(0.9rem, 1.5vw, 1.3rem);
+    }
+    .user-bookings-your-bookings-title {
+        font-size: 2em;
+        
+
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .profile-info-container {
+        background-size: cover !important;
+        height: auto;
+        margin-top: 0;
+    }
+
+    .profile-avatar {
+        width: 14em;
+        height: 16em;
+    }
+
+    .profile-info h1 {
+        font-size: 2rem;
+    }
+
+    .profile-info p {
+        font-size: 1.4rem;
+    }
+
+
+    
+}
+
+
+
+
+@media (max-width: 850px) {
+    .profile-info-container {
+        background-size: cover !important;
+        height: auto;
+        margin-top: 0 !important;
+    }
+
+    .profile-avatar {
+        width: 15em; 
+        height: 17em;
+    }
+
+    .profile-info h1 {
+        font-size: 2.2rem;
+    }
+
+    .profile-info p {
+        font-size: 1.5rem;
+    }
+}
+
+
+@media (max-width: 700px) {
+    .profile-info-container {
+        background-size: cover !important;
+        height: auto;
+        margin-top: 0 !important;
+    }
+
+    .profile-avatar {
+        width: clamp(13em, 16vw, 18em); 
+        height: clamp(15em, 18vw, 20em);
+    }
+
+    .profile-info h1 {
+        font-size: clamp(1.4rem, 2.5vw, 2.7rem);
+    }
+
+    .profile-info p {
+        font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    }
+}
+
+
+
+
+
+
+.profile-info-container {
+    background-size: contain; 
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+@media (max-width: 1000px) {
+    .profile-info-container {
+        background-size: cover !important; 
+        height: auto; 
+        margin-top: 0; 
+    }
+}
+
+
+@media (max-width: 850px) {
+    .profile-info-container {
+        background-size: cover !important;
+        height: auto;
+        margin-top: 0 !important;
+    }
+}
+
+
+@media (max-width: 700px) {
+    .profile-info-container {
+        background-size: cover !important;
+        height: auto;
+        margin-top: 0 !important;
+    }
+}

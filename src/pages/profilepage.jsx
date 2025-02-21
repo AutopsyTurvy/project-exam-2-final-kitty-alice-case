@@ -18,6 +18,7 @@ import Loader from "../components/loader";
 import "../styles/modal.css";
 import "../styles/profile.css";
 import "../styles/loader.css";
+import "../styles/profileresponse.css";
 import ProfilePlaceholder from "../assets/images/generalbackgroundimages/profileplaceholder.png";
 import BannerPlaceholder from "../assets/images/generalbackgroundimages/bannerplaceholder.png";
 import VenuePlaceholder from "../assets/images/generalbackgroundimages/venueplaceholder.png";

@@ -27,6 +27,11 @@
   font-size: 1.5rem;
 }
 
+.menu-toggle {
+  display: none;
+ 
+}
+
 
 .nav-links {
   display: flex;
@@ -54,7 +59,22 @@
 }
 
 
-@media (max-width: 768px) {
+
+
+
+@media (max-width: 1100px) {
+.user-header h1, h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+}
+
+
+
+
+
+
+@media (max-width: 950px) {
   
   .nav-links {
     display: none;
@@ -85,7 +105,11 @@
     padding: 10px 0;
   }
 
-  
+  .user-header h1, h2 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
   .nav-links button {
     width: 100%;
     padding: 12px;
@@ -100,6 +124,7 @@
 
   .nav-links button:hover {
     background: #FEC25B;
+    color: #333;
   }
 }
 

@@ -136,6 +136,35 @@ body {
 
 
 
+@media (max-width: 800px) {}
+
+@media (max-width: 1200px) {
+ 
+  .background-layer,
+  .deserthills-layer,
+  .latterpurplehills-layer,
+  .purplehills-layer,
+  .hillhouse-layer,
+  .chimneysmoke-layer,
+  .foreground-layer {
+    display: none;
+  }
+
+ .central-header {
+  margin: 0 auto;
+ }
+
+
+  .landing-container {
+    background-image: url("../assets/parallax/fullparallax.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden; 
+  }
+}
+
 
 
 
