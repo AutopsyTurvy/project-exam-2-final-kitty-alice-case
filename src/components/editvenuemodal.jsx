@@ -9,6 +9,7 @@
 
 
 import React, { useState } from "react";
+import Button from "../components/buttons/button"; 
 
 const API_BASE = "https://v2.api.noroff.dev";
 
@@ -61,7 +62,7 @@ function EditVenueModal({ venue, field, closeModal, updateVenues }) {
   return (
     <div className="modal">
       <div className="modal-content">
-        <button className="close-modal-button" onClick={closeModal}>❌</button>
+        <Button variant="danger" className="close-modal-button" onClick={closeModal}>❌</Button>
         <h3>Edit {field.charAt(0).toUpperCase() + field.slice(1)}</h3>
         {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleSubmit}>
@@ -88,10 +89,12 @@ function EditVenueModal({ venue, field, closeModal, updateVenues }) {
               />
             </>
           )}
-          <button type="submit" className="venue-update-button" disabled={loading}>
+          <Button type="submit" variant="button" className="venue-update-button" disabled={loading}>
             {loading ? "Updating..." : "Save"}
-          </button>
-          <button type="button" className="venue-cancel-button" onClick={closeModal}>Cancel</button>
+          </Button>
+          <Button type="button" variant="danger" className="venue-cancel-button" onClick={closeModal}>
+            Cancel
+          </Button>
         </form>
       </div>
     </div>
@@ -99,3 +102,4 @@ function EditVenueModal({ venue, field, closeModal, updateVenues }) {
 }
 
 export default EditVenueModal;
+

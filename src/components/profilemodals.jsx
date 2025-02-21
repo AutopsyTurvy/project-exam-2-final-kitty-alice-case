@@ -7,6 +7,7 @@
 
 
 import React from "react";
+import Button from "../components/buttons/button"; 
 
 function ProfileModals({ 
     showAvatarModal, setShowAvatarModal, avatarUrl, setAvatarUrl, handleAvatarUpdate, 
@@ -14,7 +15,7 @@ function ProfileModals({
 }) {
     return (
         <>
-            {/* Avatar Update Modal */}
+            {/* Avatar modal */}
             {showAvatarModal && (
                 <div className="modal">
                     <div className="modal-content">
@@ -27,12 +28,15 @@ function ProfileModals({
                             onChange={(e) => setAvatarUrl(e.target.value)}
                             className="avatar-input"
                         />
-                        <button onClick={handleAvatarUpdate} className="avatar-update-button">Update Avatar</button>
+                        <Button onClick={handleAvatarUpdate} variant="button">Update Avatar</Button>
                     </div>
                 </div>
             )}
 
-            {/* Banner Update Modal */}
+
+
+
+            {/* Banner modal */}
             {showBannerModal && (
                 <div className="modal">
                     <div className="modal-content">
@@ -45,7 +49,7 @@ function ProfileModals({
                             onChange={(e) => setBannerUrl(e.target.value)}
                             className="banner-input"
                         />
-                        <button onClick={handleBannerUpdate} className="banner-update-button">Update Banner</button>
+                        <Button onClick={handleBannerUpdate} variant="button">Update Banner</Button>
                     </div>
                 </div>
             )}

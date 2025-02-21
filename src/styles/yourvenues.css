@@ -99,65 +99,27 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* remaining button styles-- move inline eventually when possible */
 .edit-image-btn {
   position: absolute;
   top: 5px;
   right: 5px;
-  background: #FEC25B;
-  color: #333;
-  border: none;
-  border-radius: 50%;
-  padding: 5px;
-  cursor: pointer;
 }
-
-.edit-image-btn:hover {
-  
-  background-color: #e0a800;
-  color: #333;
-}
-
-
 
 
 .edit-btn {
-  background: #FEC25B;
-  color: #333;
-  border: none;
-  border-radius: 50%;
   padding: 6px;
   width: 28px;
   height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: background 0.3s ease-in-out;
-  font-size: 14px;
   position: absolute;
   right: 5px;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.edit-btn:hover {
-  background-color: #333;
-  background: #FA9E00;
-  color: #333;
-}
 
 .edit-btn i {
   font-size: 12px;
@@ -174,34 +136,10 @@
 }
 
 
-/* See venues Button */
 
-
-.see-bookings-btn {
-  background: #FEC25B;
-  color: #333;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s ease-in-out;
-  padding: 8px 12px;
-  font-size: 14px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-.see-bookings-btn:hover {
-  background: #FA9E00;
-  color: #333;
-}
-
-/* Delete Button */
 
 .delete-your-venue-btn {
-  background-color: #EA584C;
-  color: #333;
+  
   padding: 8px 12px;
   font-size: 14px;
   border: none;
@@ -211,9 +149,6 @@
   font-weight: bold;
 }
 
-.delete-your-venue-btn:hover {
-  background-color: #D32F2F;
-}
 
 
 

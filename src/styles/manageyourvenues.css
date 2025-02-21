@@ -111,22 +111,7 @@
     font-size: 16px;
   }
   
-  .your-manage-bookings-btn, .toggle-bookings-button {
-    background-color: #FEC25B;
-    color: #333;
-    border: none;
-    padding: 12px 18px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-    font-weight: bold;
-  }
-  
-  .your-manage-bookings-btn:hover, .toggle-bookings-button:hover {
-    background-color: #FA9E00;
-    color: #333;
-  }
+ 
   
 
 

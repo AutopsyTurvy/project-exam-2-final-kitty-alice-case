@@ -19,7 +19,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
     z-index: 1000;
 }
 
@@ -36,12 +35,7 @@
     text-align: center;
     box-sizing: border-box; 
     overflow: hidden; 
-   
 }
-
-
-
-
 
 
 .close-modal-button {
@@ -63,13 +57,6 @@
     border: 2px solid #f00;
 }
 
-
-
-
-
-
-
-
 .avatar-input,
 .banner-input {
     width: calc(100% - 20px); 
@@ -82,32 +69,6 @@
     font-size: 16px;
     box-sizing: border-box;
 }
-
-.avatar-update-button,
-.banner-update-button {
-    background-color: #FEC25B;
-    color: #333;
-    font-weight: bold;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.avatar-update-button:hover,
-.banner-update-button:hover {
-    background-color: #FA9E00;
-}
-
-.avatar-update-button:disabled,
-.banner-update-button:disabled {
-    background-color: #FEC25B;
-    cursor: not-allowed;
-}
-
-
 
 .modal-overlay {
     position: fixed;

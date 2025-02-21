@@ -9,10 +9,10 @@
 
 
 
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/loader"; 
+import Button from "../components/buttons/button";  
 import "../styles/createvenue.css";
 
 const API_BASE = "https://v2.api.noroff.dev";
@@ -50,45 +50,35 @@ function CreateVenuesPage() {
     }));
   };
 
-
-
-
-
-
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     setSuccessMessage("");
-  
-    
+
     if (!formData.name || !formData.description || !formData.price || !formData.maxGuests) {
       setError("Please fill in all required fields.");
       setLoading(false);
       return;
     }
-  
+
     const token = localStorage.getItem("Token");
     const apiKey = localStorage.getItem("ApiKey");
     const storedProfile = JSON.parse(localStorage.getItem("Profile"));
-  
+
     if (!token || !apiKey || !storedProfile) {
       setError("Authentication details missing. Please log in again.");
       setLoading(false);
       return;
     }
-  
+
     const venueData = {
       name: formData.name,
       description: formData.description,
       price: Number(formData.price),
       maxGuests: Number(formData.maxGuests),
       rating: formData.rating ? Number(formData.rating) : 0,
-      media: formData.mediaUrl
-        ? [{ url: formData.mediaUrl, alt: formData.mediaAlt || "Venue Image" }]
-        : [],
+      media: formData.mediaUrl ? [{ url: formData.mediaUrl, alt: formData.mediaAlt || "Venue Image" }] : [],
       meta: {
         wifi: formData.wifi,
         parking: formData.parking,
@@ -106,7 +96,7 @@ function CreateVenuesPage() {
       },
       owner: { name: storedProfile.name },
     };
-  
+
     try {
       const response = await fetch(`${API_BASE}/holidaze/venues`, {
         method: "POST",
@@ -117,21 +107,21 @@ function CreateVenuesPage() {
         },
         body: JSON.stringify(venueData),
       });
-  
+
       const data = await response.json();
-  
+
       if (!response.ok) {
         console.error("API Error:", data);
         throw new Error(
           data.errors?.[0]?.message || "Failed to create venue. Please try again later."
         );
       }
-  
+
       setSuccessMessage("🎉 Venue created successfully!");
-  
+
       storedProfile._count.venues += 1;
       localStorage.setItem("Profile", JSON.stringify(storedProfile));
-  
+
       setTimeout(() => {
         navigate("/your-venues");
       }, 2000);
@@ -142,18 +132,6 @@ function CreateVenuesPage() {
       setLoading(false);
     }
   };
-  
-
-
-
-
-
-
-
-
-
-
-
 
   return (
     <div className="create-venue-page">
@@ -206,9 +184,10 @@ function CreateVenuesPage() {
             <label>Continent</label>
             <input type="text" name="continent" value={formData.continent} onChange={handleChange} />
 
-            <button type="submit" disabled={loading}>
+           
+            <Button type="submit" variant="button" className="create-venue-btn" disabled={loading}>
               {loading ? "Creating Venue..." : "Create Venue"}
-            </button>
+            </Button>
           </form>
         )}
       </div>
@@ -217,4 +196,3 @@ function CreateVenuesPage() {
 }
 
 export default CreateVenuesPage;
-

@@ -53,7 +53,15 @@
 }
 
 
-
+.all-venues-intro {
+    color: #333; 
+    text-align: center;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    
+}
 
 .venues-container-image {
   padding-top: 3em;
@@ -164,31 +172,14 @@
 }
 
 
-
-
-
-
-
   
 .see-more-button,
 .see-less-button {
     display: block;
     margin: 20px auto;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    background-color: #FEC25B;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
+
 }
 
-.see-more-button:hover,
-.see-less-button:hover {
-    background-color: #FA9E00;
-}
 
 
 

@@ -9,7 +9,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api/auth";
-import "../styles/login.css";
+import Button from "../components/buttons/button";
+
 
 const API_BASE = "https://v2.api.noroff.dev";
 
@@ -80,7 +81,8 @@ function LoginPage() {
               required
             />
           </label>
-          <button type="submit">Login</button>
+          <Button type="submit" className="login-button">Login</Button>
+
         </form>
 
         <p className="register-suggestion">

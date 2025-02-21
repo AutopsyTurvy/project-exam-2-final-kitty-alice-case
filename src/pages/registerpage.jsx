@@ -12,6 +12,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUser, loginUser } from "../api/auth";
 import "../styles/register.css";
+import Button from "../components/buttons/button";
+
 
 
 
@@ -132,7 +134,8 @@ function RegisterPage() {
             {errors.banner && <p className="error-message">{errors.banner}</p>}
           </label>
           
-          <button type="submit">Register</button>
+          <Button type="submit" className="register-button" >Register</Button>
+
         </form>
       </div>
     </div>

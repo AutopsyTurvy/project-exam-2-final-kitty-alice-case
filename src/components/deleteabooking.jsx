@@ -6,6 +6,7 @@
 
 
 import React from "react";
+import Button from "../components/buttons/button";
 
 const API_BASE = "https://v2.api.noroff.dev";
 
@@ -43,9 +44,9 @@ function DeleteABooking({ bookingId, setBookings }) {
     };
 
     return (
-        <button className="delete-booking-btn" onClick={handleDeleteBooking}>
-            ❌ Delete Booking
-        </button>
+        <Button variant="danger" className="delete-booking-btn" onClick={handleDeleteBooking}>
+            ❌ Cancel Booking
+        </Button>
     );
 }
 

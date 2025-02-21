@@ -5,7 +5,8 @@
 
 
 
-import React from "react";
+import React from "react"; 
+import Button from "../components/buttons/button";  
 
 const API_BASE = "https://v2.api.noroff.dev";
 
@@ -60,9 +61,10 @@ function VenueManagerToggle({ profileData, setProfileData }) {
 
     return (
         !profileData?.venueManager && (
-            <button className="venue-manager-button" onClick={handleVenueManagerUpdate}>
-                Become a Venue Manager
-            </button>
+            <Button variant="button" className="venue-manager-btn" onClick={handleVenueManagerUpdate}>
+                🌟 Become a Venue Manager
+            </Button>
+
         )
     );
 }

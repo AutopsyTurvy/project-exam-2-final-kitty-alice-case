@@ -9,6 +9,7 @@
 
 import React, { useEffect } from "react";
 import Calendar from "react-calendar";
+import Button from "../components/buttons/button"; 
 import "../styles/calendar.css";
 import backgroundImage from "../assets/images/generalbackgroundimages/calendarbackground.png";
 
@@ -114,11 +115,10 @@ const CalendarComponent = ({
             ))}
           </select>
 
-
-
-          <button onClick={handleBooking} className="booking-button">
+        
+          <Button variant="button" className="booking-button" onClick={handleBooking}>
             Book Venue
-          </button>
+          </Button>
         </>
       ) : (
         <p>

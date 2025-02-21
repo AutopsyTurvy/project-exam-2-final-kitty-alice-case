@@ -18,7 +18,11 @@ import Loader from "../components/loader";
 import "../styles/modal.css";
 import "../styles/profile.css";
 import "../styles/loader.css";
+import "../styles/userbookingsprofilecards.css";
 import "../styles/profileresponse.css";
+import styles from "../components/buttons/button.module.css";  
+import Button from "../components/buttons/button";  
+
 import ProfilePlaceholder from "../assets/images/generalbackgroundimages/profileplaceholder.png";
 import BannerPlaceholder from "../assets/images/generalbackgroundimages/bannerplaceholder.png";
 import VenuePlaceholder from "../assets/images/generalbackgroundimages/venueplaceholder.png";
@@ -136,9 +140,9 @@ function ProfilePage() {
                />
                   )}
 
-                  <button className="edit-avatar-button" onClick={() => setShowAvatarModal(true)}>
-                    <i className="fa-solid fa-pen-to-square"></i>
-                  </button>
+<Button variant="secondary" className={styles.editAvatar} onClick={() => setShowAvatarModal(true)} style={{ position: "absolute", top: "10px", right: "10px" }}>
+  <i className="fa-solid fa-pen-to-square"></i>
+</Button>
                 </div>
 
                 <div className="profile-info">
@@ -151,12 +155,14 @@ function ProfilePage() {
 
                   {profileData?.venueManager && (
                     <div className="venue-manager-actions">
-                      <button className="create-venue-btn" onClick={() => navigate("/create-venue")}>
+                      <Button variant="button" className="create-venue-btn" onClick={() => navigate("/create-venue")}>
                         ➕ Create Venue
-                      </button>
-                      <button className="your-venues-btn" onClick={() => navigate("/your-venues")}>
+                      </Button>
+
+                      <Button variant="button" className="your-venues-btn" onClick={() => navigate("/your-venues")}>
                         🏠 Your Venues
-                      </button>
+                      </Button>
+
                     </div>
                   )}
                 </div>
@@ -174,15 +180,28 @@ function ProfilePage() {
               }}
               aria-label={profileData?.banner?.alt || `${profileData?.name}'s banner`}
             >
-              <button
+
+
+
+
+
+
+              <Button
+                variant="secondary"
                 className="edit-banner-button"
                 onClick={() => setShowBannerModal(true)}
                 style={{ position: "absolute", top: "10px", right: "10px" }}
-              >
-                <i className="fa-solid fa-pen-to-square"></i>
-              </button>
+                >
+                  <i className="fa-solid fa-pen-to-square"></i>
+                  </Button>
+
             </div>
           </div>
+
+
+
+
+
 
 
 
@@ -206,10 +225,11 @@ function ProfilePage() {
                       </p>
                       <p>
                         <strong>Check-in:</strong> {new Date(booking.dateFrom).toLocaleDateString()}
-                      </p>
-                      <p>
-                        <strong>Check-out:</strong> {new Date(booking.dateTo).toLocaleDateString()}
-                      </p>
+                        </p>
+                        <p>
+                          <strong>Check-out:</strong> {new Date(new Date(booking.dateTo).setDate(new Date(booking.dateTo).getDate() + 1)).toLocaleDateString()}
+                          </p>
+
                       <p>
                         <strong>Guests:</strong> {booking.guests}
                       </p>
@@ -221,9 +241,10 @@ function ProfilePage() {
                       className="booking-image"
                       />
 
-                      <button className="view-venue-btn" onClick={() => navigate(`/venue/${booking.venue.id}`)}>
-                        🏡 View Venue
-                      </button>
+                    <Button variant="button" className="view-venue-btn" onClick={() => navigate(`/venue/${booking.venue.id}`)}>
+                      🏡 View Venue
+                    </Button>
+
 
                       <Deleteabooking bookingId={booking.id} setBookings={setBookings} />
                     </li>
@@ -232,6 +253,10 @@ function ProfilePage() {
               )}
             </div>
           </div>
+
+
+
+
 
           <ProfileModals
             showAvatarModal={showAvatarModal}

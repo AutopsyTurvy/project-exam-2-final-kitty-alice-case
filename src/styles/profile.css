@@ -3,8 +3,6 @@
 
 /* src/styles/profile.css */
 
-
-
 .profile-info-container {
     background-image: url("../assets/images/profileillustrations/passportbackdrop3.png");
     background-size: contain;
@@ -18,7 +16,6 @@
     align-items: center;
     justify-content: flex-start; 
 }
-
 
 .user-bookings-outermost-container {
     padding: 20px;
@@ -69,32 +66,6 @@
 
 
 
-.edit-avatar-button {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: #FEC25B;
-    color: #333;
-    border: none;
-    border-radius: 50%;
-    padding: 5px;
-    cursor: pointer;
-}
-
-.edit-avatar-button:hover {
-    
-    background: #FA9E00;
-    
-}
-
-
-
-
-
-
-
-
-
 
   
 .profile-info {
@@ -112,27 +83,6 @@
     margin: 4em auto 3em auto; 
 }
 
-.edit-banner-button {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: #FEC25B;
-    color: #333;
-    border: none;
-    border-radius: 50%;
-    padding: 5px;
-    cursor: pointer;
-}
-
-
-
-.edit-banner-button:hover {
-    background: #FA9E00;
-}
-
-
-
-
 .venue-manager-badge {
     margin-top: 10px; 
     display: flex;
@@ -149,21 +99,11 @@
 
 
 
-.venue-manager-button {
 
-    font-weight: bold;
-   background-color: #FEC25B; 
-   color: #333;
-}
 
-.venue-manager-button:hover {
 
-    background-color: #FA9E00; 
-    color: #333;
- }
 
 /* Venue Manager Stamp: */
-
 
 .venue-manager-stamp {
     position: absolute;  
@@ -190,202 +130,21 @@
     filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.2)); 
 }
 
-
-
-
-
 .venue-manager-actions {
     display: flex;
     gap: 15px;
     margin-top: 20px;
 }
 
-.create-venue-btn,
-.your-venues-btn {
-    background-color: #FEC25B;
-    color: #333;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s ease-in-out;
-}
-
-.create-venue-btn:hover {
-    background-color: #EA584C;
-}
-
-.your-venues-btn {
-    background-color: #FEC25B;
-}
-
-.your-venues-btn:hover {
-    background-color: #EA584C;
-}
-
-
-
-
-  
-/* User bookings: */
 
 
 
 
 
 
-.user-bookings-container {
-
-    min-height: 100vh;
-    height: auto; 
-    background-image: url("../assets/images/profileillustrations/backdropcalendar2.png");
-    background-size: contain;
-    background-position: center top;
-    background-repeat: no-repeat;
-    position: relative; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
-    background-size: contain;
-}
-
-
-.user-bookings {
-
-    
-    margin-top: 4em;
-    padding: 1rem;
-    position: relative;
-    z-index: 10;
-    
-   
-}
-
-.user-bookings-your-bookings-title {
-    font-size: 2em;
-    background: rgba(255, 255, 255, 0.8);
-        padding: 14px 24px;
-        border-radius: 8px;
-        width: 75%;
-        margin: 0 auto;
-}
-
-.booking-list {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 80%;
-    margin: 0 auto; 
-
-}
 
 
 
-.booking-item {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
-    position: relative;
-    overflow: hidden; 
-}
-
-.booking-item:hover {
-    transform: scale(1.03);
-    background: url("../assets/images/profileillustrations/penloop2.png") no-repeat 50% 50% / contain, 
-                rgba(255, 255, 255, 0.9);
-}
-
-.booking-item:hover {
-    transform: scale(1.03);
-
-}
-
-.booking-image {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-  
-.booking-item h3 {
-    font-size: clamp(0.8rem, 2vw, 1.2rem);
-    color: #333;
-    margin-bottom: 0.5rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    display: block;
-}
-
-  
-  .booking-item p {
-    font-size: 0.9rem;
-    color: #555;
-    margin: 0.3rem 0;
-    
-  }
-  
-  
-  @media (max-width: 768px) {
-    .booking-list {
-      grid-template-columns: 1fr;
-    }
-  
-    .booking-item {
-      padding: 1.2rem;
-    }
-  }
-  
-
-
-  /* Buttons */
-
-  .view-venue-btn {
-    background-color: #FEC25B;
-    color: #333;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s ease-in-out;
-    margin-bottom: 0.5rem; 
-}
-
-.view-venue-btn:hover {
-    background-color: #FA9E00;
-}
-
-
-
-.delete-booking-btn {
-    background-color: #EA584C;
-    color: #333;
-    border: #333;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s ease-in-out;
-}
-
-.delete-booking-btn:hover {
-    background-color: #D32F2F;
-}
-
-
-.fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
-}
 
 
 

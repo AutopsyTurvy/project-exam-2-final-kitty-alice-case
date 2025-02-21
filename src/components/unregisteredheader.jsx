@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "../styles/header.css";
 
+
 function UnregisteredHeader() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);

@@ -5,8 +5,8 @@
 
 
 
-
 import React, { useState } from "react";
+import Button from "../components/buttons/button";  
 import "../styles/manageyourvenues.css"; 
 
 function BookingsDropdown({ bookings }) {
@@ -14,12 +14,13 @@ function BookingsDropdown({ bookings }) {
 
   return (
     <div className="bookings-dropdown">
-      <button
+      <Button
+        variant="button"
         className="toggle-bookings-button"
         onClick={() => setIsExpanded(!isExpanded)}
       >
         {isExpanded ? "Hide Bookings" : "Show Bookings"}
-      </button>
+      </Button>
 
       {isExpanded && (
         <div className="bookings-container">

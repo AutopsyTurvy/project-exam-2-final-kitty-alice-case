@@ -11,6 +11,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Loader from "../components/loader";
+import Button from "../components/buttons/button"; 
 import "../styles/venues.css";
 import "../styles/searchbar.css";
 import "../styles/loader.css"; 
@@ -79,14 +80,12 @@ function Venues() {
   useEffect(() => {
     let sortedVenues = [...venues];
 
-
     sortedVenues = sortedVenues.filter(
       (venue) =>
         venue.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         venue.description.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-   
     if (sortOption === "cheapest") {
       sortedVenues.sort((a, b) => a.price - b.price);
     } else if (sortOption === "highestRated") {
@@ -122,10 +121,18 @@ function Venues() {
     return <div className="error-message">{error}</div>;
   }
 
+
+
+
+
+
+
+
   return (
     <div className="venues-container-image">
       <div className="venues-container">
         <h1 className="all-venues-header">All Venues</h1>
+        <p className="all-venues-intro">Let's go on holiday!</p>
 
         <div className="search-bar-container">
           <input
@@ -155,21 +162,26 @@ function Venues() {
         <div className="venues-grid">
           {filteredVenues.length > 0 ? (
             filteredVenues.slice(0, visibleVenues).map((venue) => (
-              <Link key={venue.id} to={`/venue/${venue.id}`} className="venue-card-link">
-                <div className="venue-card">
-                  <img 
-                    src={venue.media[0]?.url || VenuePlaceholder} 
-                    alt={venue.media[0]?.alt || "Venue Image"} 
-                  />
-                  <div className="venue-card-content">
-                    <h2>{venue.name}</h2>
-                    <p>{venue.description}</p>
-                    <p className="price">Price: ${venue.price}</p>
-                    <p>Max Guests: {venue.maxGuests}</p>
-                    <p>Rating: {venue.rating}</p>
-                  </div>
+              <div key={venue.id} className="venue-card">
+                <img 
+                  src={venue.media[0]?.url || VenuePlaceholder} 
+                  alt={venue.media[0]?.alt || "Venue Image"} 
+                />
+                <div className="venue-card-content">
+                  <h2>{venue.name}</h2>
+                  <p>{venue.description}</p>
+                  <p className="price">Price: ${venue.price}</p>
+                  <p>Max Guests: {venue.maxGuests}</p>
+                  <p>Rating: {venue.rating}</p>
+                  
+                 
+                  <Link to={`/venue/${venue.id}`}>
+                    <Button variant="button" className="see-more-btn">
+                      See More
+                    </Button>
+                  </Link>
                 </div>
-              </Link>
+              </div>
             ))
           ) : (
             <p className="no-venues-message">No venues match your search.</p>
@@ -177,15 +189,15 @@ function Venues() {
         </div>
 
         {filteredVenues.length > visibleVenues && (
-          <button className="see-more-button" onClick={loadMoreVenues}>
-            See More
-          </button>
+          <Button variant="button" className="see-more-button" onClick={loadMoreVenues}>
+            See More Venues
+          </Button>
         )}
         
         {visibleVenues > 8 && (
-          <button className="see-less-button" onClick={showLessVenues}>
-            See Less
-          </button>
+          <Button variant="button" className="see-less-button" onClick={showLessVenues}>
+            See Less Venues
+          </Button>
         )}
       </div>
     </div>
@@ -193,3 +205,4 @@ function Venues() {
 }
 
 export default Venues;
+

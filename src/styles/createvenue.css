@@ -96,24 +96,6 @@
 }
 
 
-.create-venue-form button {
-  background-color: #FEC25B;
-  color: #333;
-  font-size: 18px;  
-  font-weight: bold;
-  padding: 14px;
-  width: 50%;  
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-  margin: 20px auto 0;
-}
-
-.create-venue-form button:hover {
-  background-color: #FA9E00;
-}
-
 .create-venue-form button:disabled {
   background-color: #999;
   cursor: not-allowed;

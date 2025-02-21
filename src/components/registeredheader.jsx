@@ -10,6 +10,8 @@ import { logoutUser } from "./logout";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "../styles/header.css";
 
+
+
 function RegisteredHeader({ username }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -45,9 +47,7 @@ function RegisteredHeader({ username }) {
 
      
       <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
-        <button onClick={() => { navigate("/"); closeMenu(); }}>Home</button>
         <button onClick={handleMyProfileClick}>My Profile</button>
-        
         <button onClick={() => { navigate("/venues"); closeMenu(); }}>Venues</button>
         <button onClick={() => { logoutUser(); closeMenu(); }}>Logout</button>
       </nav>
