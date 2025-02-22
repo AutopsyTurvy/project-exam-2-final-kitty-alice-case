@@ -33,7 +33,7 @@
 # project-exam-2-final-kitty-alice-case year 2
 ---
 
-This was the final project before the Christmas break, and the last before our final exam.
+Our Final exam is.. finally here!
 
 
 
