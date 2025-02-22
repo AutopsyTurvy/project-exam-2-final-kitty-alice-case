@@ -1,14 +1,24 @@
 
 
 ---
-.src/assets/images/readmeimages/landingreadme.jpeg
+
 
 ![Home Page](src/assets/images/readmeimages/landingreadme.jpeg)
-![Home Page](./src/assets/HomePageScreenshot.jpeg)
-![All Items Page](./src/assets/AllItemsScreenshot.jpeg)
-![Product Details Page](./src/assets/ProductDetails.jpeg)
-![Cart Page](./src/assets/CartScreenshot.jpeg)
-![Checkout Success Page](./src/assets/CheckoutSuccessScreenshot.jpeg)
+
+![Home Page](src/assets/images/readmeimages/loginreadme.jpeg)
+![All Items Page](src/assets/images/readmeimages/allvenuesreadme.jpeg)
+
+
+
+
+![Product Details Page](src/assets/images/readmeimages/calendarreadme.jpeg)
+![Product Details Page](src/assets/images/readmeimages/createvenuereadme.jpeg)
+![Product Details Page](src/assets/images/readmeimages/seebookingsbottomreadme.jpeg)
+![Product Details Page](src/assets/images/readmeimages/seebookingstopreadme.jpeg)
+![Product Details Page](src/assets/images/readmeimages/topprofilereadme.jpeg)
+![Product Details Page](src/assets/images/readmeimages/venuedetailsreadme.jpeg)
+![Cart Page](src/assets/images/readmeimages/venuesyoumanagereadme.jpeg)
+![Checkout Success Page](src/assets/images/readmeimages/yourbookingsreadme.jpeg)
 
 
 
