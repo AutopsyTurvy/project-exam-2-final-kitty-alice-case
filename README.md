@@ -52,22 +52,22 @@ User Stories
 
 The client has specified the following requirements in the form of User Stories:
 
-A user may view a list of Venues (Done)
-A user may search for a specific Venue (Done)
-A user may view a specific Venue page by id (Done)
-A user may view a calendar with available dates for a Venue (Done)
-A user with a stud.noroff.no email may register as a customer (Done)
-A registered customer may create a booking at a Venue (Done)
-A registered customer may view their upcoming bookings (Done)
-A user with a stud.noroff.no email may register as a Venue manager (Done)
-A registered Venue manager may create a Venue (Done)
-A registered Venue manager may update a Venue they manage (Done)
-A registered Venue manager may delete a Venue they manage (Done)
-A registered Venue manager may view bookings for a Venue they manage (Done)
-A registered user may login (Done)
-A registered user may update their avatar (Done)
-A registered user may logout (Done)
-Technical Restrictions (Done)
+* A user may view a list of Venues (Done).
+* A user may search for a specific Venue (Done).
+* A user may view a specific Venue page by id (Done).
+* A user may view a calendar with available dates for a Venue (Done).
+* A user with a stud.noroff.no email may register as a customer (Done).
+* A registered customer may create a booking at a Venue (Done).
+* A registered customer may view their upcoming bookings (Done).
+* A user with a stud.noroff.no email may register as a Venue manager (Done).
+* A registered Venue manager may create a Venue (Done).
+* A registered Venue manager may update a Venue they manage (Done).
+* A registered Venue manager may delete a Venue they manage (Done).
+* A registered Venue manager may view bookings for a Venue they manage (Done).
+* A registered user may login (Done).
+* A registered user may update their avatar (Done).
+* A registered user may logout (Done).
+* Technical Restrictions (Done).
 
 The company CTO has set the following technical restrictions:
 
@@ -140,7 +140,7 @@ Double check for dependencies if need be- run this in your project root:
 
 or simply open package.json and look under "dependencies".
 
-Dependencies upon last push:
+`   Dependencies upon last push:
  "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
     "date-fns": "^4.1.0",
@@ -162,7 +162,8 @@ Dependencies upon last push:
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
     "vite": "^6.0.5"
-  }
+  } 
+  `
 
 
 Install the dependencies: N/A
