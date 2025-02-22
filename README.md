@@ -4,21 +4,24 @@
 
 
 ![Home Page](src/assets/images/readmeimages/landingreadme.jpeg)
+![Login Page](src/assets/images/readmeimages/loginreadme.jpeg)
+![Profile](src/assets/images/readmeimages/topprofilereadme.jpeg)
+![Your Bookings Page](src/assets/images/readmeimages/yourbookingsreadme.jpeg)
+![See Bookings](src/assets/images/readmeimages/seebookingstopreadme.jpeg)
 
-![Home Page](src/assets/images/readmeimages/loginreadme.jpeg)
-![All Items Page](src/assets/images/readmeimages/allvenuesreadme.jpeg)
+
+![All Venues](src/assets/images/readmeimages/allvenuesreadme.jpeg)
 
 
+![Venues You Manage](src/assets/images/readmeimages/venuesyoumanagereadme.jpeg)
+![Calendar](src/assets/images/readmeimages/calendarreadme.jpeg)
+![Create Venue](src/assets/images/readmeimages/createvenuereadme.jpeg)
+![See Bookings You Manage](src/assets/images/readmeimages/seebookingsbottomreadme.jpeg)
 
 
-![Product Details Page](src/assets/images/readmeimages/calendarreadme.jpeg)
-![Product Details Page](src/assets/images/readmeimages/createvenuereadme.jpeg)
-![Product Details Page](src/assets/images/readmeimages/seebookingsbottomreadme.jpeg)
-![Product Details Page](src/assets/images/readmeimages/seebookingstopreadme.jpeg)
-![Product Details Page](src/assets/images/readmeimages/topprofilereadme.jpeg)
-![Product Details Page](src/assets/images/readmeimages/venuedetailsreadme.jpeg)
-![Cart Page](src/assets/images/readmeimages/venuesyoumanagereadme.jpeg)
-![Checkout Success Page](src/assets/images/readmeimages/yourbookingsreadme.jpeg)
+![Venue Details](src/assets/images/readmeimages/venuedetailsreadme.jpeg)
+
+
 
 
 
