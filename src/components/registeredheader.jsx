@@ -48,7 +48,8 @@ function RegisteredHeader({ username }) {
      
       <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
         <button onClick={handleMyProfileClick}>My Profile</button>
-        <button onClick={() => { navigate("/venues"); closeMenu(); }}>Venues</button>
+        <button onClick={() => { navigate("/venues"); closeMenu(); }}>All Venues</button>
+        <button onClick={() => { navigate("/your-venues"); closeMenu(); }}>Your Venues</button>
         <button onClick={() => { logoutUser(); closeMenu(); }}>Logout</button>
       </nav>
     </header>

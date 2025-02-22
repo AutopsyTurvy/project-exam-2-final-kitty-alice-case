@@ -42,6 +42,7 @@ function CreateVenuesPage() {
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
@@ -50,31 +51,35 @@ function CreateVenuesPage() {
     }));
   };
 
+
+
+
+
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
     setSuccessMessage("");
-
-    if (!formData.name || !formData.description || !formData.price || !formData.maxGuests) {
+  
+    if (!formData.name.trim() || !formData.description.trim() || !formData.price || !formData.maxGuests) {
       setError("Please fill in all required fields.");
-      setLoading(false);
       return;
     }
-
+  
     const token = localStorage.getItem("Token");
     const apiKey = localStorage.getItem("ApiKey");
     const storedProfile = JSON.parse(localStorage.getItem("Profile"));
-
+  
     if (!token || !apiKey || !storedProfile) {
       setError("Authentication details missing. Please log in again.");
-      setLoading(false);
       return;
     }
-
+  
     const venueData = {
-      name: formData.name,
-      description: formData.description,
+      name: formData.name.trim(),
+      description: formData.description.trim(),
       price: Number(formData.price),
       maxGuests: Number(formData.maxGuests),
       rating: formData.rating ? Number(formData.rating) : 0,
@@ -96,7 +101,7 @@ function CreateVenuesPage() {
       },
       owner: { name: storedProfile.name },
     };
-
+  
     try {
       const response = await fetch(`${API_BASE}/holidaze/venues`, {
         method: "POST",
@@ -107,31 +112,38 @@ function CreateVenuesPage() {
         },
         body: JSON.stringify(venueData),
       });
-
+  
       const data = await response.json();
-
+  
       if (!response.ok) {
-        console.error("API Error:", data);
-        throw new Error(
-          data.errors?.[0]?.message || "Failed to create venue. Please try again later."
-        );
+        throw new Error(data.errors?.[0]?.message || "Failed to create venue. Please try again later.");
       }
-
+  
       setSuccessMessage("🎉 Venue created successfully!");
-
-      storedProfile._count.venues += 1;
+      setError(null);
+  
+      if (storedProfile._count && typeof storedProfile._count.venues === "number") {
+        storedProfile._count.venues += 1;
+      } else {
+        storedProfile._count = { venues: 1 };
+      }
       localStorage.setItem("Profile", JSON.stringify(storedProfile));
-
+  
       setTimeout(() => {
         navigate("/your-venues");
-      }, 2000);
+      }, 3000);
     } catch (error) {
       console.error("Error:", error.message);
       setError(error.message || "Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
     }
   };
+  
+  
+  
+
+
+
+
 
   return (
     <div className="create-venue-page">
@@ -139,7 +151,10 @@ function CreateVenuesPage() {
         <h1>Create a New Venue</h1>
         
         {error && <p className="error-message">{error}</p>}
-        {successMessage && <p className="success-message">{successMessage}</p>}
+        {successMessage && ( <div className="success-modal"> <p>{successMessage}</p>
+        </div>
+        )}
+
   
         {loading ? (
           <Loader /> 

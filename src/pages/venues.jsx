@@ -26,7 +26,7 @@ function Venues() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [visibleVenues, setVisibleVenues] = useState(8); 
-  const [sortOption, setSortOption] = useState("default");
+  const [sortOption, setSortOption] = useState("newest");
 
   const location = useLocation();
   const isYourVenuesPage = location.pathname === "/your-venues";
@@ -86,24 +86,36 @@ function Venues() {
         venue.description.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    if (sortOption === "cheapest") {
-      sortedVenues.sort((a, b) => a.price - b.price);
-    } else if (sortOption === "highestRated") {
-      sortedVenues.sort((a, b) => b.rating - a.rating);
-    } else if (sortOption === "mostGuests") {
-      sortedVenues.sort((a, b) => b.maxGuests - a.maxGuests);
-    } else if (sortOption === "newest") {
-      sortedVenues.sort((a, b) => new Date(b.created) - new Date(a.created));
-    } else if (sortOption === "oldest") {
-      sortedVenues.sort((a, b) => new Date(a.created) - new Date(b.created));
-    } else if (sortOption === "az") {
-      sortedVenues.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortOption === "za") {
-      sortedVenues.sort((a, b) => b.name.localeCompare(a.name));
+  
+    switch (sortOption) {
+      case "cheapest":
+        sortedVenues.sort((a, b) => a.price - b.price);
+        break;
+      case "highestRated":
+        sortedVenues.sort((a, b) => b.rating - a.rating);
+        break;
+      case "mostGuests":
+        sortedVenues.sort((a, b) => b.maxGuests - a.maxGuests);
+        break;
+      case "newest":
+        sortedVenues.sort((a, b) => new Date(b.created) - new Date(a.created)); 
+        break;
+      case "oldest":
+        sortedVenues.sort((a, b) => new Date(a.created) - new Date(b.created));
+        break;
+      case "az":
+        sortedVenues.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case "za":
+        sortedVenues.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      default:
+        sortedVenues.sort((a, b) => new Date(b.created) - new Date(a.created));
     }
 
     setFilteredVenues(sortedVenues);
-  }, [searchQuery, venues, sortOption]);
+}, [searchQuery, venues, sortOption]); 
+
 
   const loadMoreVenues = () => {
     setVisibleVenues((prev) => Math.min(prev + 8, filteredVenues.length));

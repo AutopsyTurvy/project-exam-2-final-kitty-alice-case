@@ -21,7 +21,6 @@ function VenueManagerToggle({ profileData, setProfileData }) {
         }
 
         try {
-           
             const response = await fetch(`${API_BASE}/holidaze/profiles/${profileData?.name}`, {
                 method: "PUT",
                 headers: {
@@ -29,12 +28,12 @@ function VenueManagerToggle({ profileData, setProfileData }) {
                     Authorization: `Bearer ${token}`,
                     "X-Noroff-API-Key": apiKey,
                 },
-                body: JSON.stringify({ venueManager: true }),
+                body: JSON.stringify({ venueManager: true }), 
             });
 
             if (!response.ok) throw new Error(`Failed to update profile: ${response.statusText}`);
 
-            alert("You are now a Venue Manager! You can create venues for other people to enjoy and stay at!");
+            alert("You are now a Venue Manager! Your status is now permanent.");
 
            
             const updatedProfileResponse = await fetch(`${API_BASE}/holidaze/profiles/${profileData?.name}`, {
@@ -49,7 +48,7 @@ function VenueManagerToggle({ profileData, setProfileData }) {
 
             const updatedProfileData = await updatedProfileResponse.json();
 
-            
+          
             setProfileData(updatedProfileData.data);
             localStorage.setItem("Profile", JSON.stringify(updatedProfileData.data));
 
@@ -64,10 +63,10 @@ function VenueManagerToggle({ profileData, setProfileData }) {
             <Button variant="button" className="venue-manager-btn" onClick={handleVenueManagerUpdate}>
                 🌟 Become a Venue Manager
             </Button>
-
         )
     );
 }
 
 export default VenueManagerToggle;
+
 

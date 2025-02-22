@@ -105,7 +105,37 @@ function ProfilePage() {
 
 
 
-
+  const handleAvatarUpdate = () => {
+    if (!avatarUrl.trim()) return; 
+  
+    setProfileData((prevProfile) => ({
+      ...prevProfile,
+      avatar: { url: avatarUrl },
+    }));
+  
+    localStorage.setItem(
+      "Profile",
+      JSON.stringify({ ...profileData, avatar: { url: avatarUrl } })
+    );
+  
+    setShowAvatarModal(false);
+  };
+  
+  const handleBannerUpdate = () => {
+    if (!bannerUrl.trim()) return;
+  
+    setProfileData((prevProfile) => ({
+      ...prevProfile,
+      banner: { url: bannerUrl },
+    }));
+  
+    localStorage.setItem(
+      "Profile",
+      JSON.stringify({ ...profileData, banner: { url: bannerUrl } })
+    );
+  
+    setShowBannerModal(false);
+  };
 
 
 
@@ -259,16 +289,18 @@ function ProfilePage() {
 
 
 
-          <ProfileModals
-            showAvatarModal={showAvatarModal}
-            setShowAvatarModal={setShowAvatarModal}
-            avatarUrl={avatarUrl}
-            setAvatarUrl={setAvatarUrl}
-            showBannerModal={showBannerModal}
-            setShowBannerModal={setShowBannerModal}
-            bannerUrl={bannerUrl}
-            setBannerUrl={setBannerUrl}
-          />
+<ProfileModals
+  showAvatarModal={showAvatarModal}
+  setShowAvatarModal={setShowAvatarModal}
+  avatarUrl={avatarUrl}
+  setAvatarUrl={setAvatarUrl}
+  handleAvatarUpdate={handleAvatarUpdate}  
+  showBannerModal={showBannerModal}
+  setShowBannerModal={setShowBannerModal}
+  bannerUrl={bannerUrl}
+  setBannerUrl={setBannerUrl}
+  handleBannerUpdate={handleBannerUpdate} 
+/>
         </div>
       )}
     </div>
