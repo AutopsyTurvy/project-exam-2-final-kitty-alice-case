@@ -39,93 +39,73 @@ Our Final exam is.. finally here!
 
 
 ## Goal
-To apply knowledge of React to build an eCom store.
+
+To take the skills learned over the last two years and take on an extensive project where the finished product should reflect the candidate’s general development capabilities, in addition to visual and technical skills.
 
 ## Brief
-The API you are using for this brief is: https://v2.api.noroff.dev/online-shop
 
-You can find individual items by appending a product ID at the end of the API URL e.g. https://v2.api.noroff.dev/online-shop/f99cafd2-bd40-4694-8b33-a6052f36b435
+A newly launched accommodation booking site called Holidaze has approached you to develop a brand new front end for their application. While they have a list of required features, the design and user experience has not been specified. Working with the official API documentation, plan, design and build a modern front end accommodation booking application.
 
-You are tasked with build out the following pages for an eCom store:
+There are two aspects to this brief: the customer-facing side of the website where users can book holidays at a venue, and an admin-facing side of the website where users can register and manage venues and bookings at those venues.
 
-Homepage
-Individual product page
-Cart page
-Checkout success page
-Contact page
-The Homepage should have a list of all the products. There should be a look-ahead search bar that filters products when typing in a product name. Clicking on a product should take a user to an individual product page.
+User Stories
 
-You pages should use a <Layout> component that contains a header and footer. The header should contain a nav bar as well as a Cart icon component that acts as a button as well as displays the current number of items in the cart.
+The client has specified the following requirements in the form of User Stories:
 
-The individual product page should display data for a single product. There should be an Add to cart button which, upon clicking, adds the product to the cart. The product page should display the title of the product, the description and the image. There should also be reviews listed for the product, if there are any. You should use the discountedPrice property to display the price of the product. If there is a difference between the discountedPrice and price properties then that means there is a discount for that product. Calculate what this discount is and display it on the page.
+A user may view a list of Venues (Done)
+A user may search for a specific Venue (Done)
+A user may view a specific Venue page by id (Done)
+A user may view a calendar with available dates for a Venue (Done)
+A user with a stud.noroff.no email may register as a customer (Done)
+A registered customer may create a booking at a Venue (Done)
+A registered customer may view their upcoming bookings (Done)
+A user with a stud.noroff.no email may register as a Venue manager (Done)
+A registered Venue manager may create a Venue (Done)
+A registered Venue manager may update a Venue they manage (Done)
+A registered Venue manager may delete a Venue they manage (Done)
+A registered Venue manager may view bookings for a Venue they manage (Done)
+A registered user may login (Done)
+A registered user may update their avatar (Done)
+A registered user may logout (Done)
+Technical Restrictions (Done)
 
-Clicking on the Cart icon will load the Cart page, which will list all of the products as well as a total. The Cart page will have a Checkout button. Clicking this Checkout button then goes to a Checkout success page.
+The company CTO has set the following technical restrictions:
 
-The Checkout success page will display a message to the user notifying them that their order was successful. There should also be a link that lets a user go back to the store. The cart must be cleared if the user gets to the Checkout success page.
-
-There will be a contact page which will contain a contact form with the following fields. There must be form validation:
-
-Full name (Minimum number of characters is 3, required)
-Subject (Minimum number of characters is 3, required)
-Email (Must be a valid email address, required)
-Body (Minimum number of characters is 3, required)
-You will be using React Router to switch between pages.
-
-Your design should be responsive. You are welcome to use a CSS Framework, however, you’re encouraged to design from scratch and use styled-components or CSS Modules.
-
-You are not required to use TypeScript.
-
-Your code is expected to be clean and well-formatted.
-
-## Process
-Create a new CRA app.
-Create a Header that has a Nav.
-Create a Cart Icon component and position this next to your Nav. This Cart Icon component will have an overlay that displays the number of items in the cart.
-Create a Footer component.
-Create a Layout component that has your Header and Footer.
-Create the other pages:
-
-6.1 ContactPage
-
-6.2 ProductPage
-
-6.3 CheckoutPage
-
-6.4 CheckoutSuccessPage
-
-Add React Router and route to each of the pages. The ProductPage page will be using a dynamic segment.
-Fetch the list of products on the Homepage and store this as a state.
-On the homepage, loop through the products and display a Product component for each of the values. This Product component should look like a product card. Each Product component will have a View product button which will link to the ProductPage page.
-The homepage should have a lookahead/auto-complete Search bar component. Typing values in the search bar should display products where the title matches the search input. Clicking on an item should take the user to the ProductPage page. Tip: Filter the user input and then display products that match the input.
-On the ProductPage, use the ID of the product as the params for the dynamic segment. Add the product details as mentioned in the brief.
-Create a cart state. When the Add to cart button on the ProductPage is clicked, add the product to the cart.
-Clicking on the Cart Icon component will take the user to the CheckoutPage page.
-The CheckoutPage must list all of the products in the cart, show a total at the bottom and a Checkout button.
-Clicking the Checkout button will take the user to the CheckoutSuccessPage.
-The CheckoutSuccessPage should display that the order was successful and clear the cart. There should be a link to go back to the store.
-On the ContactPage, create the following inputs with the following requirements.
-
-16.1 Full name (Minimum number of characters is 3, required)
-
-16.2 Subject (Minimum number of characters is 3, required)
-
-16.3 Email (Must be a valid email address, required)
-
-16.4 Body (Minimum number of characters is 3, required)
-
-16.5 Submit button
-
-console.log the data from the form once validation requirements are met.
-Once your project is done, deploy it to Netlify.
+Must use an approved JavaScript Framework -- React (>16)
+Must use an approved CSS Framework  -- CSS Modules
+Must be hosted on an approved Static Host -- Netlify
+Must use an approved Design Application -- Figma
+Must use an approved Planning Application -- Trello/ Figma
 
 
 
+### Notes on project- reflections and things I would like to add in future.
 
-## Site purpose:
+I enjoyed that there were conditionals in my code- but think in future I would handle the two sides of the site differently, and separate themfurther, making the registration to become a venue manager a different registration altogether- 
+I think this would further highlight the venue manager and registered user positions and make them more definied in their purpose.
+
+## Future additions (Important, but not achieved due to time constraints).
+
+* If no venues are available in your local storage, remove venue manager status and stamp.
+  
+* Ensure that a user cannot book two venues over the same dates- modal pop up that perhaps alerts of the other booking, gives the option of deleting the first or canceling the bokking the user is about to make- "You can't be in two places at once.. can you?".
 
 
-Our goal was to complete an ecommerce site and build on our knowledge of react and JavaScript frameworks- This project should exemplify all that we have learned in the past few weeks.
-(See the specs we had to follow and achieve above.)
+* Style the bookings of the user (you) and the bookings of other users in different colours, so it can more easily be seen which holidays you booked.
+
+
+* e2e testing on the registration and login pages.
+
+
+* Make the card components modular - there was a lot of restyle issues because of initial shared styles that, though they worked well initially and i believed would give cleaner code, in the end there were small things i needed to differentiate so I separated them again- in future I would like to combine the styling and neaten it, use SOME shared styles, and add individuality to some others. For simplicity, i could remove a lot more styles if i made the card elements on my pages modular.
+
+* Make search bar modular.
+
+* Animate the clouds on the landing parallax.
+
+* See all bookings on all venues, but only as a Venue Manager.
+
+
 
 
 
@@ -154,6 +134,36 @@ Clone the repo:
 
     git clone git@github.com:  https://github.com/AutopsyTurvy/e-commerce-store-front-end-frameworks.git
    
+Double check for dependencies if need be- run this in your project root:
+
+    cat package.json | grep dependencies
+
+or simply open package.json and look under "dependencies".
+
+Dependencies upon last push:
+ "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "date-fns": "^4.1.0",
+    "react": "^18.3.1",
+    "react-calendar": "^5.1.0",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.1.1",
+    "sass": "^1.83.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "globals": "^15.14.0",
+    "vite": "^6.0.5"
+  }
+
 
 Install the dependencies: N/A
 
@@ -163,7 +173,8 @@ Running
 
 To run the app, run the following commands:
 
-    npm run start
+    npm run build
+    npm run dev
 
 
 (You may also choose to add to/ clone this code in another way than through the command line or terminal, and you may do this by opening it in your chosen code editor, via GitHub desktop, and subsequently, VScode. )
@@ -184,7 +195,7 @@ Contact:
 
 
 Email me: 
-autopsyturvycoding@gmail.com
+kitty.letsbuzz@gmail.com
 
 <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Gmail-Dark.svg" width="50" height="50"> <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Discord.svg" width="50" height="50">
 
@@ -195,26 +206,8 @@ Find me on Discord:
 kittyalicerayworth)
 
 ---
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
+---
 
 
 
@@ -304,10 +297,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-
-
-
 
 
 
