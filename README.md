@@ -3,7 +3,7 @@
 ---
 .src/assets/images/readmeimages/landingreadme.jpeg
 
-![Home Page](.src/assets/images/readmeimages/landingreadme.jpeg)
+![Home Page](src/assets/images/readmeimages/landingreadme.jpeg)
 ![Home Page](./src/assets/HomePageScreenshot.jpeg)
 ![All Items Page](./src/assets/AllItemsScreenshot.jpeg)
 ![Product Details Page](./src/assets/ProductDetails.jpeg)
