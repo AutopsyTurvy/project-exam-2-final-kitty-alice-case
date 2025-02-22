@@ -113,6 +113,10 @@ function Venues() {
         sortedVenues.sort((a, b) => new Date(b.created) - new Date(a.created));
     }
 
+
+
+
+    
     setFilteredVenues(sortedVenues);
 }, [searchQuery, venues, sortOption]); 
 
