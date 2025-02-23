@@ -9,7 +9,7 @@
 
 
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/loader"; 
 import Button from "../components/buttons/button";  
@@ -19,6 +19,7 @@ const API_BASE = "https://v2.api.noroff.dev";
 
 function CreateVenuesPage() {
   const navigate = useNavigate();
+  const [profileData, setProfileData] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -39,10 +40,18 @@ function CreateVenuesPage() {
   });
 
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
-
+  
+  useEffect(() => {
+    const storedProfile = JSON.parse(localStorage.getItem("Profile"));
+    if (storedProfile && storedProfile.name) {
+      setProfileData(storedProfile);
+    } else {
+      setProfileData(null);
+    }
+  }, []);
+  
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
@@ -51,32 +60,24 @@ function CreateVenuesPage() {
     }));
   };
 
-
-
-
-
-
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
     setSuccessMessage("");
-  
+
     if (!formData.name.trim() || !formData.description.trim() || !formData.price || !formData.maxGuests) {
       setError("Please fill in all required fields.");
       return;
     }
-  
+
     const token = localStorage.getItem("Token");
     const apiKey = localStorage.getItem("ApiKey");
-    const storedProfile = JSON.parse(localStorage.getItem("Profile"));
-  
-    if (!token || !apiKey || !storedProfile) {
+
+    if (!token || !apiKey || !profileData) {
       setError("Authentication details missing. Please log in again.");
       return;
     }
-  
+
     const venueData = {
       name: formData.name.trim(),
       description: formData.description.trim(),
@@ -99,9 +100,9 @@ function CreateVenuesPage() {
         lat: 0,
         lng: 0,
       },
-      owner: { name: storedProfile.name },
+      owner: { name: profileData.name },
     };
-  
+
     try {
       const response = await fetch(`${API_BASE}/holidaze/venues`, {
         method: "POST",
@@ -112,53 +113,52 @@ function CreateVenuesPage() {
         },
         body: JSON.stringify(venueData),
       });
-  
+
       const data = await response.json();
-  
+
       if (!response.ok) {
         throw new Error(data.errors?.[0]?.message || "Failed to create venue. Please try again later.");
       }
-  
+
       setSuccessMessage("🎉 Venue created successfully!");
       setError(null);
-  
-      if (storedProfile._count && typeof storedProfile._count.venues === "number") {
-        storedProfile._count.venues += 1;
+
+      if (profileData._count && typeof profileData._count.venues === "number") {
+        profileData._count.venues += 1;
       } else {
-        storedProfile._count = { venues: 1 };
+        profileData._count = { venues: 1 };
       }
-      localStorage.setItem("Profile", JSON.stringify(storedProfile));
-  
+      localStorage.setItem("Profile", JSON.stringify(profileData));
+
       setTimeout(() => {
-        navigate("/your-venues");
+        if (profileData && profileData.venueManager) {
+          navigate("/your-venues");  
+        } else if (profileData && profileData.name) {
+          navigate(`/profile/${profileData.name}`);  
+        } else {
+          navigate("/");  
+        }
       }, 3000);
+      
+      
+      
     } catch (error) {
       console.error("Error:", error.message);
       setError(error.message || "Something went wrong. Please try again.");
     }
   };
-  
-  
-  
-
-
-
-
 
   return (
     <div className="create-venue-page">
       <div className="create-venue-container">
         <h1>Create a New Venue</h1>
-        
-        {error && <p className="error-message">{error}</p>}
-        {successMessage && ( <div className="success-modal"> <p>{successMessage}</p>
-        </div>
-        )}
 
-  
-        {loading ? (
-          <Loader /> 
-        ) : (
+        {error && <p className="error-message">{error}</p>}
+        {successMessage && <div className="success-modal"><p>{successMessage}</p></div>}
+
+        {profileData === null ? (
+          <p>Loading profile data...</p>
+        ) : profileData.venueManager ? (
           <form onSubmit={handleSubmit} className="create-venue-form">
             <label>Venue Name*</label>
             <input type="text" name="name" value={formData.name} onChange={handleChange} required />
@@ -199,11 +199,16 @@ function CreateVenuesPage() {
             <label>Continent</label>
             <input type="text" name="continent" value={formData.continent} onChange={handleChange} />
 
-           
-            <Button type="submit" variant="button" className="create-venue-btn" disabled={loading}>
-              {loading ? "Creating Venue..." : "Create Venue"}
+            <Button type="submit" variant="button" className="create-venue-btn">
+              Create Venue
             </Button>
           </form>
+        ) : (
+          <p className="venue-manager-warning">
+            Oh no! You need to be a venue manager to create a venue.  
+            Register as one in your <a href={`/profile/${profileData?.name || ""}`}>profile</a>.
+          </p>
+
         )}
       </div>
     </div>

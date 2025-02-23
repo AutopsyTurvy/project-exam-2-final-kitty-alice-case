@@ -102,6 +102,11 @@ function App() {
           <Route path="/create-venue" element={<CreateVenuesPage />} />
           <Route path="/your-venues" element={<YourVenues />} />
           <Route path="/manage-your-venues/:venueId" element={<ManageYourVenues />} />
+        
+      
+
+          
+
         </Routes>
       </>
     </Router>
