@@ -54,7 +54,7 @@ function LoginPage() {
 
   return (
     <div className="register-page-wrapper">
-      <div className="register-page">
+      <main className="register-page">
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           <p className="form-info">Fields marked with * are required.</p>
@@ -88,7 +88,7 @@ function LoginPage() {
         <p className="register-suggestion">
           Don't have an account? <a href="/register">Register here</a>.
         </p>
-      </div>
+      </main>
     </div>
   );
 }

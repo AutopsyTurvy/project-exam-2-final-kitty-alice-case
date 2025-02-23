@@ -48,7 +48,7 @@ function BookingsPage() {
   }
 
   return (
-    <div className="bookings-page">
+    <main className="bookings-page">
       <h1>All Bookings</h1>
       <div className="bookings-list">
         {bookings.map((booking) => (
@@ -66,7 +66,7 @@ function BookingsPage() {
           </div>
         ))}
       </div>
-    </div>
+    </main>
   );
 }
 

@@ -129,7 +129,7 @@ function YourVenues() {
 
 
   return (
-    <div className="your-venues-container">
+    <main className="your-venues-container">
       {loading && <Loader />}
       {error && <p className="error-message">{error}</p>}
   
@@ -246,7 +246,7 @@ function YourVenues() {
           }}
         />
       )}
-    </div>
+    </main>
   );
   
 }

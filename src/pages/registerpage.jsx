@@ -98,7 +98,7 @@ function RegisterPage() {
 
   return (
     <div className="register-page-wrapper">
-      <div className="register-page">
+      <main className="register-page">
         <h1>Register</h1>
         <form onSubmit={handleSubmit}>
           <p className="form-info">Fields marked with * are required.</p>
@@ -137,7 +137,7 @@ function RegisterPage() {
           <Button type="submit" className="register-button" >Register</Button>
 
         </form>
-      </div>
+      </main>
     </div>
   );
 }

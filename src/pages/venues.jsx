@@ -116,7 +116,7 @@ function Venues() {
 
 
 
-    
+
     setFilteredVenues(sortedVenues);
 }, [searchQuery, venues, sortOption]); 
 
@@ -145,36 +145,42 @@ function Venues() {
 
 
   return (
-    <div className="all-venues-container-image">
-      <div className="all-venues-container">
+  <div className="all-venues-container-image">
+    <div className="all-venues-container">
+
+      {/* Header Section: Contains Title, Intro, Search, and Sort */}
+      <header className="venues-header">
         <h1 className="all-venues-header">All Venues</h1>
         <p className="all-venues-intro">Let's go on holiday!</p>
 
         <div className="search-and-sort">
-  <input
-    type="text"
-    placeholder="Search for venues by title or keywords..."
-    value={searchQuery}
-    onChange={(e) => setSearchQuery(e.target.value)}
-    className="search-bar"
-  />
+          <input
+            type="text"
+            placeholder="Search for venues by title or keywords..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-bar"
+          />
 
-  <select
-    className="sort-dropdown"
-    value={sortOption}
-    onChange={(e) => setSortOption(e.target.value)}
-  >
-    <option value="default">Sort By</option>
-    <option value="cheapest">Cheapest First</option>
-    <option value="highestRated">Highest Rated</option>
-    <option value="mostGuests">Most Guests</option>
-    <option value="newest">Newest First</option>
-    <option value="oldest">Oldest First</option>
-    <option value="az">A-Z</option>
-    <option value="za">Z-A</option>
-  </select>
-</div>
+          <select
+            className="sort-dropdown"
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
+            <option value="default">Sort By</option>
+            <option value="cheapest">Cheapest First</option>
+            <option value="highestRated">Highest Rated</option>
+            <option value="mostGuests">Most Guests</option>
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="az">A-Z</option>
+            <option value="za">Z-A</option>
+          </select>
+        </div>
+      </header>
 
+      {/* Main Section: Contains Fetched Venues */}
+      <main className="all-venues-main">
         <div className="all-venues-grid">
           {filteredVenues.length > 0 ? (
             filteredVenues.slice(0, visibleVenues).map((venue) => (
@@ -189,8 +195,7 @@ function Venues() {
                   <p className="price">Price: ${venue.price}</p>
                   <p>Max Guests: {venue.maxGuests}</p>
                   <p>Rating: {venue.rating}</p>
-                  
-                 
+
                   <Link to={`/venue/${venue.id}`}>
                     <Button variant="button" className="see-more-button">
                       View Details
@@ -204,29 +209,22 @@ function Venues() {
           )}
         </div>
 
-
-
-
-
-
-
-
-
-
         {filteredVenues.length > visibleVenues && (
           <Button variant="button" className="see-more-button" onClick={loadMoreVenues}>
             See More Venues
           </Button>
         )}
-        
+
         {visibleVenues > 8 && (
           <Button variant="button" className="see-less-button" onClick={showLessVenues}>
             See Less Venues
           </Button>
         )}
-      </div>
+      </main>
     </div>
-  );
+  </div>
+);
+
 }
 
 export default Venues;

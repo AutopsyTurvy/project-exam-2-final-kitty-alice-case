@@ -150,7 +150,7 @@ function CreateVenuesPage() {
 
   return (
     <div className="create-venue-page">
-      <div className="create-venue-container">
+      <main className="create-venue-container">
         <h1>Create a New Venue</h1>
 
         {error && <p className="error-message">{error}</p>}
@@ -210,7 +210,7 @@ function CreateVenuesPage() {
           </p>
 
         )}
-      </div>
+      </main>
     </div>
   );
 }

@@ -24,7 +24,7 @@ function LandingPage() {
   const userProfile = loggedIn ? getUserProfile() : null;
 
   return (
-    <div>
+    <main>
  
       {loggedIn ? (
         <RegisteredHeader username={userProfile.name} />
@@ -35,7 +35,7 @@ function LandingPage() {
      
       <h1>Welcome to Holidaze</h1>
       {!loggedIn && <button onClick={goToRegister}>Register</button>}
-    </div>
+    </main>
   );
 }
 

@@ -173,7 +173,7 @@ function VenueDetails() {
 
   return (
     <div className="venue-details-page">
-        <div className="venue-details-container">
+        <main className="venue-details-container">
           <img 
             className="venue-hero"
             src={venue.media[0]?.url || VenuePlaceholder} 
@@ -223,7 +223,7 @@ function VenueDetails() {
               <a href="/register" className="register-link">register here</a> to book your holiday.
             </p>
           )}
-        </div>
+        </main>
     </div>
 );
 }

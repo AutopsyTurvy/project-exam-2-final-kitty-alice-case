@@ -70,7 +70,7 @@ function ManageYourVenues() {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="your-manage-venue-page">
+    <main className="your-manage-venue-page">
       <div className="your-venue-details-page">
         <button className="your-back-btn" onClick={() => navigate(-1)}>🔙</button>
         <div className="your-venue-details-container">
@@ -116,7 +116,7 @@ function ManageYourVenues() {
 
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
