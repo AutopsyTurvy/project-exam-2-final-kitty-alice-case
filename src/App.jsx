@@ -24,6 +24,9 @@ import ManageYourVenues from "./pages/manageyourvenues";
 
 
 
+
+
+
 // Parallax images:
 import backgroundImage from "./assets/parallax/background2.png"; 
 import hillhouseImage from "./assets/parallax/hillhouse.png";
@@ -92,10 +95,10 @@ function App() {
         {isLoggedIn ? <RegisteredHeader username={userProfile?.name} /> : <UnregisteredHeader />}
         
         <Routes>
+           <Route path="/profile/:username" element={<ProfilePage />} />
           <Route path="/" element={<LandingPage />} /> 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/profile/:username" element={<ProfilePage />} />
           <Route path="/bookings" element={<BookingsPage />} />
           <Route path="/venues" element={<Venues />} />
           <Route path="/venue/:id" element={<VenueDetails />} />
@@ -103,10 +106,6 @@ function App() {
           <Route path="/your-venues" element={<YourVenues />} />
           <Route path="/manage-your-venues/:venueId" element={<ManageYourVenues />} />
         
-      
-
-          
-
         </Routes>
       </>
     </Router>
