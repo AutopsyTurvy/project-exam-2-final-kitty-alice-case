@@ -105,6 +105,9 @@ I think this would further highlight the venue manager and registered user posit
 
 * See all bookings on all venues, but only as a Venue Manager.
 
+* Add additional edit buttons to Manage venue details page 
+
+
 
 
 
