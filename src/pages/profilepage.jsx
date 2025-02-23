@@ -142,68 +142,64 @@ function ProfilePage() {
 
 
   return (
+   
     <div className="profile-page">
       {loading ? (
-        <Loader />
+        <Loader />  
       ) : (
         <div className="profile-content">
-          
-          {/* Header Section */}
-          <header>
-            <div className="profile-info-container">
-              <div className="inner-profile-info-container">
-                <div className="profile-content-container">
-                  <div className="profile-avatar-section">
-                    <img
-                      src={profileData?.avatar?.url || ProfilePlaceholder}
-                      alt={profileData?.avatar?.alt || `${profileData?.name}'s avatar`}
-                      className="profile-avatar"
-                    />
-  
-                    {profileData?.venueManager && (
-                      <img 
-                        src="/venuemanagerstamp.png" 
-                        alt="Venue Manager Stamp"
-                        className="venue-manager-stamp"
-                      />
-                    )}
-  
-                    <Button 
-                      variant="secondary" 
-                      className={styles.editAvatar} 
-                      onClick={() => setShowAvatarModal(true)}
-                      style={{ position: "absolute", top: "10px", right: "10px" }}
-                    >
-                      <i className="fa-solid fa-pen-to-square"></i>
-                    </Button>
-                  </div>
-  
-                  <div className="profile-info">
-                    <h1>Welcome to your profile, {profileData?.name}!</h1>
-                    <p>--- Your Info ---</p>
-                    <p>Email: {profileData?.email}</p>
-                    {profileData?.bio && <p>Bio: {profileData.bio}</p>}
-  
-                    <VenueManagerToggle profileData={profileData} setProfileData={setProfileData} />
-  
-                    {profileData?.venueManager && (
-                      <div className="venue-manager-actions">
-                        <Button variant="button" className="create-venue-btn" onClick={() => navigate("/create-venue")}>
-                          ➕ Create Venue
-                        </Button>
-                        <Button variant="button" className="your-venues-btn" onClick={() => navigate("/your-venues")}>
-                          🏠 Your Venues
-                        </Button>
-                      </div>
-                    )}
-                  </div>
+          <div className="profile-info-container">
+            <div className="inner-profile-info-container">
+              <div className="profile-content-container">
+                <div className="profile-avatar-section">
+                <img
+                    src={profileData?.avatar?.url || ProfilePlaceholder}
+                    alt={profileData?.avatar?.alt || `${profileData?.name}'s avatar`}
+                    className="profile-avatar"
+                  />
+
+
+
+
+
+
+                  {profileData?.venueManager && (
+                   <img 
+                   src="/venuemanagerstamp.png" 
+                   alt="Venue Manager Stamp"
+                   className="venue-manager-stamp"
+               />
+                  )}
+
+<Button variant="secondary" className={styles.editAvatar} onClick={() => setShowAvatarModal(true)} style={{ position: "absolute", top: "10px", right: "10px" }}>
+  <i className="fa-solid fa-pen-to-square"></i>
+</Button>
+                </div>
+
+                <div className="profile-info">
+                  <h1>Welcome to your profile, {profileData?.name}!</h1>
+                  <p>--- Your Info ---</p>
+                  <p>Email: {profileData?.email}</p>
+                  {profileData?.bio && <p>Bio: {profileData.bio}</p>}
+
+                  <VenueManagerToggle profileData={profileData} setProfileData={setProfileData} />
+
+                  {profileData?.venueManager && (
+                    <div className="venue-manager-actions">
+                      <Button variant="button" className="create-venue-btn" onClick={() => navigate("/create-venue")}>
+                        ➕ Create Venue
+                      </Button>
+
+                      <Button variant="button" className="your-venues-btn" onClick={() => navigate("/your-venues")}>
+                        🏠 Your Venues
+                      </Button>
+
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-          </header>
-  
-          {/* Main Content Section */}
-          <main>
+
             <div
               className="profile-banner-section"
               style={{
@@ -215,78 +211,101 @@ function ProfilePage() {
               }}
               aria-label={profileData?.banner?.alt || `${profileData?.name}'s banner`}
             >
+
+
+
+
+
+
               <Button
                 variant="secondary"
                 className="edit-banner-button"
                 onClick={() => setShowBannerModal(true)}
                 style={{ position: "absolute", top: "10px", right: "10px" }}
-              >
-                <i className="fa-solid fa-pen-to-square"></i>
-              </Button>
+                >
+                  <i className="fa-solid fa-pen-to-square"></i>
+                  </Button>
+
             </div>
-  
-            <div className="user-bookings-container">
-              <div className="user-bookings">
-                <h2 className="user-bookings-your-bookings-title">
-                  {profileData?.name}, here are all of your bookings:
-                </h2>
-  
-                {bookings.length === 0 ? (
-                  <p>You have no bookings yet.</p>
-                ) : (
-                  <ul className="booking-list">
-                    {bookings.map((booking) => (
-                      <li key={booking.id} id={`booking-${booking.id}`} className="booking-item">
-                        <img
-                          src={booking.venue.media[0]?.url || VenuePlaceholder}
-                          alt={booking.venue.media[0]?.alt || "Venue Image"}
-                          className="booking-image"
-                        />
-                        <h3>{booking.venue.name}</h3>
-                        <p>
-                          <strong>Location:</strong> {booking.venue.location.city}, {booking.venue.location.country}
-                        </p>
-                        <p><strong>Check-in:</strong> {new Date(booking.dateFrom).toLocaleDateString()}</p>
-                        <p><strong>Check-out:</strong> {new Date(new Date(booking.dateTo).setDate(new Date(booking.dateTo).getDate() + 1)).toLocaleDateString()}</p>
-                        <p><strong>Guests:</strong> {booking.guests}</p>
-                        <div className="booking-buttons">
-                          <Button
-                            variant="button"
-                            className="view-venue-button"
-                            onClick={() => navigate(`/venue/${booking.venue.id}`)}
-                          >
-                            🏡 View Venue
-                          </Button>
-                          <Deleteabooking bookingId={booking.id} setBookings={setBookings} />
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </div>
-          </main>
-  
-          {/* Footer Section */}
-          <footer>
-            <ProfileModals
-              showAvatarModal={showAvatarModal}
-              setShowAvatarModal={setShowAvatarModal}
-              avatarUrl={avatarUrl}
-              setAvatarUrl={setAvatarUrl}
-              handleAvatarUpdate={handleAvatarUpdate}  
-              showBannerModal={showBannerModal}
-              setShowBannerModal={setShowBannerModal}
-              bannerUrl={bannerUrl}
-              setBannerUrl={setBannerUrl}
-              handleBannerUpdate={handleBannerUpdate} 
+          </div>
+
+
+
+
+
+
+
+
+
+
+          <div className="user-bookings-container">
+  <div className="user-bookings">
+    <h2 className="user-bookings-your-bookings-title">
+      {profileData?.name}, here are all of your bookings:
+    </h2>
+
+    {bookings.length === 0 ? (
+      <p>You have no bookings yet.</p>
+    ) : (
+      <ul className="booking-list">
+        {bookings.map((booking) => (
+          <li key={booking.id} id={`booking-${booking.id}`} className="booking-item">
+
+            <img
+              src={booking.venue.media[0]?.url || VenuePlaceholder}
+              alt={booking.venue.media[0]?.alt || "Venue Image"}
+              className="booking-image"
             />
-          </footer>
+            <h3>{booking.venue.name}</h3>
+            <p>
+              <strong>Location:</strong> {booking.venue.location.city}, {booking.venue.location.country}
+            </p>
+
+            <p><strong>Check-in:</strong> {new Date(booking.dateFrom).toLocaleDateString()}</p>
+            <p><strong>Check-out:</strong> {new Date(new Date(booking.dateTo).setDate(new Date(booking.dateTo).getDate() + 1)).toLocaleDateString()}</p>
+
+            <p><strong>Guests:</strong> {booking.guests}</p>
+
+            <div className="booking-buttons">
+              <Button
+                variant="button"
+                className="view-venue-button"
+                onClick={() => navigate(`/venue/${booking.venue.id}`)}
+              >
+                🏡 View Venue
+              </Button>
+
+              <Deleteabooking bookingId={booking.id} setBookings={setBookings} />
+            </div>
+
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</div>
+
+
+
+
+
+
+<ProfileModals
+  showAvatarModal={showAvatarModal}
+  setShowAvatarModal={setShowAvatarModal}
+  avatarUrl={avatarUrl}
+  setAvatarUrl={setAvatarUrl}
+  handleAvatarUpdate={handleAvatarUpdate}  
+  showBannerModal={showBannerModal}
+  setShowBannerModal={setShowBannerModal}
+  bannerUrl={bannerUrl}
+  setBannerUrl={setBannerUrl}
+  handleBannerUpdate={handleBannerUpdate} 
+/>
         </div>
       )}
     </div>
   );
-  
 }
 
 export default ProfilePage;
