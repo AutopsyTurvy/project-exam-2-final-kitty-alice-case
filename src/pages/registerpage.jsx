@@ -33,38 +33,57 @@ function RegisterPage() {
 
   const validateField = (name, value) => {
     let message = "";
+    
     switch (name) {
       case "name":
         if (!/^\w+$/.test(value)) {
           message = "Name can only contain letters, numbers, and underscores ( _ ).";
         }
         break;
+  
       case "email":
         if (!/.+@stud\.noroff\.no$/.test(value)) {
           message = "Email must be in the format: example@stud.noroff.no.";
         }
         break;
+  
       case "password":
         if (value.length < 8) {
           message = "Password must be at least 8 characters long.";
         }
         break;
+  
       case "bio":
         if (value.length > 160) {
           message = "Bio must be less than 160 characters.";
         }
         break;
+  
       case "avatar":
       case "banner":
-        if (value && !/^https?:\/\/.+$/.test(value)) {
-          message = "Must be a valid and accessible URL, starting with http:// or https://.";
+        if (value && !/^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|svg|webp))$/i.test(value)) {
+          message = "Must be a valid image URL ending in .png, .jpg, .jpeg, .gif, .svg, or .webp.";
         }
         break;
+  
+      case "avatarAlt":
+      case "bannerAlt":
+        if (value.length > 120) {
+          message = "Alt text must be less than 120 characters.";
+        }
+        break;
+  
       default:
         break;
     }
+  
     setErrors((prevErrors) => ({ ...prevErrors, [name]: message }));
   };
+  
+
+
+
+
 
   const handleFocus = (name) => {
     setShowInfo((prev) => ({ ...prev, [name]: true }));
